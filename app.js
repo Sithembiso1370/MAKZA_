@@ -160,6 +160,8 @@ function renderStories() {
 window.addToCart = (productName) => {
   cartCount++;
   document.getElementById('cartCount').innerText = cartCount;
+  const mobileCartCount = document.getElementById('mobileCartCount');
+  if (mobileCartCount) mobileCartCount.innerText = cartCount;
   localStorage.setItem('cartCount', cartCount);
   showToast(`✓ ${productName} added to cart`, 'success');
 };
@@ -251,6 +253,81 @@ document.getElementById('searchInput')?.addEventListener('input', (e) => {
 });
 
 // =========================================
+// MOBILE MENU FUNCTIONALITY
+// =========================================
+
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+const categoryLinks = document.querySelectorAll('.category-link');
+
+// Open mobile menu
+mobileMenuBtn?.addEventListener('click', () => {
+  mobileMenuOverlay.classList.add('active');
+  mobileMenuDrawer.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevent scrolling
+});
+
+// Close mobile menu
+function closeMobileMenu() {
+  mobileMenuOverlay.classList.remove('active');
+  mobileMenuDrawer.classList.remove('active');
+  document.body.style.overflow = ''; // Restore scrolling
+}
+
+mobileMenuClose?.addEventListener('click', closeMobileMenu);
+mobileMenuOverlay?.addEventListener('click', closeMobileMenu);
+
+// Category links in mobile menu
+categoryLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const category = link.getAttribute('data-category');
+    
+    // Update active state
+    categoryLinks.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+    
+    // Update main category tabs
+    currentCategory = category;
+    document.querySelectorAll('.category-tab').forEach(tab => {
+      tab.classList.remove('active');
+      if (tab.innerText.toLowerCase() === category || 
+          (category === 'all' && tab.innerText === 'All')) {
+        tab.classList.add('active');
+      }
+    });
+    
+    // Render products with new category
+    renderProducts();
+    showToast(`Showing ${link.innerText} category`, 'success');
+    
+    // Close menu after selection
+    closeMobileMenu();
+  });
+});
+
+// Mobile theme toggle
+mobileThemeToggle?.addEventListener('click', (e) => {
+  e.preventDefault();
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  
+  // Update icons in both toggles
+  const desktopIcon = themeToggle?.querySelector('i');
+  const mobileIcon = mobileThemeToggle.querySelector('i');
+  const iconClass = isDark ? 'fas fa-moon' : 'fas fa-sun';
+  
+  if (desktopIcon) desktopIcon.className = iconClass;
+  if (mobileIcon) mobileIcon.className = iconClass;
+  
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  showToast(`Switched to ${isDark ? 'light' : 'dark'} mode`, 'success');
+});
+
+// =========================================
 // THEME & INITIALIZATION
 // =========================================
 
@@ -260,7 +337,15 @@ const html = document.documentElement;
 themeToggle?.addEventListener('click', () => {
   const isDark = html.getAttribute('data-theme') === 'dark';
   html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  themeToggle.querySelector('i').className = isDark ? 'fas fa-moon' : 'fas fa-sun';
+  
+  // Update icons in both toggles
+  const desktopIcon = themeToggle.querySelector('i');
+  const mobileIcon = mobileThemeToggle?.querySelector('i');
+  const iconClass = isDark ? 'fas fa-moon' : 'fas fa-sun';
+  
+  if (desktopIcon) desktopIcon.className = iconClass;
+  if (mobileIcon) mobileIcon.className = iconClass;
+  
   localStorage.setItem('theme', isDark ? 'light' : 'dark');
   showToast(`Switched to ${isDark ? 'light' : 'dark'} mode`, 'success');
 });
@@ -270,12 +355,20 @@ const savedCart = localStorage.getItem('cartCount');
 if (savedCart) {
   cartCount = parseInt(savedCart);
   document.getElementById('cartCount').innerText = cartCount;
+  const mobileCartCount = document.getElementById('mobileCartCount');
+  if (mobileCartCount) mobileCartCount.innerText = cartCount;
 }
 
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
   html.setAttribute('data-theme', savedTheme);
-  themeToggle.querySelector('i').className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+  const isDark = savedTheme === 'dark';
+  const desktopIcon = themeToggle?.querySelector('i');
+  const mobileIcon = mobileThemeToggle?.querySelector('i');
+  const iconClass = isDark ? 'fas fa-sun' : 'fas fa-moon';
+  
+  if (desktopIcon) desktopIcon.className = iconClass;
+  if (mobileIcon) mobileIcon.className = iconClass;
 }
 
 // Main render function (for standard grid)
