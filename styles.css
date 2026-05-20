@@ -159,10 +159,70 @@ ul { list-style: none; }
 .theme-toggle:hover { background: var(--bg-glass); transform: rotate(15deg); }
 
 .mobile-menu-btn { 
-  display: none; font-size: 24px; color: var(--text-main); 
+  display: flex; font-size: 24px; color: var(--text-main); 
   padding: 8px; border-radius: 50%;
 }
 .mobile-menu-btn:hover { background: var(--bg-glass); }
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5); z-index: 999;
+  opacity: 0; visibility: hidden;
+  transition: var(--transition);
+}
+.mobile-menu-overlay.active {
+  opacity: 1; visibility: visible;
+}
+
+/* Mobile Menu Drawer */
+.mobile-menu-drawer {
+  position: fixed; top: 0; right: -300px; width: 280px; height: 100vh;
+  background: var(--bg-card); z-index: 1000;
+  padding: 20px; box-shadow: var(--shadow-hover);
+  transition: var(--transition);
+  overflow-y: auto;
+}
+.mobile-menu-drawer.active {
+  right: 0;
+}
+.mobile-menu-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 30px; padding-bottom: 15px;
+  border-bottom: 1px solid var(--border);
+}
+.mobile-menu-close {
+  font-size: 24px; color: var(--text-main); cursor: pointer;
+  padding: 8px; border-radius: 50%;
+}
+.mobile-menu-close:hover { background: var(--bg-glass); }
+.mobile-menu-section {
+  margin-bottom: 25px;
+}
+.mobile-menu-section h4 {
+  font-size: 14px; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+.mobile-menu-link {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 15px; border-radius: var(--radius-sm);
+  color: var(--text-main); font-weight: 500;
+  transition: var(--transition);
+  margin-bottom: 8px;
+}
+.mobile-menu-link:hover {
+  background: var(--bg-glass); color: var(--primary);
+  transform: translateX(5px);
+}
+.mobile-menu-link i {
+  width: 20px; text-align: center; color: var(--primary);
+}
+.mobile-menu-link.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+}
+.mobile-menu-link.active i { color: white; }
 
 /* =========================================
    4. HERO SECTION (Enhanced with Animation)
@@ -720,12 +780,16 @@ ul { list-style: none; }
   .search-wrapper { display: none; }
   .nav-links { display: none; }
   .mobile-nav { display: flex; }
-  .mobile-menu-btn { display: block; }
   .trust-bar { flex-direction: column; align-items: center; text-align: center; }
   .filters-bar { flex-direction: column; align-items: stretch; }
   .filter-group { justify-content: space-between; }
   .social-feed-grid { grid-template-columns: 1fr; }
   .product-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+}
+
+/* Desktop: Show hamburger but hide mobile nav */
+@media (min-width: 901px) {
+  .mobile-nav { display: none !important; }
 }
 
 @media (max-width: 480px) {
