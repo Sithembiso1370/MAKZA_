@@ -25,6 +25,24 @@ let cartCount = parseInt(localStorage.getItem('cartCount') || '0');
 let currentCategory = "all";
 
 // =========================================
+// CATEGORIES DATA (Updated with all departments)
+// =========================================
+const categories = [
+  { name: "All", icon: "fa-th-large", key: "all" },
+  { name: "Prepared Meals", icon: "fa-utensils", key: "prepared-meals" },
+  { name: "Fashion and Apparel", icon: "fa-tshirt", key: "fashion" },
+  { name: "Electronics and Gadgets", icon: "fa-mobile-alt", key: "electronics" },
+  { name: "Home and Living", icon: "fa-couch", key: "home" },
+  { name: "Beauty and Personal Care", icon: "fa-spa", key: "beauty" },
+  { name: "Health & Wellness", icon: "fa-heartbeat", key: "health" },
+  { name: "Groceries and Food", icon: "fa-shopping-basket", key: "groceries" },
+  { name: "Toys and Baby Products", icon: "fa-baby", key: "toys" },
+  { name: "Automotive", icon: "fa-car", key: "automotive" },
+  { name: "Sports and Outdoors", icon: "fa-futbol", key: "sports" },
+  { name: "4IR", icon: "fa-robot", key: "4ir" }
+];
+
+// =========================================
 // RENDER FUNCTIONS
 // =========================================
 
@@ -220,16 +238,70 @@ document.getElementById('priceRange')?.addEventListener('input', (e) => {
   document.getElementById('priceValue').innerText = `R${e.target.value}`;
 });
 
-// Category Filters
-document.querySelectorAll('.category-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    currentCategory = tab.innerText.toLowerCase();
-    renderProducts();
-    showToast(`Showing ${tab.innerText} category`, 'success');
+// =========================================
+// RENDER CATEGORY TABS (Desktop & Mobile)
+// =========================================
+
+function renderCategoryTabs() {
+  const container = document.getElementById('categoryTabs');
+  const mobileContainer = document.getElementById('mobileCategoriesList');
+  
+  if (!container || !mobileContainer) return;
+  
+  // Render desktop tabs
+  container.innerHTML = categories.map(cat => `
+    <button class="category-tab ${cat.key === 'all' ? 'active' : ''}" data-category="${cat.key}">
+      <i class="fas ${cat.icon}"></i> ${cat.name}
+    </button>
+  `).join('');
+  
+  // Render mobile menu categories
+  mobileContainer.innerHTML = categories.map(cat => `
+    <a href="#" class="mobile-menu-link category-link" data-category="${cat.key}">
+      <i class="fas ${cat.icon}"></i> ${cat.name}
+    </a>
+  `).join('');
+  
+  // Add event listeners to desktop tabs
+  container.querySelectorAll('.category-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      container.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentCategory = tab.dataset.category;
+      
+      // Sync mobile menu active state
+      mobileContainer.querySelectorAll('.category-link').forEach(link => {
+        link.classList.toggle('active', link.dataset.category === currentCategory);
+      });
+      
+      renderProducts();
+      showToast(`Showing ${tab.innerText.trim()} category`, 'success');
+    });
   });
-});
+  
+  // Add event listeners to mobile category links
+  mobileContainer.querySelectorAll('.category-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const category = link.dataset.category;
+      currentCategory = category;
+      
+      // Sync desktop tabs active state
+      container.querySelectorAll('.category-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.category === category);
+      });
+      
+      // Update mobile menu active state
+      mobileContainer.querySelectorAll('.category-link').forEach(l => {
+        l.classList.toggle('active', l.dataset.category === category);
+      });
+      
+      renderProducts();
+      closeMobileMenu();
+      showToast(`Showing ${link.innerText.trim()} category`, 'success');
+    });
+  });
+}
 
 // Search Functionality
 document.getElementById('searchInput')?.addEventListener('input', (e) => {
@@ -414,6 +486,7 @@ function renderProducts(filteredProducts = null) {
 
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
+  renderCategoryTabs();  // Render category tabs (desktop & mobile)
   renderSocialFeed();    // Fixture 1: Social Feed (Most Liked)
   renderStandardGrid();  // Fixture 2: Standard Grid (New Arrivals)
   renderFlashSales();    // Fixture 3: Flash Sales (Horizontal Scroll)
