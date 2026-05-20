@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAKZAZ | Social African Marketplace</title>
+  
+  <!-- Icons & Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- HEADER (Enhanced with Search & Animations) -->
+  <header class="header glass">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+      <a href="#" class="logo">
+        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+        <h1>MAKZAZ</h1>
+      </a>
+      
+      <div class="search-wrapper">
+        <div class="search-bar">
+          <input type="text" placeholder="Search products, artisans, stories..." id="searchInput">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+      
+      <nav class="nav-links">
+        <a href="#" class="nav-icon" title="Wishlist"><i class="fas fa-heart"></i></a>
+        <a href="#" class="nav-icon" title="Messages"><i class="fas fa-comments"></i><span class="badge">3</span></a>
+        <a href="#" class="nav-icon" title="Cart"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartCount">0</span></a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+      </nav>
+      
+      <button class="mobile-menu-btn" title="Menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </header>
+
+  <main class="container">
+    
+    <!-- HERO SECTION (Combined best of both with animations) -->
+    <section class="hero">
+      <div class="hero-banner">
+        <span style="background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 50px; width: fit-content; font-size: 12px; font-weight: 600;">✨ Limited Time Offer</span>
+        <h2>Discover Africa's Finest Treasures</h2>
+        <p>Connect with 500+ local artisans and shop authentic handcrafted products that tell a story</p>
+        <div>
+          <button class="btn-cart" style="background: white; color: var(--primary); padding: 12px 24px; font-size: 15px;">
+            <i class="fas fa-gem"></i> Shop Now →
+          </button>
+        </div>
+      </div>
+      
+      <div class="hero-stats">
+        <div class="stat-card"><i class="fas fa-users"></i><h3>10k+</h3><p>Active Shoppers</p></div>
+        <div class="stat-card"><i class="fas fa-store"></i><h3>500+</h3><p>Local Artisans</p></div>
+        <div class="stat-card"><i class="fas fa-shipping-fast"></i><h3>3-5 Days</h3><p>Delivery Time</p></div>
+        <div class="stat-card"><i class="fas fa-star"></i><h3>4.8★</h3><p>Avg Rating</p></div>
+      </div>
+    </section>
+
+    <!-- STORIES CAROUSEL (Enhanced with better visuals) -->
+    <section class="stories-section">
+      <div class="stories-header">
+        <h3><i class="fas fa-feather-alt"></i> Community Stories</h3>
+        <a href="#">View All →</a>
+      </div>
+      <div class="stories-carousel" id="storiesCarousel">
+        <!-- Dynamic stories will be injected -->
+      </div>
+    </section>
+
+    <!-- FILTERS BAR (Enhanced with better UX) -->
+    <div class="filters-bar">
+      <div class="filter-group"><label><i class="fas fa-sliders-h"></i> Sort:</label><select id="sortSelect"><option>Newest</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Top Rated</option></select></div>
+      <div class="filter-group"><label><i class="fas fa-star"></i> Min Rating:</label><select id="ratingSelect"><option>All</option><option>4★ & up</option><option>4.5★ & up</option></select></div>
+      <div class="filter-group"><label><i class="fas fa-tag"></i> Price:</label><input type="range" min="0" max="500" value="500" id="priceRange"><span id="priceValue">R500</span></div>
+      <button class="reset-filters" id="resetFilters"><i class="fas fa-undo"></i> Reset</button>
+    </div>
+
+    <!-- CATEGORY TABS (Enhanced with hover effects) -->
+    <div class="category-tabs" id="categoryTabs">
+      <button class="category-tab active">All</button>
+      <button class="category-tab">Fashion</button>
+      <button class="category-tab">Electronics</button>
+      <button class="category-tab">Home</button>
+      <button class="category-tab">Beauty</button>
+      <button class="category-tab">Arts</button>
+    </div>
+
+    <!-- TRUST BAR (Enhanced with gradient) -->
+    <div class="trust-bar">
+      <div class="trust-item"><i class="fas fa-shield-alt"></i> Buyer Protection</div>
+      <div class="trust-item"><i class="fas fa-hand-holding-heart"></i> Secure Payments</div>
+      <div class="trust-item"><i class="fas fa-gem"></i> Authentic Products</div>
+      <div class="trust-item"><i class="fas fa-phone-alt"></i> 24/7 Support</div>
+    </div>
+
+    <!-- FIXTURE 1: SOCIAL FEED - MOST LIKED PRODUCTS -->
+    <div class="section-header">
+      <h2><i class="fas fa-heart"></i> Most Liked This Week</h2>
+      <a href="#">See Social Feed →</a>
+    </div>
+    <div class="social-feed-grid" id="socialFeedGrid">
+      <!-- Social cards will be injected here -->
+    </div>
+
+    <!-- FIXTURE 2: STANDARD GRID - NEW ARRIVALS -->
+    <div class="section-header">
+      <h2><i class="fas fa-bolt"></i> Just Dropped</h2>
+      <a href="#">View All New →</a>
+    </div>
+    <div class="product-grid" id="productGrid">
+      <!-- Products will be injected -->
+    </div>
+
+    <!-- FIXTURE 3: HORIZONTAL SCROLL - FLASH SALES -->
+    <div class="section-header">
+      <h2><i class="fas fa-fire"></i> Flash Sales</h2>
+      <a href="#">All Deals →</a>
+    </div>
+    <div class="flash-sales-container" id="flashSalesContainer">
+      <!-- Flash sale cards will be injected -->
+    </div>
+
+  </main>
+
+  <!-- FOOTER (Enhanced with hover effects) -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo" style="margin-bottom: 15px;">
+            <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+            <h1>MAKZAZ</h1>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+            Empowering African commerce through social connections. Shop authentic, support artisans, connect with community.
+          </p>
+        </div>
+        <div><h4>Shop</h4><a href="#">Fashion</a><a href="#">Electronics</a><a href="#">Home</a><a href="#">Beauty</a><a href="#">Arts</a></div>
+        <div><h4>Support</h4><a href="#">Help Center</a><a href="#">Shipping</a><a href="#">Returns</a><a href="#">Contact</a></div>
+        <div><h4>Company</h4><a href="#">About</a><a href="#">Sell with Us</a><a href="#">Blog</a><a href="#">Careers</a></div>
+      </div>
+      <div class="footer-bottom">© 2026 MAKZAZ — Bringing Africa to the world 🌍</div>
+    </div>
+  </footer>
+
+  <!-- MOBILE NAV (Enhanced) -->
+  <nav class="mobile-nav">
+    <a href="#" class="active"><i class="fas fa-home"></i><span>Home</span></a>
+    <a href="#"><i class="fas fa-search"></i><span>Search</span></a>
+    <a href="#"><i class="fas fa-feather-alt"></i><span>Stories</span></a>
+    <a href="#"><i class="fas fa-heart"></i><span>Likes</span></a>
+    <a href="#"><i class="fas fa-user"></i><span>Account</span></a>
+  </nav>
+
+  <!-- TOAST (Enhanced) -->
+  <div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMessage">Item added to cart!</span></div>
+
+  <!-- Custom JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
