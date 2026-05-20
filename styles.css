@@ -224,6 +224,27 @@ ul { list-style: none; }
 }
 .mobile-menu-link.active i { color: white; }
 
+/* Mobile categories list container */
+#mobileCategoriesList {
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+#mobileCategoriesList::-webkit-scrollbar {
+  width: 4px;
+}
+
+#mobileCategoriesList::-webkit-scrollbar-track {
+  background: var(--bg-glass);
+  border-radius: var(--radius-full);
+}
+
+#mobileCategoriesList::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: var(--radius-full);
+}
+
 /* =========================================
    4. HERO SECTION (Enhanced with Animation)
    ========================================= */
@@ -326,10 +347,13 @@ ul { list-style: none; }
 .category-tab {
   padding: 10px 20px; border-radius: var(--radius-full);
   background: var(--bg-card); border: 1px solid var(--border);
-  font-weight: 600; font-size: 14px; cursor: pointer;
+  font-weight: 600; font-size: 13px; cursor: pointer;
   transition: var(--transition);
   position: relative; overflow: hidden;
+  display: flex; align-items: center; gap: 8px;
+  white-space: nowrap;
 }
+.category-tab i { font-size: 14px; }
 .category-tab::before {
   content: ''; position: absolute; inset: 0;
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
@@ -795,7 +819,8 @@ ul { list-style: none; }
 @media (max-width: 480px) {
   .hero-stats { grid-template-columns: 1fr; }
   .product-grid { grid-template-columns: 1fr; }
-  .category-tabs { justify-content: center; }
+  .category-tabs { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 10px; }
+  .category-tab { flex-shrink: 0; font-size: 12px; padding: 8px 16px; }
   .toast { white-space: normal; text-align: center; max-width: 85%; }
   .hero-banner h2 { font-size: 28px; }
   .section-header h2 { font-size: 20px; }
