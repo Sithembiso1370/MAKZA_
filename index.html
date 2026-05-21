@@ -26,14 +26,14 @@
       <div class="search-wrapper">
         <div class="search-bar">
           <input type="text" placeholder="Search products, artisans, stories..." id="searchInput">
-          <button><i class="fas fa-search"></i></button>
+          <button onclick="window.location.href='pages/search.html'"><i class="fas fa-search"></i></button>
         </div>
       </div>
       
       <nav class="nav-links">
-        <a href="#" class="nav-icon" title="Wishlist"><i class="fas fa-heart"></i></a>
+        <a href="#" class="nav-icon" title="Location"><i class="fas fa-map-marker-alt"></i></a>
         <a href="#" class="nav-icon" title="Messages"><i class="fas fa-comments"></i><span class="badge">3</span></a>
-        <a href="#" class="nav-icon" title="Cart"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartCount">0</span></a>
+        <a href="pages/cart.html" class="nav-icon" title="Cart"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartCount">0</span></a>
         <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
       </nav>
       
@@ -48,6 +48,7 @@
       <div class="hero-banner">
         <span style="background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 50px; width: fit-content; font-size: 12px; font-weight: 600;">✨ Limited Time Offer</span>
         <h2>Discover Africa's Finest Treasures</h2>
+        <p class="slogan">mi casa su casa</p>
         <p>Connect with 500+ local artisans and shop authentic handcrafted products that tell a story</p>
         <div>
           <button class="btn-cart" style="background: white; color: var(--primary); padding: 12px 24px; font-size: 15px;">
@@ -74,6 +75,45 @@
         <!-- Dynamic stories will be injected -->
       </div>
     </section>
+
+    <!-- SLIM STYLISH BANNER BELOW FLASH DEALS -->
+    <section class="slim-banner">
+      <div class="slim-banner-content">
+        <span class="slim-banner-text">🔥 Hot Deals Ending Soon! Free Shipping on Orders Over R500</span>
+        <a href="pages/fast-food.html" class="slim-banner-link">Shop Fast Food →</a>
+      </div>
+    </section>
+
+    <!-- SECOND PRODUCT FILTER BELOW SLIM BANNER -->
+    <div class="filters-bar secondary-filters">
+      <div class="filter-group"><label><i class="fas fa-store"></i> Brand:</label>
+        <select id="brandSelect">
+          <option value="all">All Brands</option>
+          <option value="kente-masters">Kente Masters</option>
+          <option value="afritech">AfriTech</option>
+          <option value="maasai-art">Maasai Art</option>
+          <option value="pure-glow">Pure Glow</option>
+          <option value="afrochic">AfroChic</option>
+        </select>
+      </div>
+      <div class="filter-group"><label><i class="fas fa-truck"></i> Delivery:</label>
+        <select id="deliverySelect">
+          <option value="all">All Options</option>
+          <option value="express">Express (1-2 Days)</option>
+          <option value="standard">Standard (3-5 Days)</option>
+          <option value="pickup">Store Pickup</option>
+        </select>
+      </div>
+      <div class="filter-group"><label><i class="fas fa-medal"></i> Condition:</label>
+        <select id="conditionSelect">
+          <option value="all">All Conditions</option>
+          <option value="new">New</option>
+          <option value="refurbished">Refurbished</option>
+          <option value="used">Used</option>
+        </select>
+      </div>
+      <button class="reset-filters" id="resetSecondaryFilters"><i class="fas fa-filter-circle-xmark"></i> Clear Filters</button>
+    </div>
 
     <!-- FILTERS BAR (Enhanced with better UX) -->
     <div class="filters-bar">
@@ -149,10 +189,10 @@
   <!-- MOBILE NAV (Enhanced) -->
   <nav class="mobile-nav">
     <a href="#" class="active"><i class="fas fa-home"></i><span>Home</span></a>
-    <a href="#"><i class="fas fa-search"></i><span>Search</span></a>
+    <a href="pages/search.html"><i class="fas fa-search"></i><span>Search</span></a>
     <a href="#"><i class="fas fa-feather-alt"></i><span>Stories</span></a>
-    <a href="#"><i class="fas fa-heart"></i><span>Likes</span></a>
-    <a href="#"><i class="fas fa-user"></i><span>Account</span></a>
+    <a href="#"><i class="fas fa-map-marker-alt"></i><span>Location</span></a>
+    <a href="pages/cart.html"><i class="fas fa-shopping-cart"></i><span>Cart</span></a>
   </nav>
 
   <!-- MOBILE MENU OVERLAY & DRAWER -->
