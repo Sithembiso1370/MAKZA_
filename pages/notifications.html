@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Makzaz</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .notifications-page { padding: 80px 20px 40px; min-height: 100vh; background: #f8f9fa; }
+        .notif-container { max-width: 800px; margin: 0 auto; }
+        .notif-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .notif-header h1 { margin: 0; }
+        .mark-read-btn { padding: 10px 20px; background: white; border: 2px solid #667eea; color: #667eea; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .mark-read-btn:hover { background: #667eea; color: white; }
+        .notif-tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .notif-tab { padding: 10px 20px; background: white; border: none; border-radius: 20px; cursor: pointer; font-weight: 600; color: #666; transition: all 0.3s; }
+        .notif-tab.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .notif-list { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+        .notif-item { display: flex; gap: 20px; padding: 20px; border-bottom: 1px solid #f0f0f0; transition: background 0.3s; cursor: pointer; }
+        .notif-item:last-child { border-bottom: none; }
+        .notif-item:hover { background: #f8f9fa; }
+        .notif-item.unread { background: #f0f4ff; }
+        .notif-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+        .notif-icon.order { background: #e3f2fd; color: #2196F3; }
+        .notif-icon.promo { background: #fff3e0; color: #FF9800; }
+        .notif-icon.system { background: #e8f5e9; color: #4CAF50; }
+        .notif-content { flex: 1; }
+        .notif-content h4 { margin: 0 0 5px; color: #333; }
+        .notif-content p { margin: 0 0 10px; color: #666; font-size: 14px; }
+        .notif-time { font-size: 12px; color: #999; }
+        .empty-notifs { text-align: center; padding: 60px 20px; }
+        .empty-notifs i { font-size: 80px; color: #ddd; margin-bottom: 20px; }
+        @media (max-width: 768px) { .notif-header { flex-direction: column; gap: 15px; text-align: center; } .notif-item { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div id="page-loader">
+        <div class="loader-content">
+            <img src="../assets/logo.svg" alt="Makzaz Logo" class="loader-logo">
+            <p>Loading notifications...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar glass-nav">
+        <div class="nav-container">
+            <a href="../index.html" class="logo-link">
+                <img src="../assets/logo.svg" alt="Makzaz" class="site-logo">
+            </a>
+            <div class="nav-search">
+                <input type="text" placeholder="Search products...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-icons">
+                <div class="location-selector"><i class="fas fa-map-marker-alt"></i><span class="location-text">New York</span></div>
+                <a href="messages.html" class="nav-icon"><i class="fas fa-comment-dots"></i></a>
+                <a href="wishlist.html" class="nav-icon"><i class="far fa-heart"></i></a>
+                <a href="cart.html" class="nav-icon"><i class="fas fa-shopping-cart"></i><span class="badge">3</span></a>
+                <a href="profile.html" class="nav-icon"><i class="fas fa-user"></i></a>
+                <button class="hamburger"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="notifications-page">
+        <div class="notif-container">
+            <div class="notif-header">
+                <h1><i class="fas fa-bell"></i> Notifications</h1>
+                <button class="mark-read-btn" onclick="markAllRead()">Mark All Read</button>
+            </div>
+
+            <div class="notif-tabs">
+                <button class="notif-tab active" onclick="filterNotifs('all')">All</button>
+                <button class="notif-tab" onclick="filterNotifs('unread')">Unread</button>
+                <button class="notif-tab" onclick="filterNotifs('orders')">Orders</button>
+                <button class="notif-tab" onclick="filterNotifs('promo')">Promotions</button>
+            </div>
+
+            <div class="notif-list" id="notifList">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="modern-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="../assets/logo.svg" alt="Makzaz" class="footer-logo">
+                <p>Your global marketplace connecting buyers and sellers worldwide.</p>
+                <div class="app-links">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+                </div>
+            </div>
+            <div class="footer-section"><h3>Shop</h3><a href="categories/fashion.html">Fashion</a><a href="categories/electronics.html">Electronics</a></div>
+            <div class="footer-section"><h3>Account</h3><a href="profile.html">Profile</a><a href="orders.html">Orders</a></div>
+            <div class="footer-section"><h3>Support</h3><a href="contact.html">Contact</a><a href="faq.html">FAQ</a></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2024 Makzaz Global Store.</p></div>
+    </footer>
+
+    <script src="../app.js"></script>
+    <script>
+        const notifications = [
+            { id: 1, type: 'order', title: 'Order Delivered', message: 'Your order #MKZ-12345 has been delivered successfully!', time: '2 hours ago', unread: true },
+            { id: 2, type: 'promo', title: 'Flash Sale Alert!', message: 'Get 50% off on electronics. Limited time offer!', time: '5 hours ago', unread: true },
+            { id: 3, type: 'order', title: 'Order Shipped', message: 'Your order #MKZ-12340 is on its way. Track it now!', time: '1 day ago', unread: false },
+            { id: 4, type: 'system', title: 'Profile Updated', message: 'Your profile information has been successfully updated.', time: '2 days ago', unread: false },
+            { id: 5, type: 'promo', title: 'Welcome Bonus', message: 'Claim your $20 welcome discount on first purchase!', time: '3 days ago', unread: false }
+        ];
+
+        function renderNotifs(filter = 'all') {
+            const list = document.getElementById('notifList');
+            let filtered = notifications;
+            if (filter === 'unread') filtered = notifications.filter(n => n.unread);
+            else if (filter === 'orders') filtered = notifications.filter(n => n.type === 'order');
+            else if (filter === 'promo') filtered = notifications.filter(n => n.type === 'promo');
+
+            if (filtered.length === 0) {
+                list.innerHTML = '<div class="empty-notifs"><i class="far fa-bell"></i><h3>No notifications</h3><p>You\'re all caught up!</p></div>';
+                return;
+            }
+
+            list.innerHTML = filtered.map(n => `
+                <div class="notif-item ${n.unread ? 'unread' : ''}" onclick="markRead(${n.id})">
+                    <div class="notif-icon ${n.type}"><i class="fas fa-${n.type === 'order' ? 'box' : n.type === 'promo' ? 'tag' : 'bell'}"></i></div>
+                    <div class="notif-content">
+                        <h4>${n.title}</h4>
+                        <p>${n.message}</p>
+                        <span class="notif-time">${n.time}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterNotifs(type) {
+            document.querySelectorAll('.notif-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            renderNotifs(type);
+        }
+
+        function markRead(id) {
+            const notif = notifications.find(n => n.id === id);
+            if (notif) notif.unread = false;
+            renderNotifs();
+        }
+
+        function markAllRead() {
+            notifications.forEach(n => n.unread = false);
+            renderNotifs();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.getElementById('page-loader').classList.add('loaded');
+                renderNotifs();
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
