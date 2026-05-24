@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard - Makzaz</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
+    <style>
+        .seller-dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            min-height: 100vh;
+            background: #f5f7fa;
+        }
+        .seller-sidebar {
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem 0;
+        }
+        .seller-sidebar h3 {
+            padding: 0 1.5rem;
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+        }
+        .seller-nav-item {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .seller-nav-item:hover, .seller-nav-item.active {
+            background: rgba(255,255,255,0.1);
+            border-left: 4px solid #27ae60;
+        }
+        .seller-content {
+            padding: 2rem;
+        }
+        .seller-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .stat-card.green { border-top: 4px solid #27ae60; }
+        .stat-card.blue { border-top: 4px solid #3498db; }
+        .stat-card.orange { border-top: 4px solid #e67e22; }
+        .stat-card.purple { border-top: 4px solid #9b59b6; }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0.5rem 0;
+        }
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        .products-table {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .btn-add-product {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .btn-add-product:hover {
+            background: #219a52;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .status-active { background: #d5f5e3; color: #27ae60; }
+        .status-low { background: #fdebd0; color: #e67e22; }
+        .status-out { background: #fadbd8; color: #e74c3c; }
+        .action-btn {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+            font-size: 0.85rem;
+        }
+        .btn-edit { background: #3498db; color: white; }
+        .btn-delete { background: #e74c3c; color: white; }
+        
+        @media (max-width: 768px) {
+            .seller-dashboard {
+                grid-template-columns: 1fr;
+            }
+            .seller-sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Loader -->
+    <div id="page-loader">
+        <img src="../assets/logo.svg" alt="Makzaz Logo" class="loader-logo">
+        <p>Loading Seller Dashboard...</p>
+    </div>
+
+    <div class="seller-dashboard">
+        <aside class="seller-sidebar">
+            <h3>🏪 Seller Center</h3>
+            <nav>
+                <div class="seller-nav-item active">📊 Dashboard</div>
+                <div class="seller-nav-item">📦 Products</div>
+                <div class="seller-nav-item">🛒 Orders</div>
+                <div class="seller-nav-item">💰 Earnings</div>
+                <div class="seller-nav-item">📈 Analytics</div>
+                <div class="seller-nav-item">⚙️ Settings</div>
+                <div class="seller-nav-item" onclick="window.location.href='../index.html'">🏠 Back to Store</div>
+            </nav>
+        </aside>
+
+        <main class="seller-content">
+            <header class="seller-header">
+                <div>
+                    <h2>Welcome back, TechGadgets Pro!</h2>
+                    <p style="color: #7f8c8d;">Last login: Today at 9:30 AM</p>
+                </div>
+                <div style="display: flex; gap: 1rem; align-items: center;">
+                    <button class="btn-add-product">+ Add New Product</button>
+                    <img src="https://ui-avatars.com/api/?name=Tech+Gadgets&background=27ae60&color=fff" 
+                         alt="Seller" style="width: 40px; height: 40px; border-radius: 50%;">
+                </div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card green">
+                    <div class="stat-label">Total Sales</div>
+                    <div class="stat-number">$24,563</div>
+                    <div style="color: #27ae60; font-size: 0.85rem;">↑ 12% from last month</div>
+                </div>
+                <div class="stat-card blue">
+                    <div class="stat-label">Active Products</div>
+                    <div class="stat-number">156</div>
+                    <div style="color: #3498db; font-size: 0.85rem;">3 pending approval</div>
+                </div>
+                <div class="stat-card orange">
+                    <div class="stat-label">Pending Orders</div>
+                    <div class="stat-number">23</div>
+                    <div style="color: #e67e22; font-size: 0.85rem;">5 need shipping</div>
+                </div>
+                <div class="stat-card purple">
+                    <div class="stat-label">Store Rating</div>
+                    <div class="stat-number">4.8★</div>
+                    <div style="color: #9b59b6; font-size: 0.85rem;">Based on 892 reviews</div>
+                </div>
+            </div>
+
+            <div class="products-table">
+                <div class="table-header">
+                    <h3>Recent Products</h3>
+                    <div style="display: flex; gap: 1rem;">
+                        <input type="text" placeholder="Search products..." 
+                               style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px;">
+                        <select style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px;">
+                            <option>All Categories</option>
+                            <option>Electronics</option>
+                            <option>Fashion</option>
+                            <option>Home</option>
+                        </select>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>SKU</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/40" alt="Product" style="border-radius: 4px;">
+                                    <span>Wireless Earbuds Pro</span>
+                                </div>
+                            </td>
+                            <td>WE-PRO-001</td>
+                            <td>$79.99</td>
+                            <td>245</td>
+                            <td><span class="status-badge status-active">Active</span></td>
+                            <td>
+                                <button class="action-btn btn-edit">Edit</button>
+                                <button class="action-btn btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/40" alt="Product" style="border-radius: 4px;">
+                                    <span>Smart Watch Series 5</span>
+                                </div>
+                            </td>
+                            <td>SW-S5-002</td>
+                            <td>$199.99</td>
+                            <td>12</td>
+                            <td><span class="status-badge status-low">Low Stock</span></td>
+                            <td>
+                                <button class="action-btn btn-edit">Edit</button>
+                                <button class="action-btn btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="https://via.placeholder.com/40" alt="Product" style="border-radius: 4px;">
+                                    <span>USB-C Fast Charger</span>
+                                </div>
+                            </td>
+                            <td>UC-FC-003</td>
+                            <td>$24.99</td>
+                            <td>0</td>
+                            <td><span class="status-badge status-out">Out of Stock</span></td>
+                            <td>
+                                <button class="action-btn btn-edit">Edit</button>
+                                <button class="action-btn btn-delete">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="../app.js"></script>
+    <script>
+        // Remove loader when page is loaded
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('page-loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('page-loader').style.display = 'none';
+                }, 500);
+            }, 800);
+        });
+    </script>
+</body>
+</html>
