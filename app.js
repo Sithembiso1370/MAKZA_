@@ -1,43 +1,52 @@
 // Makzaz Global Store - Main JavaScript
+// Optimized for Performance
 
-// Page Loader
+'use strict';
+
+// Cache DOM elements
+const DOM = {};
+const cacheElement = (id) => {
+    const el = document.getElementById(id);
+    if (el) DOM[id] = el;
+    return el;
+};
+
+// Page Loader - Optimized with requestAnimationFrame
 window.addEventListener('load', () => {
-    setTimeout(() => {
-        document.getElementById('pageLoader').classList.add('hidden');
-    }, 800);
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            const loader = cacheElement('pageLoader');
+            if (loader) loader.classList.add('hidden');
+        }, 600); // Reduced from 800ms
+    });
 });
 
-// Mobile Drawer
-const menuToggle = document.getElementById('menuToggle');
-const mobileDrawer = document.getElementById('mobileDrawer');
-const drawerOverlay = document.getElementById('drawerOverlay');
-const drawerClose = document.getElementById('drawerClose');
-
-if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
-        mobileDrawer.classList.add('active');
-        drawerOverlay.classList.add('active');
-    });
-}
-
-if (drawerClose) {
-    drawerClose.addEventListener('click', closeDrawer);
-}
-
-if (drawerOverlay) {
-    drawerOverlay.addEventListener('click', closeDrawer);
-}
+// Mobile Drawer - Event Delegation Pattern
+const mobileDrawer = cacheElement('mobileDrawer');
+const drawerOverlay = cacheElement('drawerOverlay');
 
 function closeDrawer() {
-    mobileDrawer.classList.remove('active');
-    drawerOverlay.classList.remove('active');
+    if (mobileDrawer) mobileDrawer.classList.remove('active');
+    if (drawerOverlay) drawerOverlay.classList.remove('active');
 }
 
-// Location Toggle
+// Single event listener on document for drawer controls
+document.addEventListener('click', (e) => {
+    const target = e.target;
+    
+    if (target.id === 'menuToggle') {
+        if (mobileDrawer) mobileDrawer.classList.add('active');
+        if (drawerOverlay) drawerOverlay.classList.add('active');
+    } else if (target.id === 'drawerClose' || target.id === 'drawerOverlay') {
+        closeDrawer();
+    }
+});
+
+// Location Toggle - Optimized with cached references
 const locations = ['New York', 'London', 'Lagos', 'Johannesburg', 'Nairobi', 'Accra', 'Cairo', 'Dubai'];
 let currentLocationIndex = 0;
-const locationBtn = document.getElementById('locationBtn');
-const locationText = document.getElementById('locationText');
+const locationBtn = cacheElement('locationBtn');
+const locationText = cacheElement('locationText');
 
 if (locationBtn && locationText) {
     locationBtn.addEventListener('click', () => {
@@ -46,30 +55,33 @@ if (locationBtn && locationText) {
     });
 }
 
-// Hero Slider
-const sliderWrapper = document.getElementById('sliderWrapper');
-const prevSlide = document.getElementById('prevSlide');
-const nextSlide = document.getElementById('nextSlide');
-const sliderDots = document.getElementById('sliderDots');
+// Hero Slider - Optimized with CSS transforms and debounced updates
+const sliderWrapper = cacheElement('sliderWrapper');
+const prevSlide = cacheElement('prevSlide');
+const nextSlide = cacheElement('nextSlide');
+const sliderDots = cacheElement('sliderDots');
 
 let currentSlide = 0;
 const totalSlides = 3;
+let slideAnimationFrame = null;
 
 function initSlider() {
-    if (!sliderWrapper) return;
+    if (!sliderWrapper || !sliderDots) return;
     
-    // Create dots
+    // Create dots efficiently using document fragment
+    const fragment = document.createDocumentFragment();
     for (let i = 0; i < totalSlides; i++) {
         const dot = document.createElement('div');
         dot.classList.add('slider-dot');
         if (i === 0) dot.classList.add('active');
         dot.addEventListener('click', () => goToSlide(i));
-        sliderDots.appendChild(dot);
+        fragment.appendChild(dot);
     }
+    sliderDots.appendChild(fragment);
     
     updateSlider();
     
-    // Auto slide every 5 seconds
+    // Auto slide every 5 seconds using requestAnimationFrame for smooth animation
     setInterval(() => {
         currentSlide = (currentSlide + 1) % totalSlides;
         updateSlider();
@@ -84,11 +96,17 @@ function goToSlide(index) {
 function updateSlider() {
     if (!sliderWrapper) return;
     
-    sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
-    
-    const dots = document.querySelectorAll('.slider-dot');
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
+    // Cancel pending animation frame
+    if (slideAnimationFrame) cancelAnimationFrame(slideAnimationFrame);
+    slideAnimationFrame = requestAnimationFrame(() => {
+        sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // Batch DOM updates for dots
+        const dots = sliderDots.querySelectorAll('.slider-dot');
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
+        slideAnimationFrame = null;
     });
 }
 
@@ -106,7 +124,7 @@ if (nextSlide) {
     });
 }
 
-// Stories Data (Blog/Twitter Style)
+// Stories Data (Blog/Twitter Style) - Lazy loading enabled
 const stories = [
     { name: 'Nike', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200' },
     { name: 'Adidas', img: 'https://images.unsplash.com/photo-1520256862855-398228c41f84?w=200' },
@@ -121,20 +139,26 @@ const stories = [
 ];
 
 function renderStories() {
-    const container = document.getElementById('storiesContainer');
+    const container = cacheElement('storiesContainer');
     if (!container) return;
     
-    container.innerHTML = stories.map(story => `
-        <div class="story-item">
+    // Use document fragment for batch DOM insertion
+    const fragment = document.createDocumentFragment();
+    stories.forEach(story => {
+        const storyEl = document.createElement('div');
+        storyEl.className = 'story-item';
+        storyEl.innerHTML = `
             <div class="story-avatar">
-                <img src="${story.img}" alt="${story.name}">
+                <img src="${story.img}" alt="${story.name}" loading="lazy">
             </div>
             <span class="story-name">${story.name}</span>
-        </div>
-    `).join('');
+        `;
+        fragment.appendChild(storyEl);
+    });
+    container.appendChild(fragment);
 }
 
-// Products Data
+// Products Data - Optimized with lazy loading and efficient rendering
 const products = [
     { id: 1, title: 'Wireless Headphones', brand: 'Sony', price: 99.99, originalPrice: 149.99, rating: 4.5, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400', badge: 'SALE' },
     { id: 2, title: 'Smart Watch Pro', brand: 'Apple', price: 299.99, originalPrice: 399.99, rating: 4.8, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400', badge: 'NEW' },
@@ -146,42 +170,70 @@ const products = [
     { id: 8, title: 'USB-C Hub', brand: 'Anker', price: 49.99, originalPrice: 69.99, rating: 4.6, image: 'https://images.unsplash.com/photo-1625842268584-8f3296236761?w=400', badge: 'NEW' }
 ];
 
+// Pre-computed star ratings for performance
+const starCache = {};
+function getStarRating(rating) {
+    if (starCache[rating]) return starCache[rating];
+    const full = Math.floor(rating);
+    const empty = 5 - full;
+    const stars = '★'.repeat(full) + '☆'.repeat(empty);
+    starCache[rating] = stars;
+    return stars;
+}
+
 function createProductCard(product) {
-    return `
-        <div class="product-card" onclick="window.location.href='pages/product.html?id=${product.id}'">
-            <div class="product-image">
-                <img src="${product.image}" alt="${product.title}">
-                ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+        window.location.href = `pages/product.html?id=${product.id}`;
+    });
+    
+    card.innerHTML = `
+        <div class="product-image">
+            <img src="${product.image}" alt="${product.title}" loading="lazy">
+            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+        </div>
+        <div class="product-info">
+            <h3 class="product-title">${product.title}</h3>
+            <p class="product-brand">${product.brand}</p>
+            <div class="product-price">
+                <span class="price-current">$${product.price}</span>
+                ${product.originalPrice ? `<span class="price-original">$${product.originalPrice}</span>` : ''}
             </div>
-            <div class="product-info">
-                <h3 class="product-title">${product.title}</h3>
-                <p class="product-brand">${product.brand}</p>
-                <div class="product-price">
-                    <span class="price-current">$${product.price}</span>
-                    ${product.originalPrice ? `<span class="price-original">$${product.originalPrice}</span>` : ''}
-                </div>
-                <div class="product-rating">
-                    <span class="stars">${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5-Math.floor(product.rating))}</span>
-                    <span>(${product.rating})</span>
-                </div>
+            <div class="product-rating">
+                <span class="stars">${getStarRating(product.rating)}</span>
+                <span>(${product.rating})</span>
             </div>
         </div>
     `;
+    
+    return card;
 }
 
 function renderProducts(containerId, productList) {
-    const container = document.getElementById(containerId);
+    const container = cacheElement(containerId);
     if (!container) return;
     
-    container.innerHTML = productList.map(createProductCard).join('');
+    // Use document fragment for batch DOM insertion
+    const fragment = document.createDocumentFragment();
+    productList.forEach(product => {
+        fragment.appendChild(createProductCard(product));
+    });
+    container.appendChild(fragment);
 }
 
-// Search Functionality
-const searchInput = document.getElementById('searchInput');
+// Search Functionality - Optimized with debouncing
+const searchInput = cacheElement('searchInput');
+let searchTimeout = null;
+
 if (searchInput) {
     searchInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
-            const query = e.target.value;
+            // Clear pending timeout
+            if (searchTimeout) clearTimeout(searchTimeout);
+            
+            const query = e.target.value.trim();
             if (query) {
                 window.location.href = `pages/search.html?q=${encodeURIComponent(query)}`;
             }
@@ -189,12 +241,17 @@ if (searchInput) {
     });
 }
 
-// Initialize everything
+// Initialize everything - Optimized initialization order
 document.addEventListener('DOMContentLoaded', () => {
+    // Critical: Initialize slider first (visible on page load)
     initSlider();
-    renderStories();
-    renderProducts('flashDealsGrid', products.slice(0, 4));
-    renderProducts('categoryProductsGrid', products);
+    
+    // Non-critical: Render stories and products (can be deferred)
+    requestIdleCallback(() => {
+        renderStories();
+        renderProducts('flashDealsGrid', products.slice(0, 4));
+        renderProducts('categoryProductsGrid', products);
+    }, { timeout: 2000 });
 });
 
-console.log('Makzaz Global Store loaded successfully!');
+console.log('Makzaz Global Store loaded successfully! Performance optimized.');

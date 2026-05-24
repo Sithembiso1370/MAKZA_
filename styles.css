@@ -2,6 +2,7 @@
    MAKZAZ GLOBAL STORE - NEXT GEN UI
    Design System: Glassmorphism + Neo-Brutalism
    Mobile-First | Scalable | Accessible
+   Performance Optimized
    ========================================= */
 
 :root {
@@ -30,14 +31,24 @@
     --transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Hardware Acceleration for Animations */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background: var(--bg-body);
     color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* GPU-Accelerated Transforms */
+.slider-wrapper, .product-card, .story-item {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .container { max-width: 1400px; margin: 0 auto; padding: 0 1.5rem; }
