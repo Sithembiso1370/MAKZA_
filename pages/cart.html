@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Cart | MAKZAZ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="header glass">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+      <a href="../index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+        <h1>MAKZAZ</h1>
+      </a>
+      <nav class="nav-links">
+        <a href="#" class="nav-icon" title="Location"><i class="fas fa-map-marker-alt"></i></a>
+        <a href="cart.html" class="nav-icon" title="Cart"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartCount">3</span></a>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="page-title"><i class="fas fa-shopping-cart"></i> Shopping Cart</h1>
+    
+    <div class="cart-container">
+      <div class="cart-items" id="cartItems">
+        <div class="cart-item">
+          <img src="https://images.unsplash.com/photo-1590736969955-71cc94801759?w=200" alt="Product" />
+          <div class="cart-item-details">
+            <h3>African Print Maxi Dress</h3>
+            <p class="cart-item-meta">Size: M | Color: Orange</p>
+            <p class="cart-item-price">R 899.00</p>
+          </div>
+          <div class="cart-item-actions">
+            <div class="qty-controls">
+              <button>-</button>
+              <input type="number" value="1" min="1" />
+              <button>+</button>
+            </div>
+            <button class="remove-item"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        
+        <div class="cart-item">
+          <img src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?w=200" alt="Product" />
+          <div class="cart-item-details">
+            <h3>Beaded Necklace Set</h3>
+            <p class="cart-item-meta">Color: Multi</p>
+            <p class="cart-item-price">R 349.00</p>
+          </div>
+          <div class="cart-item-actions">
+            <div class="qty-controls">
+              <button>-</button>
+              <input type="number" value="2" min="1" />
+              <button>+</button>
+            </div>
+            <button class="remove-item"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="cart-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span>R 1,597.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span>R 50.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Discount</span>
+          <span>-R 100.00</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total</span>
+          <span>R 1,547.00</span>
+        </div>
+        <button class="btn-cart checkout-btn" onclick="window.location.href='checkout.html'">
+          Proceed to Checkout
+        </button>
+        <div class="trust-badges">
+          <span><i class="fas fa-lock"></i> Secure Checkout</span>
+          <span><i class="fas fa-undo"></i> Easy Returns</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo" style="margin-bottom: 15px;">
+            <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+            <h1>MAKZAZ</h1>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted);">Empowering African commerce.</p>
+        </div>
+        <div><h4>Shop</h4><a href="#">Fashion</a><a href="#">Electronics</a></div>
+        <div><h4>Support</h4><a href="#">Help Center</a><a href="#">Shipping</a></div>
+        <div><h4>Company</h4><a href="#">About</a><a href="#">Blog</a></div>
+      </div>
+      <div class="footer-bottom">© 2026 MAKZAZ</div>
+    </div>
+  </footer>
+
+  <script src="../app.js"></script>
+</body>
+</html>

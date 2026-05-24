@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Category Page | MAKZAZ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="header glass">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+      <a href="../index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+        <h1>MAKZAZ</h1>
+      </a>
+      <nav class="nav-links">
+        <a href="#" class="nav-icon" title="Location"><i class="fas fa-map-marker-alt"></i></a>
+        <a href="cart.html" class="nav-icon" title="Cart"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartCount">0</span></a>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="category-header">
+      <h1><i class="fas fa-tshirt"></i> Fashion & Clothing</h1>
+      <p>Discover authentic African fashion, from traditional prints to modern designs</p>
+    </div>
+
+    <div class="filters-bar">
+      <div class="filter-group">
+        <label><i class="fas fa-sliders-h"></i> Sort:</label>
+        <select id="sortSelect">
+          <option>Newest</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Top Rated</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label><i class="fas fa-tag"></i> Price:</label>
+        <input type="range" min="0" max="500" value="500" id="priceRange" />
+        <span id="priceValue">R500</span>
+      </div>
+      <div class="filter-group">
+        <label><i class="fas fa-star"></i> Rating:</label>
+        <select id="ratingSelect">
+          <option>All</option>
+          <option>4★ & up</option>
+          <option>4.5★ & up</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="category-sidebar">
+      <div class="subcategories">
+        <h3>Subcategories</h3>
+        <ul>
+          <li><a href="#"><i class="fas fa-angle-right"></i> Dresses</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i> Shirts</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i> Accessories</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i> Shoes</a></li>
+          <li><a href="#"><i class="fas fa-angle-right"></i> Traditional Wear</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="product-grid" id="categoryProducts"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo" style="margin-bottom: 15px;">
+            <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+            <h1>MAKZAZ</h1>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted);">Empowering African commerce.</p>
+        </div>
+        <div><h4>Shop</h4><a href="#">Fashion</a><a href="#">Electronics</a></div>
+        <div><h4>Support</h4><a href="#">Help Center</a><a href="#">Shipping</a></div>
+        <div><h4>Company</h4><a href="#">About</a><a href="#">Blog</a></div>
+      </div>
+      <div class="footer-bottom">© 2026 MAKZAZ</div>
+    </div>
+  </footer>
+
+  <script src="../app.js"></script>
+</body>
+</html>

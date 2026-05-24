@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Management | MAKZAZ Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <style>
+    .admin-layout { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
+    .admin-sidebar { background: var(--bg-card); padding: 20px; border-right: 1px solid var(--border); }
+    .admin-sidebar h3 { color: var(--primary); margin-bottom: 20px; }
+    .admin-nav a { display: block; padding: 12px 15px; margin-bottom: 8px; border-radius: var(--radius-sm); color: var(--text-main); transition: var(--transition); }
+    .admin-nav a:hover, .admin-nav a.active { background: var(--primary); color: white; }
+    .admin-nav a i { width: 25px; }
+    .admin-content { padding: 30px; background: var(--bg-body); }
+    .crud-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .btn-primary { background: var(--primary); color: white; padding: 12px 24px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; transition: var(--transition); }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .admin-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: var(--radius); overflow: hidden; }
+    .admin-table th, .admin-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border); }
+    .admin-table th { background: var(--bg-glass); font-weight: 600; }
+    .product-thumb { width: 60px; height: 60px; object-fit: cover; border-radius: var(--radius-sm); }
+    .action-btns button { padding: 6px 12px; margin-right: 5px; border-radius: var(--radius-sm); border: none; cursor: pointer; font-size: 12px; }
+    .btn-edit { background: #dbeafe; color: #1e40af; }
+    .btn-delete { background: #fee2e2; color: #991b1b; }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--bg-card); padding: 30px; border-radius: var(--radius); max-width: 600px; width: 90%; max-height: 90vh; overflow-y: auto; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg-body); color: var(--text-main); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    @media (max-width: 768px) { .admin-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <a href="../../index.html" class="logo" style="margin-bottom: 30px;">
+        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+        <h1 style="font-size: 20px;">MAKZAZ Admin</h1>
+      </a>
+      <nav class="admin-nav">
+        <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="products.html" class="active"><i class="fas fa-box"></i> Products</a>
+        <a href="orders.html"><i class="fas fa-shopping-bag"></i> Orders</a>
+        <a href="customers.html"><i class="fas fa-users"></i> Customers</a>
+        <a href="suppliers.html"><i class="fas fa-truck"></i> Suppliers</a>
+        <a href="staff.html"><i class="fas fa-user-tie"></i> Staff</a>
+        <a href="carts.html"><i class="fas fa-shopping-cart"></i> Carts</a>
+        <a href="../index.html"><i class="fas fa-home"></i> Back to Site</a>
+      </nav>
+    </aside>
+
+    <main class="admin-content">
+      <div class="crud-header">
+        <h2><i class="fas fa-box"></i> Product Management</h2>
+        <button class="btn-primary" onclick="openModal()"><i class="fas fa-plus"></i> Add Product</button>
+      </div>
+
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="productTableBody">
+          <tr>
+            <td><img src="https://images.unsplash.com/photo-1590736969955-71cc94801759?w=100" class="product-thumb" /></td>
+            <td>African Print Maxi Dress</td>
+            <td>Fashion</td>
+            <td>Kente Masters</td>
+            <td>R 899.00</td>
+            <td>25</td>
+            <td class="action-btns">
+              <button class="btn-edit" onclick="editProduct(1)"><i class="fas fa-edit"></i></button>
+              <button class="btn-delete" onclick="deleteProduct(1)"><i class="fas fa-trash"></i></button>
+            </td>
+          </tr>
+          <tr>
+            <td><img src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?w=100" class="product-thumb" /></td>
+            <td>Beaded Necklace Set</td>
+            <td>Jewelry</td>
+            <td>Maasai Art</td>
+            <td>R 349.00</td>
+            <td>50</td>
+            <td class="action-btns">
+              <button class="btn-edit" onclick="editProduct(2)"><i class="fas fa-edit"></i></button>
+              <button class="btn-delete" onclick="deleteProduct(2)"><i class="fas fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <!-- Add/Edit Product Modal -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal">
+      <h3 id="modalTitle">Add New Product</h3>
+      <form id="productForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" id="productName" required />
+          </div>
+          <div class="form-group">
+            <label>Price</label>
+            <input type="number" id="productPrice" step="0.01" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Category</label>
+            <select id="productCategory">
+              <option>Fashion</option>
+              <option>Electronics</option>
+              <option>Home & Living</option>
+              <option>Beauty</option>
+              <option>Jewelry</option>
+              <option>Food</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Brand</label>
+            <select id="productBrand">
+              <option>Kente Masters</option>
+              <option>AfriTech</option>
+              <option>Maasai Art</option>
+              <option>Pure Glow</option>
+              <option>AfroChic</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea id="productDescription" rows="4"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Stock Quantity</label>
+            <input type="number" id="productStock" />
+          </div>
+          <div class="form-group">
+            <label>Image URL</label>
+            <input type="url" id="productImage" />
+          </div>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button type="submit" class="btn-primary" style="flex: 1;">Save Product</button>
+          <button type="button" class="btn-delete" style="flex: 1;" onclick="closeModal()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../../app.js"></script>
+  <script>
+    function openModal() { document.getElementById('productModal').classList.add('active'); }
+    function closeModal() { document.getElementById('productModal').classList.remove('active'); }
+    function editProduct(id) { openModal(); document.getElementById('modalTitle').textContent = 'Edit Product'; }
+    function deleteProduct(id) { if(confirm('Delete this product?')) showToast('Product deleted'); }
+    document.getElementById('productForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      showToast('Product saved successfully!');
+      closeModal();
+    });
+  </script>
+</body>
+</html>

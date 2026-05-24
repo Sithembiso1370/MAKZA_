@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orders Management | MAKZAZ Admin</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <style>
+    .admin-layout { display: grid; grid-template-columns: 250px 1fr; min-height: 100vh; }
+    .admin-sidebar { background: var(--bg-card); padding: 20px; border-right: 1px solid var(--border); }
+    .admin-sidebar h3 { color: var(--primary); margin-bottom: 20px; }
+    .admin-nav a { display: block; padding: 12px 15px; margin-bottom: 8px; border-radius: var(--radius-sm); color: var(--text-main); transition: var(--transition); }
+    .admin-nav a:hover, .admin-nav a.active { background: var(--primary); color: white; }
+    .admin-nav a i { width: 25px; }
+    .admin-content { padding: 30px; background: var(--bg-body); }
+    .order-filters { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .order-filters button { padding: 8px 16px; border-radius: var(--radius-full); border: 1px solid var(--border); background: var(--bg-card); cursor: pointer; transition: var(--transition); }
+    .order-filters button.active { background: var(--primary); color: white; border-color: var(--primary); }
+    .admin-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: var(--radius); overflow: hidden; }
+    .admin-table th, .admin-table td { padding: 15px; text-align: left; border-bottom: 1px solid var(--border); }
+    .admin-table th { background: var(--bg-glass); font-weight: 600; }
+    .status-badge { padding: 5px 12px; border-radius: var(--radius-full); font-size: 12px; font-weight: 600; }
+    .status-received { background: #fef3c7; color: #92400e; }
+    .status-processed { background: #dbeafe; color: #1e40af; }
+    .status-delivering { background: #ddd6fe; color: #5b21b6; }
+    .status-delivered { background: #d1fae5; color: #065f46; }
+    .action-btns select { padding: 6px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+    @media (max-width: 768px) { .admin-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar">
+      <a href="../../index.html" class="logo" style="margin-bottom: 30px;">
+        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+        <h1 style="font-size: 20px;">MAKZAZ Admin</h1>
+      </a>
+      <nav class="admin-nav">
+        <a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+        <a href="products.html"><i class="fas fa-box"></i> Products</a>
+        <a href="orders.html" class="active"><i class="fas fa-shopping-bag"></i> Orders</a>
+        <a href="customers.html"><i class="fas fa-users"></i> Customers</a>
+        <a href="suppliers.html"><i class="fas fa-truck"></i> Suppliers</a>
+        <a href="staff.html"><i class="fas fa-user-tie"></i> Staff</a>
+        <a href="carts.html"><i class="fas fa-shopping-cart"></i> Carts</a>
+        <a href="../index.html"><i class="fas fa-home"></i> Back to Site</a>
+      </nav>
+    </aside>
+
+    <main class="admin-content">
+      <h2><i class="fas fa-shopping-bag"></i> Orders Management</h2>
+      
+      <div class="order-filters">
+        <button class="active">All Orders</button>
+        <button>Received</button>
+        <button>Processed</button>
+        <button>Delivering</button>
+        <button>Delivered</button>
+      </div>
+
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Items</th>
+            <th>Total</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Update Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#ORD-001</td>
+            <td>Nomsa M.</td>
+            <td>2 items</td>
+            <td>R 899.00</td>
+            <td><span class="status-badge status-delivered">Delivered</span></td>
+            <td>May 24, 2026</td>
+            <td class="action-btns">
+              <select>
+                <option>Delivered</option>
+                <option>Delivering</option>
+                <option>Processed</option>
+                <option>Received</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>#ORD-002</td>
+            <td>John D.</td>
+            <td>1 item</td>
+            <td>R 1,249.00</td>
+            <td><span class="status-badge status-delivering">Delivering</span></td>
+            <td>May 23, 2026</td>
+            <td class="action-btns">
+              <select>
+                <option>Delivering</option>
+                <option>Delivered</option>
+                <option>Processed</option>
+                <option>Received</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>#ORD-003</td>
+            <td>Sarah K.</td>
+            <td>3 items</td>
+            <td>R 549.00</td>
+            <td><span class="status-badge status-processed">Processed</span></td>
+            <td>May 23, 2026</td>
+            <td class="action-btns">
+              <select>
+                <option>Processed</option>
+                <option>Delivering</option>
+                <option>Delivered</option>
+                <option>Received</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>#ORD-004</td>
+            <td>Peter L.</td>
+            <td>5 items</td>
+            <td>R 2,100.00</td>
+            <td><span class="status-badge status-received">Received</span></td>
+            <td>May 22, 2026</td>
+            <td class="action-btns">
+              <select>
+                <option>Received</option>
+                <option>Processed</option>
+                <option>Delivering</option>
+                <option>Delivered</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+  </div>
+
+  <script src="../../app.js"></script>
+</body>
+</html>

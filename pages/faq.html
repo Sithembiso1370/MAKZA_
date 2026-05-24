@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | MAKZAZ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .faq-container { max-width: 800px; margin: 0 auto; }
+    .faq-item { background: var(--bg-card); border-radius: var(--radius); margin-bottom: 15px; overflow: hidden; box-shadow: var(--shadow); }
+    .faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
+    .faq-question:hover { background: var(--bg-glass); }
+    .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: var(--text-muted); }
+    .faq-item.active .faq-answer { padding: 0 20px 20px; max-height: 500px; }
+    .faq-item.active .faq-question i { transform: rotate(180deg); }
+  </style>
+</head>
+<body>
+  <header class="header glass">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+      <a href="../index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+        <h1>MAKZAZ</h1>
+      </a>
+      <nav class="nav-links">
+        <a href="#" class="nav-icon" title="Location"><i class="fas fa-map-marker-alt"></i></a>
+        <a href="cart.html" class="nav-icon" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="faq-container">
+      <h1 style="text-align: center; margin-bottom: 10px;"><i class="fas fa-question-circle"></i> Frequently Asked Questions</h1>
+      <p style="text-align: center; color: var(--text-muted); margin-bottom: 40px;">Find answers to common questions about MAKZAZ</p>
+
+      <div class="faq-item active">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span>How do I place an order?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Browse our products, add items to your cart, and proceed to checkout. Enter your shipping details and payment information to complete your order.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span>What are the delivery times?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Standard delivery takes 3-5 business days. Express delivery is available for 1-2 business days. Free shipping on orders over R500.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span>How can I track my order?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Once your order is shipped, you'll receive a tracking number via email. You can use this to track your package in real-time.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span>What is your return policy?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>We offer a 30-day return policy. Items must be unused and in original packaging. Contact our support team to initiate a return.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span>How do I become a seller on MAKZAZ?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>Contact our team at sellers@makzaz.com with details about your products. We'll guide you through the verification and onboarding process.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span>What payment methods do you accept?</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p>We accept credit/debit cards, PayPal, and cash on delivery for select areas. All payments are secured with encryption.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">© 2026 MAKZAZ</div>
+    </div>
+  </footer>
+
+  <script src="../app.js"></script>
+</body>
+</html>
