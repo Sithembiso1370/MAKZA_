@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Makzaz</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .messages-container {
+            display: flex;
+            height: calc(100vh - 200px);
+            margin-top: 80px;
+            background: #f5f5f5;
+        }
+        
+        .chat-list {
+            width: 350px;
+            background: white;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+        }
+        
+        .chat-header {
+            padding: 20px;
+            background: #075E54;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .chat-header h2 {
+            font-size: 20px;
+            margin: 0;
+        }
+        
+        .chat-item {
+            display: flex;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .chat-item:hover {
+            background: #f9f9f9;
+        }
+        
+        .chat-item.active {
+            background: #e8f5e9;
+        }
+        
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .chat-info {
+            flex: 1;
+            margin-left: 15px;
+            overflow: hidden;
+        }
+        
+        .chat-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .chat-preview {
+            color: #666;
+            font-size: 14px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .chat-time {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+        
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #e5ddd5;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text x="10" y="30" opacity="0.1" font-size="20">💬</text></svg>');
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .message.sent {
+            align-items: flex-end;
+        }
+        
+        .message.received {
+            align-items: flex-start;
+        }
+        
+        .message-bubble {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            position: relative;
+        }
+        
+        .message.sent .message-bubble {
+            background: #dcf8c6;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .message.received .message-bubble {
+            background: white;
+            border-bottom-left-radius: 4px;
+        }
+        
+        .message-text {
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .message-time {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+            text-align: right;
+        }
+        
+        .chat-input-area {
+            padding: 15px;
+            background: #f0f0f0;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        .send-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #075E54;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #666;
+        }
+        
+        .empty-state i {
+            font-size: 80px;
+            margin-bottom: 20px;
+            opacity: 0.3;
+        }
+        
+        @media (max-width: 768px) {
+            .messages-container {
+                flex-direction: column;
+            }
+            
+            .chat-list {
+                width: 100%;
+                height: 40%;
+            }
+            
+            .chat-area {
+                height: 60%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/logo.svg" alt="Makzaz Logo" style="height: 50px;">
+            </a>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search products, brands...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="nav-icons">
+                <a href="#" class="icon-btn">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>New York</span>
+                </a>
+                <a href="messages.html" class="icon-btn active">
+                    <i class="fas fa-comment"></i>
+                </a>
+                <a href="cart.html" class="icon-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">3</span>
+                </a>
+                <a href="login.html" class="icon-btn">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Messages Container -->
+    <div class="messages-container">
+        <!-- Chat List -->
+        <div class="chat-list">
+            <div class="chat-header">
+                <i class="fas fa-comments"></i>
+                <h2>Messages</h2>
+            </div>
+            
+            <div class="chat-item active" onclick="selectChat('support')">
+                <div class="avatar">M</div>
+                <div class="chat-info">
+                    <div class="chat-name">Makzaz Support</div>
+                    <div class="chat-preview">Hello! How can we help you today?</div>
+                    <div class="chat-time">2 min ago</div>
+                </div>
+            </div>
+            
+            <div class="chat-item" onclick="selectChat('seller1')">
+                <div class="avatar" style="background: linear-gradient(135deg, #f093fb, #f5576c);">T</div>
+                <div class="chat-info">
+                    <div class="chat-name">TechStore Official</div>
+                    <div class="chat-preview">Your order has been shipped!</div>
+                    <div class="chat-time">1 hour ago</div>
+                </div>
+            </div>
+            
+            <div class="chat-item" onclick="selectChat('seller2')">
+                <div class="avatar" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">F</div>
+                <div class="chat-info">
+                    <div class="chat-name">Fashion Hub</div>
+                    <div class="chat-preview">Thank you for your purchase!</div>
+                    <div class="chat-time">Yesterday</div>
+                </div>
+            </div>
+            
+            <div class="chat-item" onclick="selectChat('seller3')">
+                <div class="avatar" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">H</div>
+                <div class="chat-info">
+                    <div class="chat-name">Home Essentials</div>
+                    <div class="chat-preview">Is this item still available?</div>
+                    <div class="chat-time">2 days ago</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chat Area -->
+        <div class="chat-area" id="chatArea">
+            <div class="chat-messages" id="chatMessages">
+                <div class="message received">
+                    <div class="message-bubble">
+                        <div class="message-text">Hello! Welcome to Makzaz Support. How can we help you today?</div>
+                        <div class="message-time">10:30 AM</div>
+                    </div>
+                </div>
+                
+                <div class="message sent">
+                    <div class="message-bubble">
+                        <div class="message-text">Hi! I have a question about my recent order.</div>
+                        <div class="message-time">10:31 AM</div>
+                    </div>
+                </div>
+                
+                <div class="message received">
+                    <div class="message-bubble">
+                        <div class="message-text">Of course! Please provide your order number and I'll be happy to assist you.</div>
+                        <div class="message-time">10:32 AM</div>
+                    </div>
+                </div>
+                
+                <div class="message sent">
+                    <div class="message-bubble">
+                        <div class="message-text">Order #MKZ12345. When will it be delivered?</div>
+                        <div class="message-time">10:33 AM</div>
+                    </div>
+                </div>
+                
+                <div class="message received">
+                    <div class="message-bubble">
+                        <div class="message-text">Let me check that for you. Your order is currently out for delivery and should arrive by 5 PM today. You can track it in real-time from your orders page.</div>
+                        <div class="message-time">10:35 AM</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-area">
+                <button class="icon-btn" style="background: transparent; color: #666;">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <input type="text" class="chat-input" placeholder="Type a message..." id="messageInput" onkeypress="handleKeyPress(event)">
+                <button class="icon-btn" style="background: transparent; color: #666;">
+                    <i class="fas fa-camera"></i>
+                </button>
+                <button class="send-btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function selectChat(chatId) {
+            document.querySelectorAll('.chat-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // In a real app, this would load the chat history for the selected chat
+            const messages = document.getElementById('chatMessages');
+            if (chatId === 'support') {
+                messages.innerHTML = `
+                    <div class="message received">
+                        <div class="message-bubble">
+                            <div class="message-text">Hello! Welcome to Makzaz Support. How can we help you today?</div>
+                            <div class="message-time">10:30 AM</div>
+                        </div>
+                    </div>
+                `;
+            } else if (chatId === 'seller1') {
+                messages.innerHTML = `
+                    <div class="message received">
+                        <div class="message-bubble">
+                            <div class="message-text">Your order has been shipped! Tracking number: TRK789456123</div>
+                            <div class="message-time">Yesterday</div>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                const messagesContainer = document.getElementById('chatMessages');
+                const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                const messageHtml = `
+                    <div class="message sent">
+                        <div class="message-bubble">
+                            <div class="message-text">${message}</div>
+                            <div class="message-time">${time}</div>
+                        </div>
+                    </div>
+                `;
+                
+                messagesContainer.insertAdjacentHTML('beforeend', messageHtml);
+                input.value = '';
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                
+                // Simulate response after 1 second
+                setTimeout(() => {
+                    const responseHtml = `
+                        <div class="message received">
+                            <div class="message-bubble">
+                                <div class="message-text">Thank you for your message. We'll get back to you shortly!</div>
+                                <div class="message-time">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+                            </div>
+                        </div>
+                    `;
+                    messagesContainer.insertAdjacentHTML('beforeend', responseHtml);
+                    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                }, 1000);
+            }
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>

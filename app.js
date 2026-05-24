@@ -495,3 +495,76 @@ document.addEventListener('DOMContentLoaded', () => {
   // Welcome toast
   setTimeout(() => showToast('👋 Welcome to MAKZAZ! Explore authentic African products', 'success'), 1000);
 });
+
+// ============================================
+// HERO SLIDER FUNCTIONALITY
+// ============================================
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const sliderDots = document.getElementById('sliderDots');
+
+// Initialize slider dots
+if (sliderDots && slides.length > 0) {
+  sliderDots.innerHTML = Array.from(slides).map((_, i) => 
+    `<span class="slider-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide(${i})"></span>`
+  ).join('');
+}
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.remove('active');
+    if (sliderDots) {
+      sliderDots.children[i]?.classList.remove('active');
+    }
+  });
+  
+  if (slides[index]) {
+    slides[index].classList.add('active');
+    if (sliderDots) {
+      sliderDots.children[index]?.classList.add('active');
+    }
+  }
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
+
+function prevSlide() {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  showSlide(currentSlide);
+}
+
+// Auto-advance slider every 5 seconds
+if (slides.length > 0) {
+  setInterval(nextSlide, 5000);
+}
+
+// ============================================
+// LOCATION FUNCTIONALITY
+// ============================================
+const locationBtn = document.querySelector('.location-btn');
+const userLocationEl = document.getElementById('userLocation');
+
+if (locationBtn && userLocationEl) {
+  locationBtn.addEventListener('click', () => {
+    const cities = ['New York', 'London', 'Lagos', 'Johannesburg', 'Nairobi', 'Accra', 'Cairo', 'Dubai'];
+    const currentCity = userLocationEl.textContent;
+    const currentIndex = cities.indexOf(currentCity);
+    const nextCity = cities[(currentIndex + 1) % cities.length];
+    userLocationEl.textContent = nextCity;
+    showToast(`📍 Location changed to ${nextCity}`, 'success');
+  });
+}
+
+// Set random location on load
+if (userLocationEl) {
+  const randomCities = ['New York', 'London', 'Lagos', 'Johannesburg', 'Nairobi'];
+  userLocationEl.textContent = randomCities[Math.floor(Math.random() * randomCities.length)];
+}

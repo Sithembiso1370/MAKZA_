@@ -19,21 +19,29 @@
   <header class="header glass">
     <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
       <a href="#" class="logo">
-        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
-        <h1>MAKZAZ</h1>
+        <img src="assets/logo.svg" alt="Makzaz" style="height: 50px;">
       </a>
       
       <div class="search-wrapper">
         <div class="search-bar">
-          <input type="text" placeholder="Search products, artisans, stories..." id="searchInput">
+          <input type="text" placeholder="Search products, brands, categories..." id="searchInput">
           <button onclick="window.location.href='pages/search.html'"><i class="fas fa-search"></i></button>
         </div>
       </div>
       
       <nav class="nav-links">
-        <a href="#" class="nav-icon" title="Location"><i class="fas fa-map-marker-alt"></i></a>
-        <a href="#" class="nav-icon" title="Messages"><i class="fas fa-comments"></i><span class="badge">3</span></a>
-        <a href="pages/cart.html" class="nav-icon" title="Cart"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartCount">0</span></a>
+        <a href="#" class="nav-icon location-btn" title="Location">
+          <i class="fas fa-map-marker-alt"></i>
+          <span class="location-text" id="userLocation">New York</span>
+        </a>
+        <a href="pages/messages.html" class="nav-icon" title="Messages">
+          <i class="fas fa-comments"></i>
+          <span class="badge">3</span>
+        </a>
+        <a href="pages/cart.html" class="nav-icon" title="Cart">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="badge" id="cartCount">0</span>
+        </a>
         <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
       </nav>
       
@@ -43,25 +51,72 @@
 
   <main class="container">
     
-    <!-- HERO SECTION (Combined best of both with animations) -->
+    <!-- HERO SECTION (Slidable Banner with Stats) -->
     <section class="hero">
-      <div class="hero-banner">
-        <span style="background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 50px; width: fit-content; font-size: 12px; font-weight: 600;">✨ Limited Time Offer</span>
-        <h2>Discover Africa's Finest Treasures</h2>
-        <p class="slogan">mi casa su casa</p>
-        <p>Connect with 500+ local artisans and shop authentic handcrafted products that tell a story</p>
-        <div>
-          <button class="btn-cart" style="background: white; color: var(--primary); padding: 12px 24px; font-size: 15px;">
-            <i class="fas fa-gem"></i> Shop Now →
-          </button>
+      <div class="hero-slider" id="heroSlider">
+        <div class="slide active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <div class="slide-content">
+            <span class="slide-badge">✨ Limited Time Offer</span>
+            <h2>Discover Africa's Finest Treasures</h2>
+            <p class="slogan">mi casa su casa</p>
+            <p>Connect with 500+ local artisans and shop authentic handcrafted products</p>
+            <button class="btn-cart"><i class="fas fa-gem"></i> Shop Now →</button>
+          </div>
+          <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1590736969955-71cc94801759?w=800');"></div>
+        </div>
+        <div class="slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+          <div class="slide-content">
+            <span class="slide-badge">🔥 Hot Deals</span>
+            <h2>Fashion That Speaks Volumes</h2>
+            <p class="slogan">mi casa su casa</p>
+            <p>Explore trending styles from top African designers</p>
+            <button class="btn-cart"><i class="fas fa-tshirt"></i> Shop Fashion →</button>
+          </div>
+          <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800');"></div>
+        </div>
+        <div class="slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+          <div class="slide-content">
+            <span class="slide-badge">📱 Tech Zone</span>
+            <h2>Latest Electronics & Gadgets</h2>
+            <p class="slogan">mi casa su casa</p>
+            <p>Stay connected with cutting-edge technology</p>
+            <button class="btn-cart"><i class="fas fa-laptop"></i> Shop Electronics →</button>
+          </div>
+          <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800');"></div>
         </div>
       </div>
       
+      <div class="slider-controls">
+        <button class="slider-btn prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+        <div class="slider-dots" id="sliderDots"></div>
+        <button class="slider-btn next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      
       <div class="hero-stats">
-        <div class="stat-card"><i class="fas fa-users"></i><h3>10k+</h3><p>Active Shoppers</p></div>
-        <div class="stat-card"><i class="fas fa-store"></i><h3>500+</h3><p>Local Artisans</p></div>
-        <div class="stat-card"><i class="fas fa-shipping-fast"></i><h3>3-5 Days</h3><p>Delivery Time</p></div>
-        <div class="stat-card"><i class="fas fa-star"></i><h3>4.8★</h3><p>Avg Rating</p></div>
+        <div class="stat-card" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400');">
+          <div class="stat-overlay"></div>
+          <i class="fas fa-users"></i>
+          <h3>10k+</h3>
+          <p>Active Shoppers</p>
+        </div>
+        <div class="stat-card" style="background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400');">
+          <div class="stat-overlay"></div>
+          <i class="fas fa-store"></i>
+          <h3>500+</h3>
+          <p>Local Artisans</p>
+        </div>
+        <div class="stat-card" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400');">
+          <div class="stat-overlay"></div>
+          <i class="fas fa-shipping-fast"></i>
+          <h3>3-5 Days</h3>
+          <p>Delivery Time</p>
+        </div>
+        <div class="stat-card" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400');">
+          <div class="stat-overlay"></div>
+          <i class="fas fa-star"></i>
+          <h3>4.8★</h3>
+          <p>Avg Rating</p>
+        </div>
       </div>
     </section>
 
