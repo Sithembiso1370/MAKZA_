@@ -1,76 +1,389 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fast Food | MAKZAZ</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food - Mi Casa Su Casa</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --food-primary: #FF5722;
+            --food-bg: #F8F9FA;
+            --food-card: #FFFFFF;
+            --food-text: #2D3436;
+        }
+
+        body {
+            background-color: var(--food-bg);
+            font-family: 'Segoe UI', sans-serif;
+            padding-top: 60px;
+        }
+
+        .food-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            border-radius: 0 0 25px 25px;
+            margin-bottom: 20px;
+        }
+
+        .food-search-bar {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin-top: 20px;
+        }
+
+        .food-search-bar input {
+            border: none;
+            outline: none;
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .food-search-bar button {
+            background: var(--food-primary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .cuisine-filters {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 20px;
+            scrollbar-width: none;
+        }
+        .cuisine-filters::-webkit-scrollbar { display: none; }
+
+        .cuisine-chip {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            white-space: nowrap;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cuisine-chip.active, .cuisine-chip:hover {
+            background: var(--food-primary);
+            color: white;
+            border-color: var(--food-primary);
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .food-card {
+            background: var(--food-card);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .food-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .food-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .food-info {
+            padding: 15px;
+        }
+
+        .food-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--food-text);
+        }
+
+        .food-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .rating-badge {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .delivery-time {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--food-text);
+        }
+
+        .add-btn {
+            background: var(--food-primary);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .food-sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-group label {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #555;
+        }
+
+        .filter-select {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+        }
+    </style>
 </head>
 <body>
-  <header class="header glass">
-    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
-      <a href="../index.html" class="logo">
-        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
-        <h1>MAKZAZ</h1>
-      </a>
-      <nav class="nav-links">
-        <a href="#" class="nav-icon" title="Location"><i class="fas fa-map-marker-alt"></i></a>
-        <a href="cart.html" class="nav-icon" title="Cart"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartCount">0</span></a>
-        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
-      </nav>
-    </div>
-  </header>
 
-  <main class="container">
-    <div class="category-header fast-food-header">
-      <h1><i class="fas fa-hamburger"></i> Fast Food</h1>
-      <p>Delicious African fast food delivered to your door</p>
-    </div>
-
-    <div class="filters-bar">
-      <div class="filter-group">
-        <label><i class="fas fa-sliders-h"></i> Sort:</label>
-        <select>
-          <option>Popular</option>
-          <option>Price: Low to High</option>
-          <option>Delivery Time</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label><i class="fas fa-clock"></i> Delivery:</label>
-        <select>
-          <option>All</option>
-          <option>Under 30 mins</option>
-          <option>Under 1 hour</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="product-grid" id="fastFoodProducts">
-      <!-- Fast food products -->
-    </div>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="logo" style="margin-bottom: 15px;">
-            <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
-            <h1>MAKZAZ</h1>
-          </div>
-          <p style="font-size: 13px; color: var(--text-muted);">Empowering African commerce.</p>
+    <nav class="navbar">
+        <div class="logo">Mi Casa <span style="color:var(--food-primary)">Su Casa</span> <i class="fas fa-utensils"></i></div>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="cart.html"><i class="fas fa-shopping-bag"></i></a>
+            <a href="login.html"><i class="fas fa-user"></i></a>
         </div>
-        <div><h4>Shop</h4><a href="#">Fashion</a><a href="#">Electronics</a></div>
-        <div><h4>Support</h4><a href="#">Help Center</a><a href="#">Shipping</a></div>
-        <div><h4>Company</h4><a href="#">About</a><a href="#">Blog</a></div>
-      </div>
-      <div class="footer-bottom">© 2026 MAKZAZ</div>
-    </div>
-  </footer>
+    </nav>
 
-  <script src="../app.js"></script>
+    <div class="food-hero">
+        <h1>Craving Something?</h1>
+        <p>Delicious food delivered to your doorstep</p>
+        <div class="food-search-bar">
+            <i class="fas fa-search" style="color:#888"></i>
+            <input type="text" placeholder="Search for burgers, sushi, pizza...">
+            <button>Search</button>
+        </div>
+    </div>
+
+    <div class="cuisine-filters">
+        <div class="cuisine-chip active"><i class="fas fa-th-large"></i> All</div>
+        <div class="cuisine-chip"><i class="fas fa-hamburger"></i> Burgers</div>
+        <div class="cuisine-chip"><i class="fas fa-pizza-slice"></i> Pizza</div>
+        <div class="cuisine-chip"><i class="fas fa-fish"></i> Sushi</div>
+        <div class="cuisine-chip"><i class="fas fa-drumstick-bite"></i> Chicken</div>
+        <div class="cuisine-chip"><i class="fas fa-leaf"></i> Vegan</div>
+        <div class="cuisine-chip"><i class="fas fa-coffee"></i> Desserts</div>
+        <div class="cuisine-chip"><i class="fas fa-glass-martini-alt"></i> Drinks</div>
+    </div>
+
+    <div class="food-sidebar">
+        <div class="filter-group">
+            <label>Dietary:</label>
+            <select class="filter-select">
+                <option>All</option>
+                <option>Vegetarian</option>
+                <option>Vegan</option>
+                <option>Gluten Free</option>
+                <option>Halal</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Price Range:</label>
+            <select class="filter-select">
+                <option>$ - Cheap Eats</option>
+                <option>$$ - Moderate</option>
+                <option>$$$ - Fine Dining</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Delivery Time:</label>
+            <select class="filter-select">
+                <option>Any</option>
+                <option>Under 30 mins</option>
+                <option>Under 45 mins</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Rating:</label>
+            <select class="filter-select">
+                <option>4.5+ Stars</option>
+                <option>4.0+ Stars</option>
+                <option>3.5+ Stars</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="food-grid">
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="food-img" alt="Burger">
+            <div class="food-info">
+                <div class="food-title">Double Cheese Burger</div>
+                <div class="food-meta">
+                    <span>Burger King Style</span>
+                    <span class="rating-badge"><i class="fas fa-star"></i> 4.8</span>
+                </div>
+                <div class="delivery-time"><i class="far fa-clock"></i> 25-35 min • $2.99 Delivery</div>
+                <div class="price-row">
+                    <span class="price">$12.99</span>
+                    <button class="add-btn"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="food-img" alt="Pizza">
+            <div class="food-info">
+                <div class="food-title">Pepperoni Feast</div>
+                <div class="food-meta">
+                    <span>Pizza Hut Style</span>
+                    <span class="rating-badge"><i class="fas fa-star"></i> 4.5</span>
+                </div>
+                <div class="delivery-time"><i class="far fa-clock"></i> 40-50 min • Free Delivery</div>
+                <div class="price-row">
+                    <span class="price">$18.50</span>
+                    <button class="add-btn"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="food-img" alt="Sushi">
+            <div class="food-info">
+                <div class="food-title">Dragon Roll Set</div>
+                <div class="food-meta">
+                    <span>Sushi Master</span>
+                    <span class="rating-badge"><i class="fas fa-star"></i> 4.9</span>
+                </div>
+                <div class="delivery-time"><i class="far fa-clock"></i> 30-40 min • $4.99 Delivery</div>
+                <div class="price-row">
+                    <span class="price">$24.00</span>
+                    <button class="add-btn"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="food-img" alt="Chicken">
+            <div class="food-info">
+                <div class="food-title">Spicy Wings Bucket</div>
+                <div class="food-meta">
+                    <span>Wing Stop</span>
+                    <span class="rating-badge"><i class="fas fa-star"></i> 4.7</span>
+                </div>
+                <div class="delivery-time"><i class="far fa-clock"></i> 20-30 min • $1.99 Delivery</div>
+                <div class="price-row">
+                    <span class="price">$15.99</span>
+                    <button class="add-btn"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        
+         <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="food-img" alt="Pizza">
+            <div class="food-info">
+                <div class="food-title">Margherita Supreme</div>
+                <div class="food-meta">
+                    <span>Italian Kitchen</span>
+                    <span class="rating-badge"><i class="fas fa-star"></i> 4.6</span>
+                </div>
+                <div class="delivery-time"><i class="far fa-clock"></i> 35-45 min • $3.99 Delivery</div>
+                <div class="price-row">
+                    <span class="price">$16.00</span>
+                    <button class="add-btn"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+         <div class="food-card">
+            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="food-img" alt="Pancakes">
+            <div class="food-info">
+                <div class="food-title">Blueberry Pancakes</div>
+                <div class="food-meta">
+                    <span>Breakfast Club</span>
+                    <span class="rating-badge"><i class="fas fa-star"></i> 4.8</span>
+                </div>
+                <div class="delivery-time"><i class="far fa-clock"></i> 25-35 min • $2.50 Delivery</div>
+                <div class="price-row">
+                    <span class="price">$11.50</span>
+                    <button class="add-btn"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chips = document.querySelectorAll('.cuisine-chip');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>

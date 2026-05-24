@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home & Living - Mi Casa Su Casa</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --home-primary: #4CAF50;
+            --home-secondary: #8BC34A;
+            --home-bg: #F1F8E9;
+            --home-card: #FFFFFF;
+            --home-text: #33691E;
+        }
+
+        body {
+            background-color: var(--home-bg);
+            font-family: 'Segoe UI', sans-serif;
+            padding-top: 60px;
+        }
+
+        .home-hero {
+            background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(139, 195, 74, 0.8)), 
+                        url('https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .home-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .home-hero p {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .home-nav {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .home-nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .home-nav a {
+            color: var(--home-text);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .home-nav a:hover {
+            color: var(--home-primary);
+            transform: translateY(-3px);
+        }
+
+        .home-nav i {
+            font-size: 2rem;
+            color: var(--home-primary);
+        }
+
+        .home-filters {
+            background: white;
+            padding: 25px;
+            margin: 25px auto;
+            max-width: 1200px;
+            border-radius: 15px;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .home-card {
+            background: var(--home-card);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .home-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.2);
+        }
+
+        .home-img-container {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .home-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .home-card:hover .home-img {
+            transform: scale(1.1);
+        }
+
+        .room-tag {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255,255,255,0.95);
+            color: var(--home-text);
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .home-info {
+            padding: 20px;
+        }
+
+        .home-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .home-desc {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .features {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .feature-icon {
+            color: var(--home-primary);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .home-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--home-primary);
+        }
+
+        .view-btn {
+            background: var(--home-primary);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .view-btn:hover {
+            background: var(--home-text);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .filter-select {
+            padding: 10px 20px;
+            border: 2px solid #C8E6C9;
+            border-radius: 25px;
+            outline: none;
+            background: white;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .filter-select:focus {
+            border-color: var(--home-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Mi Casa <span style="color:var(--home-primary)">Su Casa</span> <i class="fas fa-home"></i></div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../cart.html"><i class="fas fa-shopping-bag"></i></a>
+            <a href="../login.html"><i class="fas fa-user"></i></a>
+        </div>
+    </nav>
+
+    <div class="home-hero">
+        <h1><i class="fas fa-couch"></i> Home & Living</h1>
+        <p>Create your perfect sanctuary</p>
+    </div>
+
+    <div class="home-nav">
+        <ul>
+            <li><a href="#"><i class="fas fa-bed"></i>Bedroom</a></li>
+            <li><a href="#"><i class="fas fa-chair"></i>Living Room</a></li>
+            <li><a href="#"><i class="fas fa-utensils"></i>Kitchen</a></li>
+            <li><a href="#"><i class="fas fa-bath"></i>Bathroom</a></li>
+            <li><a href="#"><i class="fas fa-lightbulb"></i>Lighting</a></li>
+            <li><a href="#"><i class="fas fa-paint-roller"></i>Decor</a></li>
+            <li><a href="#"><i class="fas fa-tree"></i>Garden</a></li>
+        </ul>
+    </div>
+
+    <div class="home-filters">
+        <div>
+            <label>Room:</label>
+            <select class="filter-select">
+                <option>All Rooms</option>
+                <option>Living Room</option>
+                <option>Bedroom</option>
+                <option>Kitchen</option>
+                <option>Bathroom</option>
+            </select>
+        </div>
+        <div>
+            <label>Style:</label>
+            <select class="filter-select">
+                <option>All Styles</option>
+                <option>Modern</option>
+                <option>Scandinavian</option>
+                <option>Rustic</option>
+                <option>Industrial</option>
+                <option>Bohemian</option>
+            </select>
+        </div>
+        <div>
+            <label>Material:</label>
+            <select class="filter-select">
+                <option>All Materials</option>
+                <option>Wood</option>
+                <option>Metal</option>
+                <option>Glass</option>
+                <option>Fabric</option>
+            </select>
+        </div>
+        <div>
+            <label>Price:</label>
+            <select class="filter-select">
+                <option>All Prices</option>
+                <option>Under $100</option>
+                <option>$100 - $500</option>
+                <option>$500+</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="home-grid">
+        <div class="home-card">
+            <div class="home-img-container">
+                <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="home-img" alt="Sofa">
+                <span class="room-tag">LIVING ROOM</span>
+            </div>
+            <div class="home-info">
+                <div class="home-title">Green Velvet Sofa</div>
+                <div class="home-desc">Luxurious 3-seater sofa with premium velvet upholstery and solid wood legs.</div>
+                <div class="features">
+                    <span class="feature-icon"><i class="fas fa-ruler-horizontal"></i> 85"</span>
+                    <span class="feature-icon"><i class="fas fa-layer-group"></i> 3 Seater</span>
+                    <span class="feature-icon"><i class="fas fa-leaf"></i> Eco-friendly</span>
+                </div>
+                <div class="home-price">
+                    <span class="price">$1,299</span>
+                    <button class="view-btn">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-card">
+            <div class="home-img-container">
+                <img src="https://images.unsplash.com/photo-1505693416388-b0346efee539?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="home-img" alt="Bed">
+                <span class="room-tag">BEDROOM</span>
+            </div>
+            <div class="home-info">
+                <div class="home-title">Minimalist Platform Bed</div>
+                <div class="home-desc">Queen size platform bed with built-in nightstands and USB charging ports.</div>
+                <div class="features">
+                    <span class="feature-icon"><i class="fas fa-ruler-horizontal"></i> Queen</span>
+                    <span class="feature-icon"><i class="fas fa-bolt"></i> USB Ports</span>
+                    <span class="feature-icon"><i class="fas fa-box"></i> Storage</span>
+                </div>
+                <div class="home-price">
+                    <span class="price">$899</span>
+                    <button class="view-btn">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-card">
+            <div class="home-img-container">
+                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="home-img" alt="Kitchen">
+                <span class="room-tag">KITCHEN</span>
+            </div>
+            <div class="home-info">
+                <div class="home-title">Marble Dining Table</div>
+                <div class="home-desc">Elegant 6-person dining table with genuine marble top and brass base.</div>
+                <div class="features">
+                    <span class="feature-icon"><i class="fas fa-users"></i> 6 Person</span>
+                    <span class="feature-icon"><i class="fas fa-gem"></i> Marble</span>
+                    <span class="feature-icon"><i class="fas fa-star"></i> Premium</span>
+                </div>
+                <div class="home-price">
+                    <span class="price">$2,499</span>
+                    <button class="view-btn">View Details</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-card">
+            <div class="home-img-container">
+                <img src="https://images.unsplash.com/photo-1513519245088-0e12902e5a38?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="home-img" alt="Decor">
+                <span class="room-tag">DECOR</span>
+            </div>
+            <div class="home-info">
+                <div class="home-title">Modern Floor Lamp</div>
+                <div class="home-desc">Adjustable LED floor lamp with dimmer and smart home compatibility.</div>
+                <div class="features">
+                    <span class="feature-icon"><i class="fas fa-lightbulb"></i> LED</span>
+                    <span class="feature-icon"><i class="fas fa-mobile-alt"></i> Smart</span>
+                    <span class="feature-icon"><i class="fas fa-adjust"></i> Dimmable</span>
+                </div>
+                <div class="home-price">
+                    <span class="price">$249</span>
+                    <button class="view-btn">View Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

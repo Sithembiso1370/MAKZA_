@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion - Mi Casa Su Casa</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --fashion-primary: #E91E63;
+            --fashion-bg: #FFF5F7;
+            --fashion-card: #FFFFFF;
+        }
+
+        body {
+            background-color: var(--fashion-bg);
+            font-family: 'Segoe UI', sans-serif;
+            padding-top: 60px;
+        }
+
+        .fashion-hero {
+            background: linear-gradient(135deg, #E91E63 0%, #FF80AB 100%);
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fashion-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 30px 30px;
+        }
+
+        .fashion-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fashion-hero p {
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fashion-nav {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .fashion-nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .fashion-nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+
+        .fashion-nav a:hover {
+            color: var(--fashion-primary);
+        }
+
+        .fashion-nav i {
+            font-size: 1.5rem;
+        }
+
+        .fashion-filters {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 10px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .fashion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .fashion-card {
+            background: var(--fashion-card);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .fashion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .fashion-img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .badge-new {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--fashion-primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .fashion-info {
+            padding: 15px;
+        }
+
+        .fashion-brand {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .fashion-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .fashion-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--fashion-primary);
+        }
+
+        .add-cart-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-cart-btn:hover {
+            background: var(--fashion-primary);
+        }
+
+        .size-filter select {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Mi Casa <span style="color:var(--fashion-primary)">Su Casa</span> <i class="fas fa-tshirt"></i></div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../cart.html"><i class="fas fa-shopping-bag"></i></a>
+            <a href="../login.html"><i class="fas fa-user"></i></a>
+        </div>
+    </nav>
+
+    <div class="fashion-hero">
+        <h1>Fashion Collection</h1>
+        <p>Discover the latest trends in style</p>
+    </div>
+
+    <div class="fashion-nav">
+        <ul>
+            <li><a href="#"><i class="fas fa-female"></i>Women</a></li>
+            <li><a href="#"><i class="fas fa-male"></i>Men</a></li>
+            <li><a href="#"><i class="fas fa-child"></i>Kids</a></li>
+            <li><a href="#"><i class="fas fa-hat-cowboy"></i>Accessories</a></li>
+            <li><a href="#"><i class="fas fa-shoe-prints"></i>Shoes</a></li>
+            <li><a href="#"><i class="fas fa-gem"></i>Jewelry</a></li>
+        </ul>
+    </div>
+
+    <div class="fashion-filters">
+        <div class="size-filter">
+            <label>Size:</label>
+            <select>
+                <option>All Sizes</option>
+                <option>XS</option>
+                <option>S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+                <option>XXL</option>
+            </select>
+        </div>
+        <div class="size-filter">
+            <label>Color:</label>
+            <select>
+                <option>All Colors</option>
+                <option>Black</option>
+                <option>White</option>
+                <option>Red</option>
+                <option>Blue</option>
+                <option>Green</option>
+            </select>
+        </div>
+        <div class="size-filter">
+            <label>Price:</label>
+            <select>
+                <option>All Prices</option>
+                <option>Under $50</option>
+                <option>$50 - $100</option>
+                <option>$100 - $200</option>
+                <option>Over $200</option>
+            </select>
+        </div>
+        <div class="size-filter">
+            <label>Brand:</label>
+            <select>
+                <option>All Brands</option>
+                <option>Zara</option>
+                <option>H&M</option>
+                <option>Nike</option>
+                <option>Adidas</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="fashion-grid">
+        <div class="fashion-card">
+            <span class="badge-new">NEW</span>
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="fashion-img" alt="Fashion">
+            <div class="fashion-info">
+                <div class="fashion-brand">ZARA</div>
+                <div class="fashion-title">Floral Summer Dress</div>
+                <div class="fashion-price">
+                    <span class="price">$89.99</span>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="fashion-card">
+            <img src="https://images.unsplash.com/photo-1529139574466-a302d2d3f524?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="fashion-img" alt="Fashion">
+            <div class="fashion-info">
+                <div class="fashion-brand">H&M</div>
+                <div class="fashion-title">Classic White Shirt</div>
+                <div class="fashion-price">
+                    <span class="price">$45.00</span>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="fashion-card">
+            <span class="badge-new">SALE</span>
+            <img src="https://images.unsplash.com/photo-1542272617-08f08630329e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="fashion-img" alt="Fashion">
+            <div class="fashion-info">
+                <div class="fashion-brand">NIKE</div>
+                <div class="fashion-title">Air Max Sneakers</div>
+                <div class="fashion-price">
+                    <span class="price">$129.99</span>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="fashion-card">
+            <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="fashion-img" alt="Fashion">
+            <div class="fashion-info">
+                <div class="fashion-brand">ADIDAS</div>
+                <div class="fashion-title">Denim Jacket</div>
+                <div class="fashion-price">
+                    <span class="price">$75.50</span>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
