@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fast Food | MAKZAZ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header class="header glass">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+      <a href="../index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+        <h1>MAKZAZ</h1>
+      </a>
+      <nav class="nav-links">
+        <a href="#" class="nav-icon" title="Location"><i class="fas fa-map-marker-alt"></i></a>
+        <a href="cart.html" class="nav-icon" title="Cart"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartCount">0</span></a>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="category-header fast-food-header">
+      <h1><i class="fas fa-hamburger"></i> Fast Food</h1>
+      <p>Delicious African fast food delivered to your door</p>
+    </div>
+
+    <div class="filters-bar">
+      <div class="filter-group">
+        <label><i class="fas fa-sliders-h"></i> Sort:</label>
+        <select>
+          <option>Popular</option>
+          <option>Price: Low to High</option>
+          <option>Delivery Time</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label><i class="fas fa-clock"></i> Delivery:</label>
+        <select>
+          <option>All</option>
+          <option>Under 30 mins</option>
+          <option>Under 1 hour</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="product-grid" id="fastFoodProducts">
+      <!-- Fast food products -->
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo" style="margin-bottom: 15px;">
+            <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+            <h1>MAKZAZ</h1>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted);">Empowering African commerce.</p>
+        </div>
+        <div><h4>Shop</h4><a href="#">Fashion</a><a href="#">Electronics</a></div>
+        <div><h4>Support</h4><a href="#">Help Center</a><a href="#">Shipping</a></div>
+        <div><h4>Company</h4><a href="#">About</a><a href="#">Blog</a></div>
+      </div>
+      <div class="footer-bottom">© 2026 MAKZAZ</div>
+    </div>
+  </footer>
+
+  <script src="../app.js"></script>
+</body>
+</html>

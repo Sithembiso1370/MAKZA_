@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details | MAKZAZ</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header glass">
+    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+      <a href="../index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+        <h1>MAKZAZ</h1>
+      </a>
+      <nav class="nav-links">
+        <a href="#" class="nav-icon" title="Location"><i class="fas fa-map-marker-alt"></i></a>
+        <a href="#" class="nav-icon" title="Messages"><i class="fas fa-comments"></i><span class="badge">3</span></a>
+        <a href="cart.html" class="nav-icon" title="Cart"><i class="fas fa-shopping-cart"></i><span class="badge" id="cartCount">0</span></a>
+        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="product-detail-container">
+      <div class="product-images">
+        <img src="https://images.unsplash.com/photo-1590736969955-71cc94801759?w=600" alt="Product" id="mainImage" />
+        <div class="thumbnail-grid">
+          <img src="https://images.unsplash.com/photo-1590736969955-71cc94801759?w=200" class="thumbnail active" />
+          <img src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?w=200" class="thumbnail" />
+          <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=200" class="thumbnail" />
+        </div>
+      </div>
+      
+      <div class="product-info">
+        <div class="breadcrumb">
+          <a href="../index.html">Home</a> / <a href="category.html">Fashion</a> / <span>African Print Dress</span>
+        </div>
+        <h1 class="product-title">Handcrafted African Print Maxi Dress</h1>
+        <div class="product-rating">
+          <div class="stars">★★★★★</div>
+          <span>(128 reviews)</span>
+        </div>
+        <div class="product-price">
+          <span class="current-price">R 899.00</span>
+          <span class="original-price">R 1,299.00</span>
+          <span class="discount-badge">-31%</span>
+        </div>
+        <p class="product-description">
+          Beautiful handcrafted maxi dress made from authentic African print fabric. 
+          Perfect for special occasions or casual wear. Made by skilled artisans in Ghana.
+        </p>
+        <div class="product-meta">
+          <div class="meta-item"><i class="fas fa-store"></i> Brand: <strong>Kente Masters</strong></div>
+          <div class="meta-item"><i class="fas fa-truck"></i> Delivery: <strong>3-5 Days</strong></div>
+          <div class="meta-item"><i class="fas fa-box"></i> Condition: <strong>New</strong></div>
+          <div class="meta-item"><i class="fas fa-map-marker-alt"></i> Location: <strong>Accra, Ghana</strong></div>
+        </div>
+        <div class="product-actions">
+          <div class="quantity-selector">
+            <label>Quantity:</label>
+            <div class="qty-controls">
+              <button onclick="decreaseQty()">-</button>
+              <input type="number" value="1" min="1" id="qtyInput" />
+              <button onclick="increaseQty()">+</button>
+            </div>
+          </div>
+          <button class="btn-cart" onclick="addToCart()">
+            <i class="fas fa-shopping-cart"></i> Add to Cart
+          </button>
+          <button class="btn-wishlist">
+            <i class="far fa-heart"></i>
+          </button>
+        </div>
+        <div class="trust-badges">
+          <span><i class="fas fa-shield-alt"></i> Buyer Protection</span>
+          <span><i class="fas fa-undo"></i> 30-Day Returns</span>
+          <span><i class="fas fa-lock"></i> Secure Payment</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Details Tabs -->
+    <div class="product-tabs">
+      <div class="tab-buttons">
+        <button class="tab-btn active" data-tab="description">Description</button>
+        <button class="tab-btn" data-tab="reviews">Reviews (128)</button>
+        <button class="tab-btn" data-tab="shipping">Shipping</button>
+        <button class="tab-btn" data-tab="seller">Seller Info</button>
+      </div>
+      <div class="tab-content active" id="description">
+        <h3>Product Description</h3>
+        <p>This stunning African print maxi dress is handcrafted by skilled artisans using traditional techniques. The vibrant patterns tell a story of African heritage and culture.</p>
+        <ul>
+          <li>✓ 100% Cotton fabric</li>
+          <li>✓ Hand-stitched details</li>
+          <li>✓ Available in sizes S-XXL</li>
+          <li>✓ Machine washable</li>
+          <li>✓ Made in Ghana</li>
+        </ul>
+      </div>
+      <div class="tab-content" id="reviews">
+        <h3>Customer Reviews</h3>
+        <div class="review-card">
+          <div class="review-header">
+            <strong>Nomsa M.</strong>
+            <div class="stars">★★★★★</div>
+          </div>
+          <p>Absolutely beautiful! The quality is amazing and it fits perfectly.</p>
+        </div>
+      </div>
+      <div class="tab-content" id="shipping">
+        <h3>Shipping Information</h3>
+        <p>Standard delivery: 3-5 business days (R50)</p>
+        <p>Express delivery: 1-2 business days (R120)</p>
+        <p>Free shipping on orders over R500</p>
+      </div>
+      <div class="tab-content" id="seller">
+        <h3>Seller Information</h3>
+        <div class="seller-card">
+          <img src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=100" alt="Seller" />
+          <div>
+            <h4>Kente Masters</h4>
+            <p>Verified Seller • 4.8★ Rating</p>
+            <p>Specializing in authentic African textiles since 2015</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="section-header">
+      <h2><i class="fas fa-thumbs-up"></i> You May Also Like</h2>
+      <a href="#">View All →</a>
+    </div>
+    <div class="product-grid" id="relatedProducts"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="logo" style="margin-bottom: 15px;">
+            <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
+            <h1>MAKZAZ</h1>
+          </div>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
+            Empowering African commerce through social connections.
+          </p>
+        </div>
+        <div><h4>Shop</h4><a href="#">Fashion</a><a href="#">Electronics</a><a href="#">Home</a></div>
+        <div><h4>Support</h4><a href="#">Help Center</a><a href="#">Shipping</a><a href="#">Returns</a></div>
+        <div><h4>Company</h4><a href="#">About</a><a href="#">Sell with Us</a><a href="#">Blog</a></div>
+      </div>
+      <div class="footer-bottom">© 2026 MAKZAZ — Bringing Africa to the world 🌍</div>
+    </div>
+  </footer>
+
+  <script src="../app.js"></script>
+  <script>
+    function increaseQty() {
+      const input = document.getElementById('qtyInput');
+      input.value = parseInt(input.value) + 1;
+    }
+    function decreaseQty() {
+      const input = document.getElementById('qtyInput');
+      if (parseInt(input.value) > 1) input.value = parseInt(input.value) - 1;
+    }
+    function addToCart() {
+      showToast('Added to cart!');
+    }
+  </script>
+</body>
+</html>
