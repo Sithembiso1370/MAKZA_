@@ -11,16 +11,6 @@ const cacheElement = (id) => {
     return el;
 };
 
-// Page Loader - Optimized with requestAnimationFrame
-window.addEventListener('load', () => {
-    requestAnimationFrame(() => {
-        setTimeout(() => {
-            const loader = cacheElement('pageLoader');
-            if (loader) loader.classList.add('hidden');
-        }, 600); // Reduced from 800ms
-    });
-});
-
 // Mobile Drawer - Event Delegation Pattern
 const mobileDrawer = cacheElement('mobileDrawer');
 const drawerOverlay = cacheElement('drawerOverlay');

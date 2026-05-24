@@ -40,14 +40,7 @@
         @media (max-width: 768px) { .saved-card { flex-direction: column; text-align: center; gap: 15px; } .card-info { flex-direction: column; } .card-actions { width: 100%; justify-content: center; } }
     </style>
 </head>
-<body>
-    <!-- Loader -->
-    <div id="page-loader">
-        <div class="loader-content">
-            <img src="../assets/logo.svg" alt="Makzaz Logo" class="loader-logo">
-            <p>Loading payment methods...</p>
-        </div>
-    </div>
+<body>    </div>
 
     <!-- Navigation -->
     <nav class="navbar glass-nav">
@@ -184,9 +177,5 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                document.getElementById('page-loader').classList.add('loaded');
-            }, 1500);
-        });
-    </script>
 </body>
 </html>

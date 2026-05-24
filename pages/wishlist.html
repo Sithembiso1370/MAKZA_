@@ -23,14 +23,7 @@
         @media (max-width: 768px) { .wishlist-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; } }
     </style>
 </head>
-<body>
-    <!-- Loader -->
-    <div id="page-loader">
-        <div class="loader-content">
-            <img src="../assets/logo.svg" alt="Makzaz Logo" class="loader-logo">
-            <p>Loading your wishlist...</p>
-        </div>
-    </div>
+<body>    </div>
 
     <!-- Navigation -->
     <nav class="navbar glass-nav">
@@ -162,10 +155,5 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                document.getElementById('page-loader').classList.add('loaded');
-                renderWishlist();
-            }, 1500);
-        });
-    </script>
 </body>
 </html>
