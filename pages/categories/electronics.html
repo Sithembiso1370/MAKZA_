@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electronics - Mi Casa Su Casa</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --tech-primary: #2196F3;
+            --tech-dark: #1565C0;
+            --tech-bg: #E3F2FD;
+            --tech-card: #FFFFFF;
+        }
+
+        body {
+            background-color: var(--tech-bg);
+            font-family: 'Segoe UI', sans-serif;
+            padding-top: 60px;
+        }
+
+        .tech-hero {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0 0 L100 100 M100 0 L0 100" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></svg>');
+            background-size: 50px 50px;
+        }
+
+        .tech-hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .tech-hero p {
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+            color: #90CAF9;
+        }
+
+        .tech-nav {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .tech-nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .tech-nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .tech-nav a:hover {
+            background: var(--tech-bg);
+            color: var(--tech-primary);
+        }
+
+        .tech-nav i {
+            font-size: 1.8rem;
+        }
+
+        .tech-filters {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+            border-radius: 10px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tech-card {
+            background: var(--tech-card);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            position: relative;
+            border: 1px solid #E3F2FD;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(33, 150, 243, 0.2);
+            border-color: var(--tech-primary);
+        }
+
+        .tech-img {
+            height: 220px;
+            width: 100%;
+            object-fit: contain;
+            background: #FAFAFA;
+            padding: 20px;
+        }
+
+        .badge-tech {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--tech-dark);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .tech-info {
+            padding: 20px;
+        }
+
+        .tech-brand {
+            color: var(--tech-primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .tech-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .tech-specs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .spec-tag {
+            background: var(--tech-bg);
+            color: var(--tech-dark);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        .tech-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--tech-dark);
+        }
+
+        .add-cart-btn {
+            background: var(--tech-primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .add-cart-btn:hover {
+            background: var(--tech-dark);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.4);
+        }
+
+        .filter-select {
+            padding: 10px 15px;
+            border: 2px solid #E3F2FD;
+            border-radius: 8px;
+            outline: none;
+            background: white;
+            color: #333;
+        }
+
+        .filter-select:focus {
+            border-color: var(--tech-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Mi Casa <span style="color:var(--tech-primary)">Su Casa</span> <i class="fas fa-laptop"></i></div>
+        <div class="nav-links">
+            <a href="../../index.html">Home</a>
+            <a href="../cart.html"><i class="fas fa-shopping-bag"></i></a>
+            <a href="../login.html"><i class="fas fa-user"></i></a>
+        </div>
+    </nav>
+
+    <div class="tech-hero">
+        <h1><i class="fas fa-microchip"></i> Electronics</h1>
+        <p>Cutting-edge technology for modern life</p>
+    </div>
+
+    <div class="tech-nav">
+        <ul>
+            <li><a href="#"><i class="fas fa-laptop"></i>Laptops</a></li>
+            <li><a href="#"><i class="fas fa-mobile-alt"></i>Phones</a></li>
+            <li><a href="#"><i class="fas fa-headphones"></i>Audio</a></li>
+            <li><a href="#"><i class="fas fa-camera"></i>Cameras</a></li>
+            <li><a href="#"><i class="fas fa-gamepad"></i>Gaming</a></li>
+            <li><a href="#"><i class="fas fa-tv"></i>TVs</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i>Wearables</a></li>
+        </ul>
+    </div>
+
+    <div class="tech-filters">
+        <div>
+            <label>Brand:</label>
+            <select class="filter-select">
+                <option>All Brands</option>
+                <option>Apple</option>
+                <option>Samsung</option>
+                <option>Sony</option>
+                <option>Dell</option>
+                <option>HP</option>
+            </select>
+        </div>
+        <div>
+            <label>Price Range:</label>
+            <select class="filter-select">
+                <option>All Prices</option>
+                <option>Under $500</option>
+                <option>$500 - $1000</option>
+                <option>$1000 - $2000</option>
+                <option>Over $2000</option>
+            </select>
+        </div>
+        <div>
+            <label>Rating:</label>
+            <select class="filter-select">
+                <option>All Ratings</option>
+                <option>4★ & Up</option>
+                <option>3★ & Up</option>
+            </select>
+        </div>
+        <div>
+            <label>Availability:</label>
+            <select class="filter-select">
+                <option>All Items</option>
+                <option>In Stock</option>
+                <option>Pre-order</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="tech-grid">
+        <div class="tech-card">
+            <span class="badge-tech">NEW</span>
+            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="tech-img" alt="Laptop">
+            <div class="tech-info">
+                <div class="tech-brand">APPLE</div>
+                <div class="tech-title">MacBook Pro 16" M3 Max</div>
+                <div class="tech-specs">
+                    <span class="spec-tag">32GB RAM</span>
+                    <span class="spec-tag">1TB SSD</span>
+                    <span class="spec-tag">M3 Chip</span>
+                </div>
+                <div class="tech-price">
+                    <span class="price">$3,499</span>
+                    <button class="add-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-card">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="tech-img" alt="Phone">
+            <div class="tech-info">
+                <div class="tech-brand">SAMSUNG</div>
+                <div class="tech-title">Galaxy S24 Ultra 5G</div>
+                <div class="tech-specs">
+                    <span class="spec-tag">256GB</span>
+                    <span class="spec-tag">50MP Camera</span>
+                    <span class="spec-tag">5G</span>
+                </div>
+                <div class="tech-price">
+                    <span class="price">$1,299</span>
+                    <button class="add-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-card">
+            <span class="badge-tech">HOT</span>
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="tech-img" alt="Headphones">
+            <div class="tech-info">
+                <div class="tech-brand">SONY</div>
+                <div class="tech-title">WH-1000XM5 Wireless Headphones</div>
+                <div class="tech-specs">
+                    <span class="spec-tag">Noise Cancelling</span>
+                    <span class="spec-tag">30H Battery</span>
+                </div>
+                <div class="tech-price">
+                    <span class="price">$399</span>
+                    <button class="add-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-card">
+            <img src="https://images.unsplash.com/photo-1527866959252-deab85ef7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="tech-img" alt="Watch">
+            <div class="tech-info">
+                <div class="tech-brand">APPLE</div>
+                <div class="tech-title">Apple Watch Series 9</div>
+                <div class="tech-specs">
+                    <span class="spec-tag">GPS</span>
+                    <span class="spec-tag">Health Tracking</span>
+                </div>
+                <div class="tech-price">
+                    <span class="price">$429</span>
+                    <button class="add-cart-btn"><i class="fas fa-cart-plus"></i> Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

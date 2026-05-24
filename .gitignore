@@ -1,1 +1,1 @@
-Nothing should be ignored in this case, as the changes only include markdown and HTML files which are source/config files.
+Nothing needs to be added to .gitignore since the changes only include HTML pages and no build artifacts, dependencies, or temporary files that should be ignored.
