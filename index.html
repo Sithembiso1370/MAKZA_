@@ -1,348 +1,289 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MAKZAZ | Social African Marketplace</title>
-  
-  <!-- Icons & Fonts -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makzaz Global Store - Mi Casa Su Casa</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-
-  <!-- HEADER (Enhanced with Search & Animations) -->
-  <header class="header glass">
-    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
-      <a href="#" class="logo">
-        <img src="assets/logo.svg" alt="Makzaz" style="height: 50px;">
-      </a>
-      
-      <div class="search-wrapper">
-        <div class="search-bar">
-          <input type="text" placeholder="Search products, brands, categories..." id="searchInput">
-          <button onclick="window.location.href='pages/search.html'"><i class="fas fa-search"></i></button>
+    <!-- Page Loader -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <img src="assets/logo.svg" alt="Makzaz Logo" class="loader-logo">
         </div>
-      </div>
-      
-      <nav class="nav-links">
-        <a href="#" class="nav-icon location-btn" title="Location">
-          <i class="fas fa-map-marker-alt"></i>
-          <span class="location-text" id="userLocation">New York</span>
-        </a>
-        <a href="pages/messages.html" class="nav-icon" title="Messages">
-          <i class="fas fa-comments"></i>
-          <span class="badge">3</span>
-        </a>
-        <a href="pages/cart.html" class="nav-icon" title="Cart">
-          <i class="fas fa-shopping-cart"></i>
-          <span class="badge" id="cartCount">0</span>
-        </a>
-        <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
-      </nav>
-      
-      <button class="mobile-menu-btn" title="Menu"><i class="fas fa-bars"></i></button>
-    </div>
-  </header>
-
-  <main class="container">
-    
-    <!-- HERO SECTION (Slidable Banner with Stats) -->
-    <section class="hero">
-      <div class="hero-slider" id="heroSlider">
-        <div class="slide active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-          <div class="slide-content">
-            <span class="slide-badge">✨ Limited Time Offer</span>
-            <h2>Discover Africa's Finest Treasures</h2>
-            <p class="slogan">mi casa su casa</p>
-            <p>Connect with 500+ local artisans and shop authentic handcrafted products</p>
-            <button class="btn-cart"><i class="fas fa-gem"></i> Shop Now →</button>
-          </div>
-          <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1590736969955-71cc94801759?w=800');"></div>
-        </div>
-        <div class="slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-          <div class="slide-content">
-            <span class="slide-badge">🔥 Hot Deals</span>
-            <h2>Fashion That Speaks Volumes</h2>
-            <p class="slogan">mi casa su casa</p>
-            <p>Explore trending styles from top African designers</p>
-            <button class="btn-cart"><i class="fas fa-tshirt"></i> Shop Fashion →</button>
-          </div>
-          <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800');"></div>
-        </div>
-        <div class="slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-          <div class="slide-content">
-            <span class="slide-badge">📱 Tech Zone</span>
-            <h2>Latest Electronics & Gadgets</h2>
-            <p class="slogan">mi casa su casa</p>
-            <p>Stay connected with cutting-edge technology</p>
-            <button class="btn-cart"><i class="fas fa-laptop"></i> Shop Electronics →</button>
-          </div>
-          <div class="slide-image" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800');"></div>
-        </div>
-      </div>
-      
-      <div class="slider-controls">
-        <button class="slider-btn prev" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
-        <div class="slider-dots" id="sliderDots"></div>
-        <button class="slider-btn next" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      
-      <div class="hero-stats">
-        <div class="stat-card" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400');">
-          <div class="stat-overlay"></div>
-          <i class="fas fa-users"></i>
-          <h3>10k+</h3>
-          <p>Active Shoppers</p>
-        </div>
-        <div class="stat-card" style="background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400');">
-          <div class="stat-overlay"></div>
-          <i class="fas fa-store"></i>
-          <h3>500+</h3>
-          <p>Local Artisans</p>
-        </div>
-        <div class="stat-card" style="background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400');">
-          <div class="stat-overlay"></div>
-          <i class="fas fa-shipping-fast"></i>
-          <h3>3-5 Days</h3>
-          <p>Delivery Time</p>
-        </div>
-        <div class="stat-card" style="background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400');">
-          <div class="stat-overlay"></div>
-          <i class="fas fa-star"></i>
-          <h3>4.8★</h3>
-          <p>Avg Rating</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- STORIES CAROUSEL (Enhanced with better visuals) -->
-    <section class="stories-section">
-      <div class="stories-header">
-        <h3><i class="fas fa-feather-alt"></i> Community Stories</h3>
-        <a href="#">View All →</a>
-      </div>
-      <div class="stories-carousel" id="storiesCarousel">
-        <!-- Dynamic stories will be injected -->
-      </div>
-    </section>
-
-    <!-- SLIM STYLISH BANNER BELOW FLASH DEALS -->
-    <section class="slim-banner">
-      <div class="slim-banner-content">
-        <span class="slim-banner-text">🔥 Hot Deals Ending Soon! Free Shipping on Orders Over R500</span>
-        <a href="pages/fast-food.html" class="slim-banner-link">Shop Fast Food →</a>
-      </div>
-    </section>
-
-    <!-- SECOND PRODUCT FILTER BELOW SLIM BANNER -->
-    <div class="filters-bar secondary-filters">
-      <div class="filter-group"><label><i class="fas fa-store"></i> Brand:</label>
-        <select id="brandSelect">
-          <option value="all">All Brands</option>
-          <option value="kente-masters">Kente Masters</option>
-          <option value="afritech">AfriTech</option>
-          <option value="maasai-art">Maasai Art</option>
-          <option value="pure-glow">Pure Glow</option>
-          <option value="afrochic">AfroChic</option>
-        </select>
-      </div>
-      <div class="filter-group"><label><i class="fas fa-truck"></i> Delivery:</label>
-        <select id="deliverySelect">
-          <option value="all">All Options</option>
-          <option value="express">Express (1-2 Days)</option>
-          <option value="standard">Standard (3-5 Days)</option>
-          <option value="pickup">Store Pickup</option>
-        </select>
-      </div>
-      <div class="filter-group"><label><i class="fas fa-medal"></i> Condition:</label>
-        <select id="conditionSelect">
-          <option value="all">All Conditions</option>
-          <option value="new">New</option>
-          <option value="refurbished">Refurbished</option>
-          <option value="used">Used</option>
-        </select>
-      </div>
-      <button class="reset-filters" id="resetSecondaryFilters"><i class="fas fa-filter-circle-xmark"></i> Clear Filters</button>
     </div>
 
-    <!-- FILTERS BAR (Enhanced with better UX) -->
-    <div class="filters-bar">
-      <div class="filter-group"><label><i class="fas fa-sliders-h"></i> Sort:</label><select id="sortSelect"><option>Newest</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Top Rated</option></select></div>
-      <div class="filter-group"><label><i class="fas fa-star"></i> Min Rating:</label><select id="ratingSelect"><option>All</option><option>4★ & up</option><option>4.5★ & up</option></select></div>
-      <div class="filter-group"><label><i class="fas fa-tag"></i> Price:</label><input type="range" min="0" max="500" value="500" id="priceRange"><span id="priceValue">R500</span></div>
-      <button class="reset-filters" id="resetFilters"><i class="fas fa-undo"></i> Reset</button>
-    </div>
-
-    <!-- CATEGORY TABS (Enhanced with hover effects) -->
-    <div class="category-tabs" id="categoryTabs">
-      <!-- Dynamically populated by JavaScript -->
-    </div>
-
-    <!-- TRUST BAR (Enhanced with gradient) -->
-    <div class="trust-bar">
-      <div class="trust-item"><i class="fas fa-shield-alt"></i> Buyer Protection</div>
-      <div class="trust-item"><i class="fas fa-hand-holding-heart"></i> Secure Payments</div>
-      <div class="trust-item"><i class="fas fa-gem"></i> Authentic Products</div>
-      <div class="trust-item"><i class="fas fa-phone-alt"></i> 24/7 Support</div>
-    </div>
-
-    <!-- FIXTURE 1: SOCIAL FEED - MOST LIKED PRODUCTS -->
-    <div class="section-header">
-      <h2><i class="fas fa-heart"></i> Most Liked This Week</h2>
-      <a href="#">See Social Feed →</a>
-    </div>
-    <div class="social-feed-grid" id="socialFeedGrid">
-      <!-- Social cards will be injected here -->
-    </div>
-
-    <!-- FIXTURE 2: STANDARD GRID - NEW ARRIVALS -->
-    <div class="section-header">
-      <h2><i class="fas fa-bolt"></i> Just Dropped</h2>
-      <a href="#">View All New →</a>
-    </div>
-    <div class="product-grid" id="productGrid">
-      <!-- Products will be injected -->
-    </div>
-
-    <!-- FIXTURE 3: HORIZONTAL SCROLL - FLASH SALES -->
-    <div class="section-header">
-      <h2><i class="fas fa-fire"></i> Flash Sales</h2>
-      <a href="#">All Deals →</a>
-    </div>
-    <div class="flash-sales-container" id="flashSalesContainer">
-      <!-- Flash sale cards will be injected -->
-    </div>
-
-  </main>
-
-  <!-- FOOTER (Enhanced with hover effects) -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <img src="assets/logo.svg" alt="Makzaz" style="height: 50px; margin-bottom: 15px;">
-          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6;">
-            Your global marketplace for everything. mi casa su casa — bringing the world to your doorstep.
-          </p>
-          <div style="margin-top: 15px;">
-            <h4 style="margin-bottom: 10px; font-size: 14px;">Download App</h4>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" 
-                   alt="App Store" style="height: 40px; cursor: pointer;">
-              <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                   alt="Google Play" style="height: 40px; cursor: pointer;">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <button class="menu-toggle" id="menuToggle">
+                <span></span><span></span><span></span>
+            </button>
+            <a href="index.html" class="navbar-logo">
+                <img src="assets/logo.svg" alt="Makzaz">
+            </a>
+            <div class="navbar-search">
+                <input type="text" placeholder="Search products, brands..." id="searchInput">
             </div>
-          </div>
+            <div class="desktop-nav hide-mobile">
+                <a href="pages/categories/fashion.html">Fashion</a>
+                <a href="pages/categories/electronics.html">Electronics</a>
+                <a href="pages/categories/home-living.html">Home</a>
+                <a href="pages/fast-food.html">Fast Food</a>
+                <a href="pages/seller.html">Sell</a>
+            </div>
+            <div class="navbar-actions">
+                <div class="navbar-action" id="locationBtn">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    <span class="location-text" id="locationText">New York</span>
+                </div>
+                <a href="pages/messages.html" class="navbar-action">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                    <span>Messages</span>
+                </a>
+                <a href="pages/cart.html" class="navbar-action">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                    <span>Cart</span>
+                    <span class="navbar-badge">3</span>
+                </a>
+                <a href="pages/profile.html" class="navbar-action">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                    <span>Account</span>
+                </a>
+            </div>
         </div>
-        <div>
-          <h4>Shop</h4>
-          <a href="pages/categories/fashion.html">Fashion</a>
-          <a href="pages/categories/electronics.html">Electronics</a>
-          <a href="pages/categories/home-living.html">Home & Living</a>
-          <a href="pages/fast-food.html">Fast Food</a>
-          <a href="pages/category.html?cat=beauty">Beauty</a>
-          <a href="pages/category.html?cat=arts">Arts</a>
-        </div>
-        <div>
-          <h4>Account</h4>
-          <a href="pages/login.html">Login</a>
-          <a href="pages/signup.html">Sign Up</a>
-          <a href="pages/profile.html">My Profile</a>
-          <a href="pages/seller.html">Become a Seller</a>
-          <a href="pages/cart.html">Cart</a>
-          <a href="pages/checkout.html">Checkout</a>
-        </div>
-        <div>
-          <h4>Support</h4>
-          <a href="pages/faq.html">FAQ</a>
-          <a href="pages/terms.html">Terms & Conditions</a>
-          <a href="pages/search.html">Search</a>
-          <a href="pages/messages.html">Messages</a>
-          <a href="#">Help Center</a>
-        </div>
-        <div>
-          <h4>Seller</h4>
-          <a href="pages/seller.html">Seller Dashboard</a>
-          <a href="pages/admin/products.html">Manage Products</a>
-          <a href="pages/admin/orders.html">View Orders</a>
-          <a href="pages/admin/analytics.html">Analytics</a>
-        </div>
-        <div>
-          <h4>Admin</h4>
-          <a href="pages/admin/dashboard.html">Dashboard</a>
-          <a href="pages/admin/products.html">Products</a>
-          <a href="pages/admin/orders.html">Orders</a>
-          <a href="pages/admin/customers.html">Customers</a>
-          <a href="pages/admin/suppliers.html">Suppliers</a>
-          <a href="pages/admin/staff.html">Staff</a>
-          <a href="pages/admin/carts.html">Carts</a>
-        </div>
-      </div>
-      <div class="footer-bottom">© 2026 Makzaz Global Store — mi casa su casa 🌍</div>
-    </div>
-  </footer>
+    </nav>
 
-  <!-- MOBILE NAV (Enhanced) -->
-  <nav class="mobile-nav">
-    <a href="#" class="active"><i class="fas fa-home"></i><span>Home</span></a>
-    <a href="pages/search.html"><i class="fas fa-search"></i><span>Search</span></a>
-    <a href="#stories"><i class="fas fa-feather-alt"></i><span>Stories</span></a>
-    <a href="pages/login.html"><i class="fas fa-user"></i><span>Account</span></a>
-    <a href="pages/cart.html"><i class="fas fa-shopping-cart"></i><span>Cart</span></a>
-  </nav>
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="mobile-drawer" id="mobileDrawer">
+        <div class="drawer-header">
+            <img src="assets/logo.svg" alt="Makzaz" style="height: 30px;">
+            <button class="drawer-close" id="drawerClose">&times;</button>
+        </div>
+        <div class="drawer-menu">
+            <a href="pages/categories/fashion.html" class="drawer-menu-item">Fashion</a>
+            <a href="pages/categories/electronics.html" class="drawer-menu-item">Electronics</a>
+            <a href="pages/categories/home-living.html" class="drawer-menu-item">Home & Living</a>
+            <a href="pages/fast-food.html" class="drawer-menu-item">Fast Food</a>
+            <a href="pages/seller.html" class="drawer-menu-item">Become a Seller</a>
+            <a href="pages/profile.html" class="drawer-menu-item">My Account</a>
+            <a href="pages/orders.html" class="drawer-menu-item">My Orders</a>
+            <a href="pages/wishlist.html" class="drawer-menu-item">Wishlist</a>
+            <a href="pages/messages.html" class="drawer-menu-item">Messages</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray-200);">
+            <a href="pages/login.html" class="drawer-menu-item">Login</a>
+            <a href="pages/signup.html" class="drawer-menu-item">Sign Up</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray-200);">
+            <a href="admin/dashboard.html" class="drawer-menu-item">Admin Dashboard</a>
+            <a href="pages/faq.html" class="drawer-menu-item">Help & FAQ</a>
+            <a href="pages/terms.html" class="drawer-menu-item">Terms & Conditions</a>
+        </div>
+    </div>
 
-  <!-- MOBILE MENU OVERLAY & DRAWER -->
-  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
-  <div class="mobile-menu-drawer" id="mobileMenuDrawer">
-    <div class="mobile-menu-header">
-      <div class="logo">
-        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
-        <h1>MAKZAZ</h1>
-      </div>
-      <button class="mobile-menu-close" id="mobileMenuClose"><i class="fas fa-times"></i></button>
-    </div>
-    
-    <div class="mobile-menu-section">
-      <h4>Navigation</h4>
-      <a href="#" class="mobile-menu-link active"><i class="fas fa-home"></i> Home</a>
-      <a href="pages/search.html" class="mobile-menu-link"><i class="fas fa-search"></i> Search</a>
-      <a href="#stories" class="mobile-menu-link"><i class="fas fa-feather-alt"></i> Stories</a>
-      <a href="pages/cart.html" class="mobile-menu-link"><i class="fas fa-shopping-cart"></i> Cart <span class="badge" id="mobileCartCount">0</span></a>
-      <a href="pages/login.html" class="mobile-menu-link"><i class="fas fa-user"></i> Account</a>
-      <a href="pages/faq.html" class="mobile-menu-link"><i class="fas fa-question-circle"></i> FAQ</a>
-    </div>
-    
-    <div class="mobile-menu-section">
-      <h4>Categories</h4>
-      <!-- Dynamically populated by JavaScript -->
-      <div id="mobileCategoriesList"></div>
-    </div>
-    
-    <div class="mobile-menu-section">
-      <h4>Admin</h4>
-      <a href="pages/admin/dashboard.html" class="mobile-menu-link"><i class="fas fa-chart-line"></i> Dashboard</a>
-      <a href="pages/admin/products.html" class="mobile-menu-link"><i class="fas fa-box"></i> Products</a>
-      <a href="pages/admin/orders.html" class="mobile-menu-link"><i class="fas fa-shopping-bag"></i> Orders</a>
-      <a href="pages/admin/customers.html" class="mobile-menu-link"><i class="fas fa-users"></i> Customers</a>
-    </div>
-    
-    <div class="mobile-menu-section">
-      <h4>Settings</h4>
-      <a href="#" class="mobile-menu-link" id="mobileThemeToggle"><i class="fas fa-moon"></i> Toggle Theme</a>
-      <a href="pages/terms.html" class="mobile-menu-link"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
-      <a href="pages/faq.html" class="mobile-menu-link"><i class="fas fa-question-circle"></i> Help Center</a>
-    </div>
-  </div>
+    <!-- Hero Slider (Full Screen) -->
+    <section class="hero-slider" id="heroSlider">
+        <div class="slider-wrapper" id="sliderWrapper">
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=1920" alt="Shopping" class="slide-bg">
+                <div class="slide-content">
+                    <h1 class="slide-title">mi casa su casa</h1>
+                    <p class="slide-subtitle">Your global marketplace for everything you need</p>
+                    <div class="slide-buttons">
+                        <a href="pages/categories/fashion.html" class="btn btn-primary">Shop Fashion</a>
+                        <a href="pages/fast-food.html" class="btn btn-secondary">Order Food</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920" alt="Electronics" class="slide-bg">
+                <div class="slide-content">
+                    <h1 class="slide-title">mi casa su casa</h1>
+                    <p class="slide-subtitle">Latest electronics at unbeatable prices</p>
+                    <div class="slide-buttons">
+                        <a href="pages/categories/electronics.html" class="btn btn-primary">Browse Electronics</a>
+                        <a href="pages/deals.html" class="btn btn-secondary">View Deals</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?w=1920" alt="Home" class="slide-bg">
+                <div class="slide-content">
+                    <h1 class="slide-title">mi casa su casa</h1>
+                    <p class="slide-subtitle">Transform your home with our collection</p>
+                    <div class="slide-buttons">
+                        <a href="pages/categories/home-living.html" class="btn btn-primary">Explore Home</a>
+                        <a href="pages/brands.html" class="btn btn-secondary">View Brands</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="slider-arrow prev" id="prevSlide">&#8249;</button>
+        <button class="slider-arrow next" id="nextSlide">&#8250;</button>
+        <div class="slider-controls" id="sliderDots"></div>
+    </section>
 
-  <!-- TOAST (Enhanced) -->
-  <div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastMessage">Item added to cart!</span></div>
+    <!-- Stories Section (Blog Style) -->
+    <section class="stories-section">
+        <div class="container">
+            <h2 style="margin-bottom: var(--space-md); font-size: 1.25rem;">Stories & Updates</h2>
+            <div class="stories-container" id="storiesContainer">
+                <!-- Stories injected by JS -->
+            </div>
+        </div>
+    </section>
 
-  <!-- Custom JavaScript -->
-  <script src="app.js"></script>
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?w=400" alt="Shoppers" class="stat-bg">
+                    <div class="stat-content">
+                        <div class="stat-number">10M+</div>
+                        <div class="stat-label">Happy Shoppers</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=400" alt="Sellers" class="stat-bg">
+                    <div class="stat-content">
+                        <div class="stat-number">500K+</div>
+                        <div class="stat-label">Active Sellers</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <img src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?w=400" alt="Delivery" class="stat-bg">
+                    <div class="stat-content">
+                        <div class="stat-number">24h</div>
+                        <div class="stat-label">Fast Delivery</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=400" alt="Rating" class="stat-bg">
+                    <div class="stat-content">
+                        <div class="stat-number">4.9★</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flash Deals -->
+    <section style="padding: var(--space-xl) 0;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg);">
+                <h2 style="font-size: 1.5rem;">Flash Deals</h2>
+                <a href="pages/deals.html" style="color: var(--primary); font-weight: 600;">View All →</a>
+            </div>
+            <div class="grid grid-2 grid-3 grid-4" id="flashDealsGrid">
+                <!-- Products injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Slim Stylish Banner -->
+    <section style="background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: var(--space-xl) 0; margin: var(--space-xl) 0;">
+        <div class="container text-center">
+            <h2 style="color: white; font-size: 1.875rem; margin-bottom: var(--space-sm);">New Arrivals Every Day</h2>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: var(--space-md);">Discover the latest trends in fashion, electronics, and more</p>
+            <a href="pages/new-arrivals.html" class="btn" style="background: white; color: var(--primary);">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Second Product Filter -->
+    <section style="padding: var(--space-xl) 0; background: var(--white);">
+        <div class="container">
+            <h2 style="margin-bottom: var(--space-lg); font-size: 1.5rem;">Shop by Category</h2>
+            <div style="display: flex; gap: var(--space-sm); overflow-x: auto; padding-bottom: var(--space-sm); margin-bottom: var(--space-lg);" class="category-filters">
+                <button class="btn btn-outline btn-sm active">All</button>
+                <button class="btn btn-outline btn-sm">Fashion</button>
+                <button class="btn btn-outline btn-sm">Electronics</button>
+                <button class="btn btn-outline btn-sm">Home</button>
+                <button class="btn btn-outline btn-sm">Beauty</button>
+                <button class="btn btn-outline btn-sm">Sports</button>
+                <button class="btn btn-outline btn-sm">Toys</button>
+            </div>
+            <div class="grid grid-2 grid-3 grid-4" id="categoryProductsGrid">
+                <!-- Products injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Shop</h4>
+                    <div class="footer-links">
+                        <a href="pages/categories/fashion.html">Fashion</a>
+                        <a href="pages/categories/electronics.html">Electronics</a>
+                        <a href="pages/categories/home-living.html">Home & Living</a>
+                        <a href="pages/fast-food.html">Fast Food</a>
+                        <a href="pages/brands.html">All Brands</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Account</h4>
+                    <div class="footer-links">
+                        <a href="pages/login.html">Login</a>
+                        <a href="pages/signup.html">Sign Up</a>
+                        <a href="pages/profile.html">My Account</a>
+                        <a href="pages/orders.html">My Orders</a>
+                        <a href="pages/wishlist.html">Wishlist</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Sell</h4>
+                    <div class="footer-links">
+                        <a href="pages/seller.html">Become a Seller</a>
+                        <a href="admin/products.html">Seller Dashboard</a>
+                        <a href="pages/seller-guide.html">Seller Guide</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <div class="footer-links">
+                        <a href="pages/faq.html">FAQ</a>
+                        <a href="pages/contact.html">Contact Us</a>
+                        <a href="pages/terms.html">Terms & Conditions</a>
+                        <a href="pages/privacy.html">Privacy Policy</a>
+                        <a href="pages/returns.html">Returns & Refunds</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Admin</h4>
+                    <div class="footer-links">
+                        <a href="admin/dashboard.html">Dashboard</a>
+                        <a href="admin/products.html">Products</a>
+                        <a href="admin/orders.html">Orders</a>
+                        <a href="admin/customers.html">Customers</a>
+                        <a href="admin/staff.html">Staff</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Download App</h4>
+                    <div class="app-download">
+                        <a href="#" class="app-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+                            <span><strong>Get it on</strong>Google Play</span>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+                            <span><strong>Download on the</strong>App Store</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Makzaz Global Store. mi casa su casa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
