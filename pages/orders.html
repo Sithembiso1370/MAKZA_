@@ -39,14 +39,7 @@
         @media (max-width: 768px) { .order-header { flex-direction: column; gap: 15px; text-align: center; } .timeline::before { left: 20px; } .timeline-item { padding-left: 50px; } .timeline-icon { width: 40px; height: 40px; font-size: 18px; left: 0; } }
     </style>
 </head>
-<body>
-    <!-- Loader -->
-    <div id="page-loader">
-        <div class="loader-content">
-            <img src="../assets/logo.svg" alt="Makzaz Logo" class="loader-logo">
-            <p>Loading tracking info...</p>
-        </div>
-    </div>
+<body>    </div>
 
     <!-- Navigation -->
     <nav class="navbar glass-nav">
@@ -218,9 +211,5 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                document.getElementById('page-loader').classList.add('loaded');
-            }, 1500);
-        });
-    </script>
 </body>
 </html>

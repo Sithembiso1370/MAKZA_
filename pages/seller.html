@@ -144,12 +144,6 @@
     </style>
 </head>
 <body>
-    <!-- Page Loader -->
-    <div id="page-loader">
-        <img src="../assets/logo.svg" alt="Makzaz Logo" class="loader-logo">
-        <p>Loading Seller Dashboard...</p>
-    </div>
-
     <div class="seller-dashboard">
         <aside class="seller-sidebar">
             <h3>🏪 Seller Center</h3>
@@ -281,16 +275,5 @@
     </div>
 
     <script src="../app.js"></script>
-    <script>
-        // Remove loader when page is loaded
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('page-loader').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('page-loader').style.display = 'none';
-                }, 500);
-            }, 800);
-        });
-    </script>
 </body>
 </html>

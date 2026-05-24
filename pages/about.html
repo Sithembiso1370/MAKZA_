@@ -48,14 +48,7 @@
         @media (max-width: 768px) { .hero-section h1 { font-size: 36px; } .story-content h2, .values-section h2, .team-section h2 { font-size: 32px; } .stats-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
-<body>
-    <!-- Loader -->
-    <div id="page-loader">
-        <div class="loader-content">
-            <img src="../assets/logo.svg" alt="Makzaz Logo" class="loader-logo">
-            <p>Loading about page...</p>
-        </div>
-    </div>
+<body>    </div>
 
     <!-- Navigation -->
     <nav class="navbar glass-nav">
@@ -226,9 +219,5 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                document.getElementById('page-loader').classList.add('loaded');
-            }, 1500);
-        });
-    </script>
 </body>
 </html>

@@ -201,12 +201,6 @@
     </style>
 </head>
 <body>
-    <!-- Page Loader -->
-    <div id="page-loader">
-        <img src="../assets/logo.svg" alt="Makzaz Logo" class="loader-logo">
-        <p>Loading Your Profile...</p>
-    </div>
-
     <nav class="navbar">
         <div class="nav-container">
             <a href="../index.html" class="logo-link">
@@ -413,16 +407,6 @@
                 else if (index === 1) sections.addresses.style.display = 'block';
                 else if (index === 4) sections.settings.style.display = 'block';
             });
-        });
-
-        // Remove loader when page is loaded
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('page-loader').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('page-loader').style.display = 'none';
-                }, 500);
-            }, 800);
         });
     </script>
 </body>
