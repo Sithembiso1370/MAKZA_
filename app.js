@@ -24,11 +24,18 @@ function closeSidebar() {
 document.addEventListener('click', (e) => {
     const target = e.target;
     
+    // Check if clicked element is a category link in mobile drawer
+    if (target.classList.contains('category-link')) {
+        // Let the link navigate normally, just close sidebar
+        setTimeout(closeSidebar, 150);
+        return;
+    }
+    
     if (target.id === 'menuToggle' || target.closest('#menuToggle')) {
         e.preventDefault();
         if (sidebar) sidebar.classList.add('open');
         if (sidebarBackdrop) sidebarBackdrop.classList.add('visible');
-    } else if (target.id === 'sidebarClose' || target.id === 'sidebarBackdrop') {
+    } else if (target.id === 'sidebarClose' || target.id === 'sidebarBackdrop' || target.id === 'drawerOverlay') {
         closeSidebar();
     }
 });
@@ -281,7 +288,48 @@ document.addEventListener('DOMContentLoaded', () => {
         renderStories();
         renderProducts('flashDealsGrid', products.slice(0, 4));
         renderProducts('categoryProductsGrid', products);
+        renderNewArrivals();
     }, { timeout: 2000 });
+    
+    // New Arrivals slider controls
+    initNewArrivalsSlider();
 });
+
+// New Arrivals Slider Data
+const newArrivals = [
+    { id: 101, title: 'Designer Handbag', brand: 'Gucci', price: 1299.99, originalPrice: 1599.99, rating: 4.9, image: 'https://picsum.photos/400/400?random=101', badge: 'NEW' },
+    { id: 102, title: 'Smart Home Hub', brand: 'Amazon', price: 149.99, originalPrice: 199.99, rating: 4.7, image: 'https://picsum.photos/400/400?random=102', badge: 'HOT' },
+    { id: 103, title: 'Premium Sneakers', brand: 'Jordan', price: 189.99, originalPrice: 229.99, rating: 4.8, image: 'https://picsum.photos/400/400?random=103', badge: 'NEW' },
+    { id: 104, title: 'Wireless Earbuds Pro', brand: 'Sony', price: 199.99, originalPrice: 249.99, rating: 4.6, image: 'https://picsum.photos/400/400?random=104', badge: 'SALE' },
+    { id: 105, title: 'Luxury Watch', brand: 'Rolex', price: 8999.99, originalPrice: 9999.99, rating: 5.0, image: 'https://picsum.photos/400/400?random=105', badge: 'NEW' },
+    { id: 106, title: 'Gaming Console', brand: 'PlayStation', price: 499.99, originalPrice: 549.99, rating: 4.9, image: 'https://picsum.photos/400/400?random=106', badge: 'HOT' }
+];
+
+function renderNewArrivals() {
+    const container = document.getElementById('newArrivalsTrack');
+    if (!container) return;
+    
+    const fragment = document.createDocumentFragment();
+    newArrivals.forEach(product => {
+        fragment.appendChild(createProductCard(product));
+    });
+    container.appendChild(fragment);
+}
+
+function initNewArrivalsSlider() {
+    const track = document.getElementById('newArrivalsTrack');
+    const prevBtn = document.getElementById('prevNewArrival');
+    const nextBtn = document.getElementById('nextNewArrival');
+    
+    if (!track || !prevBtn || !nextBtn) return;
+    
+    prevBtn.addEventListener('click', () => {
+        track.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        track.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+}
 
 console.log('Makzaz Global Store loaded successfully! Performance optimized.');

@@ -183,12 +183,20 @@
         </div>
     </section>
 
-    <!-- Slim Stylish Banner -->
-    <section style="background: linear-gradient(135deg, var(--burnt-orange), var(--terracotta)); padding: var(--space-xl) 0; margin: var(--space-xl) 0; border-radius: 24px;">
-        <div class="container text-center">
-            <h2 style="color: white; font-size: 1.875rem; margin-bottom: var(--space-sm);">New Arrivals Every Day</h2>
-            <p style="color: rgba(255,255,255,0.9); margin-bottom: var(--space-md);">Discover the latest trends in fashion, electronics, and more</p>
-            <a href="pages/new-arrivals.html" class="btn btn-secondary">Shop Now</a>
+    <!-- New Arrivals Slidable Section -->
+    <section style="padding: var(--space-xl) 0; overflow: hidden;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg);">
+                <h2 style="font-size: 1.5rem;">New Arrivals</h2>
+                <a href="pages/new-arrivals.html" style="color: var(--primary); font-weight: 600;">View All →</a>
+            </div>
+            <div class="new-arrivals-slider" style="position: relative;">
+                <div class="new-arrivals-track" id="newArrivalsTrack" style="display: flex; gap: var(--space-lg); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; padding: var(--space-md) 0;">
+                    <!-- New Arrival Products injected by JS -->
+                </div>
+                <button class="slider-arrow prev" id="prevNewArrival" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 10;">&#8249;</button>
+                <button class="slider-arrow next" id="nextNewArrival" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 10;">&#8250;</button>
+            </div>
         </div>
     </section>
 
@@ -330,6 +338,11 @@
 
     <!-- Back to Top -->
     <button id="backToTop">↑</button>
+    
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
     <!-- Toast Notification -->
     <div class="toast" id="toast"></div>
