@@ -12,9 +12,12 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  background: linear-gradient(135deg, var(--bg-warm), #fae8d1);
+  /* Wood texture background - close caption of wood */
+  background: linear-gradient(rgba(93, 58, 26, 0.7), rgba(93, 58, 26, 0.7)), 
+              url('https://images.unsplash.com/photo-1542662565-7e5b6c9a8c71?q=80&w=2070&auto=format&fit=crop') center/cover fixed;
   font-family: 'Poppins', 'Inter', system-ui, sans-serif;
-  color: var(--deep-brown); overflow-x: hidden; padding-bottom: 70px;
+  color: #ffffff; overflow-x: hidden; padding-bottom: 70px;
+  min-height: 100vh;
 }
 .app { max-width: 1400px; margin: 0 auto; padding: 1rem 1.5rem 2rem; }
 
@@ -57,11 +60,12 @@ header {
 .icon-btn {
   background: rgba(255,248,237,0.9); border: 1px solid rgba(199,90,15,0.2);
   border-radius: 50%; width: 42px; height: 42px; transition: var(--transition);
-  color: var(--rich-blue); cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--deep-brown); cursor: pointer; display: flex; align-items: center; justify-content: center;
   position: relative; text-decoration: none; font-size: 1rem;
 }
+.icon-btn i { color: var(--deep-brown); }
 .icon-btn:hover { transform: translateY(-3px); background: var(--burnt-orange); color: white; }
-.icon-btn #menuToggle { color: var(--deep-brown); }
+.icon-btn:hover i { color: white; }
 .cart-count {
   background: var(--terracotta); color: white; border: 2px solid white;
   position: absolute; top: -6px; right: -6px;
