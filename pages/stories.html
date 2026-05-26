@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stories & Feed - Makzaz</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .feed-page {
+            min-height: 100vh;
+            background: #f0f2f5;
+            padding-top: 80px;
+        }
+
+        .feed-container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Stories Section */
+        .stories-bar {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .story-item {
+            flex-shrink: 0;
+            width: 110px;
+            height: 190px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .story-item:hover {
+            transform: scale(1.05);
+        }
+
+        .story-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-item.add-story {
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 2px dashed #ddd;
+        }
+
+        .story-add-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .story-item span {
+            font-size: 12px;
+            color: #333;
+            text-align: center;
+        }
+
+        .story-ring {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            border-radius: 8px;
+            border: 3px solid var(--primary);
+            pointer-events: none;
+        }
+
+        .story-avatar {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 3px solid white;
+            object-fit: cover;
+        }
+
+        .story-name {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        /* Create Post */
+        .create-post {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .create-post-input {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .create-post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .create-post-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            background: #f0f2f5;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .create-post-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+        }
+
+        .post-action-btn {
+            flex: 1;
+            padding: 8px;
+            border: none;
+            background: transparent;
+            color: #666;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .post-action-btn:hover {
+            background: #f0f2f5;
+        }
+
+        /* Feed Posts */
+        .feed-post {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            gap: 12px;
+        }
+
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .post-info {
+            flex: 1;
+        }
+
+        .post-author {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .post-time {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .post-menu {
+            color: #666;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .post-content {
+            padding: 0 16px 16px;
+        }
+
+        .post-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .post-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .product-tag {
+            display: inline-block;
+            background: #f0f2f5;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 16px;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .post-actions {
+            display: flex;
+            padding: 8px 16px;
+        }
+
+        .post-action {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: transparent;
+            color: #666;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: background 0.3s;
+        }
+
+        .post-action:hover {
+            background: #f0f2f5;
+        }
+
+        .post-action.liked {
+            color: #e74c3c;
+        }
+
+        /* Comments Section */
+        .comments-section {
+            padding: 12px 16px;
+            border-top: 1px solid #eee;
+        }
+
+        .comment {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .comment-body {
+            flex: 1;
+        }
+
+        .comment-bubble {
+            background: #f0f2f5;
+            padding: 10px 14px;
+            border-radius: 16px;
+            display: inline-block;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .comment-text {
+            font-size: 13px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .comment-input {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .comment-input input {
+            flex: 1;
+            padding: 10px 14px;
+            border: none;
+            background: #f0f2f5;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .feed-page {
+                padding-top: 60px;
+            }
+            
+            .feed-container {
+                padding: 10px;
+            }
+
+            .story-item {
+                width: 90px;
+                height: 160px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header-placeholder"></div>
+
+    <main class="feed-page">
+        <div class="feed-container">
+            <!-- Stories Bar -->
+            <div class="stories-bar" id="storiesBar">
+                <!-- Stories injected by JS -->
+            </div>
+
+            <!-- Create Post -->
+            <div class="create-post">
+                <div class="create-post-input">
+                    <img src="https://picsum.photos/40/40?random=user" alt="You" class="create-post-avatar">
+                    <input type="text" placeholder="What's on your mind?" id="postInput">
+                </div>
+                <div class="create-post-actions">
+                    <button class="post-action-btn">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        Photo/Video
+                    </button>
+                    <button class="post-action-btn">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        Feeling
+                    </button>
+                    <button class="post-action-btn">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        Location
+                    </button>
+                </div>
+            </div>
+
+            <!-- Feed Posts -->
+            <div id="feedPosts">
+                <!-- Posts injected by JS -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../app.js"></script>
+    <script>
+        // Sample data
+        const stories = [
+            { id: 1, name: 'Your Story', image: 'https://picsum.photos/110/190?random=1', avatar: 'https://picsum.photos/40/40?random=user', isUser: true },
+            { id: 2, name: 'Sarah M.', image: 'https://picsum.photos/110/190?random=2', avatar: 'https://picsum.photos/40/40?random=2' },
+            { id: 3, name: 'John D.', image: 'https://picsum.photos/110/190?random=3', avatar: 'https://picsum.photos/40/40?random=3' },
+            { id: 4, name: 'Emma W.', image: 'https://picsum.photos/110/190?random=4', avatar: 'https://picsum.photos/40/40?random=4' },
+            { id: 5, name: 'Mike R.', image: 'https://picsum.photos/110/190?random=5', avatar: 'https://picsum.photos/40/40?random=5' },
+            { id: 6, name: 'Lisa K.', image: 'https://picsum.photos/110/190?random=6', avatar: 'https://picsum.photos/40/40?random=6' },
+            { id: 7, name: 'David B.', image: 'https://picsum.photos/110/190?random=7', avatar: 'https://picsum.photos/40/40?random=7' }
+        ];
+
+        const posts = [
+            {
+                id: 1,
+                author: 'Fashion Store NYC',
+                avatar: 'https://picsum.photos/40/40?random=10',
+                time: '2 hours ago',
+                text: 'Check out our new summer collection! 🌞 Perfect for beach days and summer vibes.',
+                image: 'https://picsum.photos/600/400?random=20',
+                likes: 234,
+                comments: 45,
+                shares: 12,
+                product: 'Summer Dress Collection - From $49.99',
+                liked: false
+            },
+            {
+                id: 2,
+                author: 'Tech Gadgets Pro',
+                avatar: 'https://picsum.photos/40/40?random=11',
+                time: '4 hours ago',
+                text: '🔥 Flash Sale Alert! Get 30% off on all wireless earbuds today only!',
+                image: 'https://picsum.photos/600/400?random=21',
+                likes: 567,
+                comments: 89,
+                shares: 34,
+                product: 'Wireless Earbuds Pro - Now $79.99 (Was $119.99)',
+                liked: true
+            },
+            {
+                id: 3,
+                author: 'Home Decor Ideas',
+                avatar: 'https://picsum.photos/40/40?random=12',
+                time: '6 hours ago',
+                text: 'Transform your living space with these amazing decor tips! ✨ Which style is your favorite?',
+                image: 'https://picsum.photos/600/400?random=22',
+                likes: 892,
+                comments: 156,
+                shares: 78,
+                product: null,
+                liked: false
+            },
+            {
+                id: 4,
+                author: 'Fresh Food Market',
+                avatar: 'https://picsum.photos/40/40?random=13',
+                time: '8 hours ago',
+                text: '🥗 Fresh organic vegetables delivered to your door! Order now and get free delivery on orders over $50.',
+                image: 'https://picsum.photos/600/400?random=23',
+                likes: 445,
+                comments: 67,
+                shares: 23,
+                product: 'Organic Veggie Box - $34.99',
+                liked: false
+            }
+        ];
+
+        // Render stories
+        function renderStories() {
+            const container = document.getElementById('storiesBar');
+            let html = '';
+            
+            // Add story button
+            html += `
+                <div class="story-item add-story">
+                    <div class="story-add-btn">+</div>
+                    <span>Add Story</span>
+                </div>
+            `;
+            
+            // User stories
+            stories.forEach(story => {
+                if (!story.isUser) {
+                    html += `
+                        <div class="story-item">
+                            <img src="${story.image}" alt="${story.name}">
+                            <div class="story-ring"></div>
+                            <img src="${story.avatar}" alt="${story.name}" class="story-avatar">
+                            <span class="story-name">${story.name}</span>
+                        </div>
+                    `;
+                }
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Render posts
+        function renderPosts() {
+            const container = document.getElementById('feedPosts');
+            let html = '';
+            
+            posts.forEach(post => {
+                html += `
+                    <article class="feed-post">
+                        <div class="post-header">
+                            <img src="${post.avatar}" alt="${post.author}" class="post-avatar">
+                            <div class="post-info">
+                                <div class="post-author">${post.author}</div>
+                                <div class="post-time">${post.time}</div>
+                            </div>
+                            <div class="post-menu">⋯</div>
+                        </div>
+                        
+                        <div class="post-content">
+                            <p class="post-text">${post.text}</p>
+                            ${post.image ? `<img src="${post.image}" alt="Post image" class="post-image">` : ''}
+                            ${post.product ? `<span class="product-tag">🛍️ ${post.product}</span>` : ''}
+                        </div>
+                        
+                        <div class="post-stats">
+                            <span>${post.likes.toLocaleString()} likes</span>
+                            <span>${post.comments} comments · ${post.shares} shares</span>
+                        </div>
+                        
+                        <div class="post-actions">
+                            <button class="post-action ${post.liked ? 'liked' : ''}" onclick="toggleLike(this)">
+                                <svg width="20" height="20" fill="${post.liked ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                                Like
+                            </button>
+                            <button class="post-action">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+                                Comment
+                            </button>
+                            <button class="post-action">
+                                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+                                Share
+                            </button>
+                        </div>
+                        
+                        <div class="comments-section">
+                            <div class="comment">
+                                <img src="https://picsum.photos/32/32?random=${post.id + 30}" alt="User" class="comment-avatar">
+                                <div class="comment-body">
+                                    <div class="comment-bubble">
+                                        <div class="comment-author">Jane Smith</div>
+                                        <div class="comment-text">This looks amazing! 😍</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment-input">
+                                <img src="https://picsum.photos/32/32?random=user" alt="You" class="comment-avatar">
+                                <input type="text" placeholder="Write a comment..." onkeypress="handleCommentKey(event, this)">
+                            </div>
+                        </div>
+                    </article>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Toggle like
+        function toggleLike(btn) {
+            btn.classList.toggle('liked');
+            const svg = btn.querySelector('svg');
+            if (btn.classList.contains('liked')) {
+                svg.setAttribute('fill', 'currentColor');
+            } else {
+                svg.setAttribute('fill', 'none');
+            }
+        }
+
+        // Handle comment keypress
+        function handleCommentKey(event, input) {
+            if (event.key === 'Enter' && input.value.trim()) {
+                const commentHtml = `
+                    <div class="comment">
+                        <img src="https://picsum.photos/32/32?random=user" alt="You" class="comment-avatar">
+                        <div class="comment-body">
+                            <div class="comment-bubble">
+                                <div class="comment-author">You</div>
+                                <div class="comment-text">${input.value}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                input.parentElement.insertAdjacentHTML('beforeend', commentHtml);
+                input.value = '';
+            }
+        }
+
+        // Load header and footer
+        async function loadComponents() {
+            try {
+                const [headerRes, footerRes] = await Promise.all([
+                    fetch('../components/header.html'),
+                    fetch('../components/footer.html')
+                ]);
+                
+                document.getElementById('header-placeholder').innerHTML = await headerRes.text();
+                document.getElementById('footer-placeholder').innerHTML = await footerRes.text();
+                
+                // Initialize drawer after loading header
+                if (typeof initDrawer === 'function') {
+                    initDrawer();
+                }
+            } catch (error) {
+                console.error('Error loading components:', error);
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponents();
+            renderStories();
+            renderPosts();
+        });
+    </script>
+</body>
+</html>
