@@ -70,7 +70,8 @@ body {
     backdrop-filter: blur(10px);
 }
 .navbar-container { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-.navbar-logo img { height: 40px; width: auto; }
+.navbar-logo { display: flex; align-items: center; flex-shrink: 0; }
+.navbar-logo img { height: 40px; width: auto; display: block; }
 .navbar-search { flex: 1; max-width: 600px; position: relative; }
 .navbar-search input {
     width: 100%; padding: 0.75rem 1.25rem 0.75rem 3rem;

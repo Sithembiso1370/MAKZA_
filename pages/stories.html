@@ -601,10 +601,8 @@
                 document.getElementById('header-placeholder').innerHTML = await headerRes.text();
                 document.getElementById('footer-placeholder').innerHTML = await footerRes.text();
                 
-                // Initialize drawer after loading header
-                if (typeof initDrawer === 'function') {
-                    initDrawer();
-                }
+                // Drawer is already initialized via event delegation in app.js
+                // No additional initialization needed
             } catch (error) {
                 console.error('Error loading components:', error);
             }
