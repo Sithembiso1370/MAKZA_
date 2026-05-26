@@ -138,8 +138,10 @@ function renderStories() {
         const storyEl = document.createElement('div');
         storyEl.className = 'story-item';
         storyEl.innerHTML = `
-            <div class="story-avatar">
-                <img src="${story.img}" alt="${story.name}" loading="lazy">
+            <div class="story-ring">
+                <div class="story-avatar">
+                    <img src="${story.img}" alt="${story.name}" loading="lazy">
+                </div>
             </div>
             <span class="story-name">${story.name}</span>
         `;
