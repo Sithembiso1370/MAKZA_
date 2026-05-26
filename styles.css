@@ -22,21 +22,21 @@ body {
 header {
   position: sticky; top: 0.75rem; z-index: 120;
   background: rgba(255, 248, 237, 0.96); backdrop-filter: blur(20px);
-  border-radius: 40px; padding: 0.8rem 1.8rem; margin-bottom: 2rem;
+  border-radius: 40px; padding: 0.5rem 1.2rem; margin-bottom: 2rem;
   box-shadow: var(--shadow); border: 1px solid rgba(199, 90, 15, 0.2);
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem;
 }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
 .brand-icon {
   background: linear-gradient(135deg, var(--burnt-orange), var(--terracotta));
-  width: 52px; height: 52px; border-radius: 28px;
-  display: grid; place-items: center; font-size: 1.6rem; font-weight: 800; color: white;
+  width: 48px; height: 48px; border-radius: 24px;
+  display: grid; place-items: center; font-size: 1.4rem; font-weight: 800; color: white;
 }
-.brand-text h1 { font-size: 1.4rem; color: var(--rich-blue); }
-.brand-text p { font-size: 0.7rem; color: var(--terracotta); font-weight: 600; }
+.brand-text h1 { font-size: 1.2rem; color: var(--rich-blue); }
+.brand-text p { font-size: 0.65rem; color: var(--terracotta); font-weight: 600; }
 .search-bar { display: flex; flex: 2; gap: 0.5rem; max-width: 500px; }
 .search-bar input {
-  padding: 0.9rem 1.5rem; border-radius: 60px;
+  padding: 0.75rem 1.2rem; border-radius: 60px;
   border: 2px solid rgba(199, 90, 15, 0.2); background: white; transition: var(--transition); width: 100%;
 }
 .search-bar input:focus {
@@ -44,23 +44,24 @@ header {
 }
 .search-bar button {
   background: linear-gradient(135deg, var(--burnt-orange), var(--terracotta));
-  border: none; border-radius: 60px; padding: 0 1.8rem; font-weight: 700; color: white; cursor: pointer;
+  border: none; border-radius: 60px; padding: 0 1.5rem; font-weight: 700; color: white; cursor: pointer;
 }
-.nav-actions { display: flex; gap: 0.8rem; align-items: center; }
+.nav-actions { display: flex; gap: 0.6rem; align-items: center; }
 .nav-link {
   display: flex; align-items: center; gap: 0.4rem;
-  padding: 0.6rem 1rem; border-radius: 12px;
+  padding: 0.5rem 0.9rem; border-radius: 12px;
   color: var(--deep-brown); text-decoration: none;
-  font-size: 0.9rem; font-weight: 500; transition: var(--transition);
+  font-size: 0.85rem; font-weight: 500; transition: var(--transition);
 }
 .nav-link:hover, .nav-link.active { background: rgba(230,126,34,0.1); color: var(--burnt-orange); }
 .icon-btn {
   background: rgba(255,248,237,0.9); border: 1px solid rgba(199,90,15,0.2);
-  border-radius: 50%; width: 46px; height: 46px; transition: var(--transition);
+  border-radius: 50%; width: 42px; height: 42px; transition: var(--transition);
   color: var(--rich-blue); cursor: pointer; display: flex; align-items: center; justify-content: center;
   position: relative; text-decoration: none;
 }
 .icon-btn:hover { transform: translateY(-3px); background: var(--burnt-orange); color: white; }
+.icon-btn #menuToggle { color: var(--deep-brown); }
 .cart-count {
   background: var(--terracotta); color: white; border: 2px solid white;
   position: absolute; top: -6px; right: -6px;
@@ -460,14 +461,15 @@ footer { background: linear-gradient(135deg, var(--deep-brown), var(--rich-blue)
 
 /* ===== RESPONSIVE HEADER ===== */
 @media (max-width: 1024px) {
-  header { padding: 0.8rem 1rem; }
+  header { padding: 0.6rem 1rem; }
   .nav-link { display: none; }
   .search-bar { order: 3; max-width: 100%; flex: 1; }
 }
 @media (max-width: 767px) {
   header {
-    flex-direction: column; gap: 0.75rem;
-    border-radius: 20px; padding: 0.75rem 1rem;
+    flex-direction: column; gap: 0.6rem;
+    border-radius: 20px; padding: 0.6rem 1rem;
+    position: sticky; top: 0.5rem;
   }
   .brand { width: 100%; justify-content: center; }
   .search-bar { width: 100%; }
