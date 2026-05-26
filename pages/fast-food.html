@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fast Food - Mi Casa Su Casa</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Fast Food - Makzaz Global Store</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --food-primary: #FF5722;
@@ -16,15 +16,14 @@
 
         body {
             background-color: var(--food-bg);
-            font-family: 'Segoe UI', sans-serif;
-            padding-top: 60px;
+            font-family: 'Poppins', 'Inter', system-ui, sans-serif;
         }
 
         .food-hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/400/300?random=100');
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/1920/600?random=100');
             background-size: cover;
             background-position: center;
-            height: 300px;
+            height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -32,7 +31,19 @@
             color: white;
             text-align: center;
             border-radius: 0 0 25px 25px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+
+        .food-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .food-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
         }
 
         .food-search-bar {
@@ -56,13 +67,18 @@
         }
 
         .food-search-bar button {
-            background: var(--food-primary);
+            background: linear-gradient(135deg, var(--burnt-orange), var(--terracotta));
             color: white;
             border: none;
             padding: 12px 25px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .food-search-bar button:hover {
+            transform: scale(1.05);
         }
 
         .cuisine-filters {
@@ -70,9 +86,13 @@
             overflow-x: auto;
             gap: 15px;
             padding: 20px;
-            scrollbar-width: none;
+            scrollbar-width: thin;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .cuisine-filters::-webkit-scrollbar { display: none; }
+
+        .cuisine-filters::-webkit-scrollbar { height: 6px; }
+        .cuisine-filters::-webkit-scrollbar-thumb { background: var(--terracotta); border-radius: 3px; }
 
         .cuisine-chip {
             background: white;
@@ -80,17 +100,52 @@
             border-radius: 20px;
             white-space: nowrap;
             cursor: pointer;
-            border: 1px solid #ddd;
+            border: 2px solid rgba(199, 90, 15, 0.2);
             transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-weight: 500;
+            color: var(--deep-brown);
         }
 
         .cuisine-chip.active, .cuisine-chip:hover {
-            background: var(--food-primary);
+            background: linear-gradient(135deg, var(--burnt-orange), var(--terracotta));
             color: white;
-            border-color: var(--food-primary);
+            border-color: var(--burnt-orange);
+            transform: translateY(-2px);
+        }
+
+        .food-sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px auto;
+            max-width: 1200px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .filter-group label {
+            font-weight: 600;
+            margin-right: 10px;
+            color: var(--deep-brown);
+        }
+
+        .filter-select {
+            padding: 8px 15px;
+            border: 2px solid rgba(199, 90, 15, 0.2);
+            border-radius: 8px;
+            outline: none;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .filter-select:focus {
+            border-color: var(--burnt-orange);
         }
 
         .food-grid {
@@ -98,28 +153,33 @@
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 20px;
             padding: 20px;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .food-card {
             background: var(--food-card);
-            border-radius: 15px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
             cursor: pointer;
         }
 
         .food-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
         }
 
         .food-img {
-            height: 180px;
+            height: 200px;
             width: 100%;
             object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .food-card:hover .food-img {
+            transform: scale(1.1);
         }
 
         .food-info {
@@ -128,9 +188,9 @@
 
         .food-title {
             font-size: 1.1rem;
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 5px;
-            color: var(--food-text);
+            color: var(--deep-brown);
         }
 
         .food-meta {
@@ -142,16 +202,17 @@
         }
 
         .rating-badge {
-            background: #e8f5e9;
-            color: #2e7d32;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
             padding: 2px 8px;
             border-radius: 5px;
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .delivery-time {
             font-size: 0.85rem;
             color: #888;
+            margin-bottom: 10px;
         }
 
         .price-row {
@@ -162,63 +223,106 @@
         }
 
         .price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--food-text);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--burnt-orange);
         }
 
         .add-btn {
-            background: var(--food-primary);
+            background: linear-gradient(135deg, var(--burnt-orange), var(--terracotta));
             color: white;
             border: none;
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
+            transition: var(--transition);
         }
 
-        .food-sidebar {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            align-items: center;
+        .add-btn:hover {
+            transform: scale(1.1) rotate(90deg);
         }
 
-        .filter-group label {
-            font-weight: bold;
-            margin-right: 10px;
-            color: #555;
-        }
-
-        .filter-select {
-            padding: 8px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            outline: none;
+        @media (max-width: 767px) {
+            .food-hero { height: 300px; }
+            .food-hero h1 { font-size: 2rem; }
+            .food-sidebar { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="logo">Mi Casa <span style="color:var(--food-primary)">Su Casa</span> <i class="fas fa-utensils"></i></div>
-        <div class="nav-links">
-            <a href="../index.html">Home</a>
-            <a href="cart.html"><i class="fas fa-shopping-bag"></i></a>
-            <a href="login.html"><i class="fas fa-user"></i></a>
+    <div class="app">
+    <!-- Header -->
+    <header>
+        <a href="../index.html" class="brand">
+            <div class="brand-icon">M</div>
+            <div class="brand-text">
+                <h1>Makzaz</h1>
+                <p>mi casa su casa</p>
+            </div>
+        </a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search food, restaurants..." id="searchInput">
+            <button type="submit">Search</button>
         </div>
-    </nav>
+        <div class="nav-actions">
+            <a href="stories.html" class="nav-link"><i class="fas fa-circle"></i> Stories</a>
+            <div class="nav-action-group">
+                <a href="#" class="icon-btn" id="menuToggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <a href="messages.html" class="icon-btn" aria-label="Messages">
+                    <i class="fas fa-comment"></i>
+                </a>
+                <a href="cart.html" class="icon-btn cart-trigger" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+                <a href="profile.html" class="icon-btn" aria-label="Account">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar Drawer -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="drawer-header">
+            <div class="brand">
+                <div class="brand-icon" style="width: 40px; height: 40px; font-size: 1.2rem;">M</div>
+                <div class="brand-text">
+                    <h1 style="font-size: 1.1rem;">Makzaz</h1>
+                    <p style="font-size: 0.6rem;">mi casa su casa</p>
+                </div>
+            </div>
+            <button class="drawer-close" id="sidebarClose">&times;</button>
+        </div>
+        <nav class="drawer-menu">
+            <a href="../index.html" class="drawer-menu-item"><i class="fas fa-home" style="margin-right: 10px;"></i>Home</a>
+            <a href="categories/fashion.html" class="drawer-menu-item"><i class="fas fa-tshirt" style="margin-right: 10px;"></i>Fashion</a>
+            <a href="categories/electronics.html" class="drawer-menu-item"><i class="fas fa-laptop" style="margin-right: 10px;"></i>Electronics</a>
+            <a href="categories/home-living.html" class="drawer-menu-item"><i class="fas fa-couch" style="margin-right: 10px;"></i>Home & Living</a>
+            <a href="fast-food.html" class="drawer-menu-item active"><i class="fas fa-hamburger" style="margin-right: 10px;"></i>Fast Food</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="seller.html" class="drawer-menu-item"><i class="fas fa-store" style="margin-right: 10px;"></i>Become a Seller</a>
+            <a href="profile.html" class="drawer-menu-item"><i class="fas fa-user" style="margin-right: 10px;"></i>My Account</a>
+            <a href="orders.html" class="drawer-menu-item"><i class="fas fa-box" style="margin-right: 10px;"></i>My Orders</a>
+            <a href="wishlist.html" class="drawer-menu-item"><i class="fas fa-heart" style="margin-right: 10px;"></i>Wishlist</a>
+            <a href="messages.html" class="drawer-menu-item"><i class="fas fa-comment" style="margin-right: 10px;"></i>Messages</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="login.html" class="drawer-menu-item"><i class="fas fa-sign-in-alt" style="margin-right: 10px;"></i>Login</a>
+            <a href="signup.html" class="drawer-menu-item"><i class="fas fa-user-plus" style="margin-right: 10px;"></i>Sign Up</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="admin/dashboard.html" class="drawer-menu-item"><i class="fas fa-tachometer-alt" style="margin-right: 10px;"></i>Admin Dashboard</a>
+            <a href="faq.html" class="drawer-menu-item"><i class="fas fa-question-circle" style="margin-right: 10px;"></i>Help & FAQ</a>
+            <a href="terms.html" class="drawer-menu-item"><i class="fas fa-file-contract" style="margin-right: 10px;"></i>Terms & Conditions</a>
+        </nav>
+    </aside>
 
     <div class="food-hero">
         <h1>Craving Something?</h1>
@@ -376,6 +480,57 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="brand" style="margin-bottom: 1rem;">
+                        <div class="brand-icon">M</div>
+                        <div class="brand-text">
+                            <h1>Makzaz</h1>
+                            <p>mi casa su casa</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.875rem; opacity: 0.9; line-height: 1.6;">Your global marketplace for everything you need. Bringing Africa to the world.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: white; margin-bottom: 1rem;">Shop</h4>
+                    <a href="../index.html">Home</a>
+                    <a href="categories/fashion.html">Fashion</a>
+                    <a href="categories/electronics.html">Electronics</a>
+                    <a href="categories/home-living.html">Home & Living</a>
+                    <a href="fast-food.html">Fast Food</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: white; margin-bottom: 1rem;">Account</h4>
+                    <a href="login.html">Login</a>
+                    <a href="signup.html">Sign Up</a>
+                    <a href="cart.html">Cart</a>
+                    <a href="profile.html">My Account</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: white; margin-bottom: 1rem;">Support</h4>
+                    <a href="faq.html">FAQ</a>
+                    <a href="terms.html">Terms & Conditions</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="returns.html">Returns</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: white; margin-bottom: 1rem;">Admin</h4>
+                    <a href="admin/dashboard.html">Dashboard</a>
+                    <a href="admin/products.html">Products</a>
+                    <a href="admin/orders.html">Orders</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Makzaz Global Store — Mi Casa Su Casa 🌍</span>
+                <span>Bringing Africa to the World</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../app.js"></script>
     <script>
         const chips = document.querySelectorAll('.cuisine-chip');
         chips.forEach(chip => {
@@ -385,5 +540,6 @@
             });
         });
     </script>
+    </div>
 </body>
 </html>
