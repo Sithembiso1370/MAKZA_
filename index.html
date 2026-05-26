@@ -5,76 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Makzaz Global Store - Mi Casa Su Casa</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container navbar-container">
-            <button class="menu-toggle" id="menuToggle">
-                <span></span><span></span><span></span>
-            </button>
-            <a href="index.html" class="navbar-logo">
-                <img src="assets/logo.svg" alt="Makzaz">
-            </a>
-            <div class="navbar-search">
-                <input type="text" placeholder="Search products, brands..." id="searchInput">
+    <div class="app">
+    <!-- Header -->
+    <header>
+        <a href="index.html" class="brand">
+            <div class="brand-icon">M</div>
+            <div class="brand-text">
+                <h1>Makzaz</h1>
+                <p>mi casa su casa</p>
             </div>
-            <div class="desktop-nav hide-mobile">
-                <a href="pages/categories/fashion.html">Fashion</a>
-                <a href="pages/categories/electronics.html">Electronics</a>
-                <a href="pages/categories/home-living.html">Home</a>
-                <a href="pages/fast-food.html">Fast Food</a>
-                <a href="pages/seller.html">Sell</a>
-            </div>
-            <div class="navbar-actions">
-                <div class="navbar-action" id="locationBtn">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                    <span class="location-text" id="locationText">New York</span>
-                </div>
-                <a href="pages/messages.html" class="navbar-action">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-                    <span>Messages</span>
+        </a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search products, brands..." id="searchInput">
+            <button type="submit">Search</button>
+        </div>
+        <div class="nav-actions">
+            <a href="pages/stories.html" class="nav-link"><i class="fas fa-circle"></i> Stories</a>
+            <a href="pages/categories/fashion.html" class="nav-link">Fashion</a>
+            <a href="pages/categories/electronics.html" class="nav-link">Electronics</a>
+            <a href="pages/categories/home-living.html" class="nav-link">Home</a>
+            <a href="pages/fast-food.html" class="nav-link">Fast Food</a>
+            <div class="nav-action-group">
+                <a href="#" class="icon-btn" id="menuToggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
                 </a>
-                <a href="pages/cart.html" class="navbar-action">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-                    <span>Cart</span>
-                    <span class="navbar-badge">3</span>
+                <a href="pages/messages.html" class="icon-btn" aria-label="Messages">
+                    <i class="fas fa-comment"></i>
                 </a>
-                <a href="pages/profile.html" class="navbar-action">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-                    <span>Account</span>
+                <a href="pages/cart.html" class="icon-btn cart-trigger" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+                <a href="pages/profile.html" class="icon-btn" aria-label="Account">
+                    <i class="fas fa-user"></i>
                 </a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Mobile Drawer -->
-    <div class="drawer-overlay" id="drawerOverlay"></div>
-    <div class="mobile-drawer" id="mobileDrawer">
+    <!-- Sidebar Drawer -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <aside class="sidebar" id="sidebar">
         <div class="drawer-header">
-            <img src="assets/logo.svg" alt="Makzaz" style="height: 30px;">
-            <button class="drawer-close" id="drawerClose">&times;</button>
+            <div class="brand">
+                <div class="brand-icon" style="width: 40px; height: 40px; font-size: 1.2rem;">M</div>
+                <div class="brand-text">
+                    <h1 style="font-size: 1.1rem;">Makzaz</h1>
+                    <p style="font-size: 0.6rem;">mi casa su casa</p>
+                </div>
+            </div>
+            <button class="drawer-close" id="sidebarClose">&times;</button>
         </div>
-        <div class="drawer-menu">
-            <a href="pages/categories/fashion.html" class="drawer-menu-item">Fashion</a>
-            <a href="pages/categories/electronics.html" class="drawer-menu-item">Electronics</a>
-            <a href="pages/categories/home-living.html" class="drawer-menu-item">Home & Living</a>
-            <a href="pages/fast-food.html" class="drawer-menu-item">Fast Food</a>
-            <a href="pages/seller.html" class="drawer-menu-item">Become a Seller</a>
-            <a href="pages/profile.html" class="drawer-menu-item">My Account</a>
-            <a href="pages/orders.html" class="drawer-menu-item">My Orders</a>
-            <a href="pages/wishlist.html" class="drawer-menu-item">Wishlist</a>
-            <a href="pages/messages.html" class="drawer-menu-item">Messages</a>
-            <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray-200);">
-            <a href="pages/login.html" class="drawer-menu-item">Login</a>
-            <a href="pages/signup.html" class="drawer-menu-item">Sign Up</a>
-            <hr style="margin: 1rem 0; border: none; border-top: 1px solid var(--gray-200);">
-            <a href="admin/dashboard.html" class="drawer-menu-item">Admin Dashboard</a>
-            <a href="pages/faq.html" class="drawer-menu-item">Help & FAQ</a>
-            <a href="pages/terms.html" class="drawer-menu-item">Terms & Conditions</a>
-        </div>
-    </div>
+        <nav class="drawer-menu">
+            <a href="index.html" class="drawer-menu-item"><i class="fas fa-home" style="margin-right: 10px;"></i>Home</a>
+            <a href="pages/categories/fashion.html" class="drawer-menu-item"><i class="fas fa-tshirt" style="margin-right: 10px;"></i>Fashion</a>
+            <a href="pages/categories/electronics.html" class="drawer-menu-item"><i class="fas fa-laptop" style="margin-right: 10px;"></i>Electronics</a>
+            <a href="pages/categories/home-living.html" class="drawer-menu-item"><i class="fas fa-couch" style="margin-right: 10px;"></i>Home & Living</a>
+            <a href="pages/fast-food.html" class="drawer-menu-item"><i class="fas fa-hamburger" style="margin-right: 10px;"></i>Fast Food</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="pages/seller.html" class="drawer-menu-item"><i class="fas fa-store" style="margin-right: 10px;"></i>Become a Seller</a>
+            <a href="pages/profile.html" class="drawer-menu-item"><i class="fas fa-user" style="margin-right: 10px;"></i>My Account</a>
+            <a href="pages/orders.html" class="drawer-menu-item"><i class="fas fa-box" style="margin-right: 10px;"></i>My Orders</a>
+            <a href="pages/wishlist.html" class="drawer-menu-item"><i class="fas fa-heart" style="margin-right: 10px;"></i>Wishlist</a>
+            <a href="pages/messages.html" class="drawer-menu-item"><i class="fas fa-comment" style="margin-right: 10px;"></i>Messages</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="pages/login.html" class="drawer-menu-item"><i class="fas fa-sign-in-alt" style="margin-right: 10px;"></i>Login</a>
+            <a href="pages/signup.html" class="drawer-menu-item"><i class="fas fa-user-plus" style="margin-right: 10px;"></i>Sign Up</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="admin/dashboard.html" class="drawer-menu-item"><i class="fas fa-tachometer-alt" style="margin-right: 10px;"></i>Admin Dashboard</a>
+            <a href="pages/faq.html" class="drawer-menu-item"><i class="fas fa-question-circle" style="margin-right: 10px;"></i>Help & FAQ</a>
+            <a href="pages/terms.html" class="drawer-menu-item"><i class="fas fa-file-contract" style="margin-right: 10px;"></i>Terms & Conditions</a>
+        </nav>
+    </aside>
 
     <!-- Hero Slider (Full Screen) -->
     <section class="hero-slider" id="heroSlider">
@@ -179,11 +184,98 @@
     </section>
 
     <!-- Slim Stylish Banner -->
-    <section style="background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: var(--space-xl) 0; margin: var(--space-xl) 0;">
+    <section style="background: linear-gradient(135deg, var(--burnt-orange), var(--terracotta)); padding: var(--space-xl) 0; margin: var(--space-xl) 0; border-radius: 24px;">
         <div class="container text-center">
             <h2 style="color: white; font-size: 1.875rem; margin-bottom: var(--space-sm);">New Arrivals Every Day</h2>
             <p style="color: rgba(255,255,255,0.9); margin-bottom: var(--space-md);">Discover the latest trends in fashion, electronics, and more</p>
-            <a href="pages/new-arrivals.html" class="btn" style="background: white; color: var(--primary);">Shop Now</a>
+            <a href="pages/new-arrivals.html" class="btn btn-secondary">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Brands Showcase Section -->
+    <section style="padding: var(--space-xl) 0;">
+        <div class="container">
+            <h2 style="margin-bottom: var(--space-lg); font-size: 1.5rem; text-align: center;">Featured Brands</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: var(--space-md); align-items: center;">
+                <div style="background: white; padding: var(--space-md); border-radius: 16px; text-align: center; box-shadow: var(--shadow);">
+                    <img src="https://picsum.photos/100/100?random=100" alt="Nike" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: var(--space-sm);">
+                    <p style="font-weight: 600; color: var(--deep-brown);">Nike</p>
+                </div>
+                <div style="background: white; padding: var(--space-md); border-radius: 16px; text-align: center; box-shadow: var(--shadow);">
+                    <img src="https://picsum.photos/100/100?random=101" alt="Apple" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: var(--space-sm);">
+                    <p style="font-weight: 600; color: var(--deep-brown);">Apple</p>
+                </div>
+                <div style="background: white; padding: var(--space-md); border-radius: 16px; text-align: center; box-shadow: var(--shadow);">
+                    <img src="https://picsum.photos/100/100?random=102" alt="Samsung" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: var(--space-sm);">
+                    <p style="font-weight: 600; color: var(--deep-brown);">Samsung</p>
+                </div>
+                <div style="background: white; padding: var(--space-md); border-radius: 16px; text-align: center; box-shadow: var(--shadow);">
+                    <img src="https://picsum.photos/100/100?random=103" alt="Adidas" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: var(--space-sm);">
+                    <p style="font-weight: 600; color: var(--deep-brown);">Adidas</p>
+                </div>
+                <div style="background: white; padding: var(--space-md); border-radius: 16px; text-align: center; box-shadow: var(--shadow);">
+                    <img src="https://picsum.photos/100/100?random=104" alt="Sony" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: var(--space-sm);">
+                    <p style="font-weight: 600; color: var(--deep-brown);">Sony</p>
+                </div>
+                <div style="background: white; padding: var(--space-md); border-radius: 16px; text-align: center; box-shadow: var(--shadow);">
+                    <img src="https://picsum.photos/100/100?random=105" alt="Zara" style="width: 80px; height: 80px; object-fit: contain; margin-bottom: var(--space-sm);">
+                    <p style="font-weight: 600; color: var(--deep-brown);">Zara</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section style="padding: var(--space-xl) 0; background: rgba(230, 126, 34, 0.05); border-radius: 24px; margin: var(--space-xl) 0;">
+        <div class="container">
+            <h2 style="margin-bottom: var(--space-lg); font-size: 1.5rem; text-align: center;">What Our Customers Say</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg);">
+                <div style="background: white; padding: var(--space-lg); border-radius: 20px; box-shadow: var(--shadow);">
+                    <div style="color: var(--savanna-gold); font-size: 1.5rem; margin-bottom: var(--space-sm);">★★★★★</div>
+                    <p style="color: var(--deep-brown); margin-bottom: var(--space-md); line-height: 1.6;">"Amazing shopping experience! Fast delivery and excellent quality products. Will definitely shop again!"</p>
+                    <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                        <img src="https://picsum.photos/50/50?random=200" alt="Customer" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                        <div>
+                            <p style="font-weight: 600; color: var(--deep-brown);">Sarah M.</p>
+                            <p style="font-size: 0.8rem; color: var(--terracotta);">Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: white; padding: var(--space-lg); border-radius: 20px; box-shadow: var(--shadow);">
+                    <div style="color: var(--savanna-gold); font-size: 1.5rem; margin-bottom: var(--space-sm);">★★★★★</div>
+                    <p style="color: var(--deep-brown); margin-bottom: var(--space-md); line-height: 1.6;">"Best online store! Great prices, authentic products, and customer service is top-notch."</p>
+                    <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                        <img src="https://picsum.photos/50/50?random=201" alt="Customer" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                        <div>
+                            <p style="font-weight: 600; color: var(--deep-brown);">John D.</p>
+                            <p style="font-size: 0.8rem; color: var(--terracotta);">Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: white; padding: var(--space-lg); border-radius: 20px; box-shadow: var(--shadow);">
+                    <div style="color: var(--savanna-gold); font-size: 1.5rem; margin-bottom: var(--space-sm);">★★★★★</div>
+                    <p style="color: var(--deep-brown); margin-bottom: var(--space-md); line-height: 1.6;">"Love this platform! So many brands in one place. The stories feature makes shopping fun!"</p>
+                    <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                        <img src="https://picsum.photos/50/50?random=202" alt="Customer" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                        <div>
+                            <p style="font-weight: 600; color: var(--deep-brown);">Emma W.</p>
+                            <p style="font-size: 0.8rem; color: var(--terracotta);">Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section style="padding: var(--space-xl) 0;">
+        <div class="container" style="background: linear-gradient(135deg, var(--deep-brown), var(--rich-blue)); padding: var(--space-xl); border-radius: 24px; text-align: center;">
+            <h2 style="color: white; font-size: 1.75rem; margin-bottom: var(--space-sm);">Stay in the Loop</h2>
+            <p style="color: rgba(255,255,255,0.9); margin-bottom: var(--space-lg);">Subscribe to get exclusive deals, new arrivals, and special offers</p>
+            <form style="display: flex; gap: var(--space-sm); max-width: 500px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
+                <input type="email" placeholder="Enter your email" style="flex: 1; min-width: 200px; padding: 0.9rem 1.5rem; border-radius: 60px; border: none; outline: none; font-size: 0.95rem;">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
         </div>
     </section>
 
@@ -206,63 +298,88 @@
         </div>
     </section>
 
+    <!-- Mobile Bottom Nav -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="pages/categories.html" class="mobile-nav-item">
+            <i class="fas fa-th-large"></i>
+            <span>Categories</span>
+        </a>
+        <a href="pages/cart.html" class="mobile-nav-item mobile-nav-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+            <span class="nav-badge">3</span>
+        </a>
+        <a href="pages/wishlist.html" class="mobile-nav-item">
+            <i class="fas fa-heart"></i>
+            <span>Wishlist</span>
+        </a>
+        <a href="pages/profile.html" class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Back to Top -->
+    <button id="backToTop">↑</button>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Shop</h4>
-                    <div class="footer-links">
-                        <a href="pages/categories/fashion.html">Fashion</a>
-                        <a href="pages/categories/electronics.html">Electronics</a>
-                        <a href="pages/categories/home-living.html">Home & Living</a>
-                        <a href="pages/fast-food.html">Fast Food</a>
-                        <a href="pages/brands.html">All Brands</a>
-                    </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Shop</h4>
+                    <a href="pages/categories/fashion.html">Fashion</a>
+                    <a href="pages/categories/electronics.html">Electronics</a>
+                    <a href="pages/categories/home-living.html">Home & Living</a>
+                    <a href="pages/fast-food.html">Fast Food</a>
+                    <a href="pages/brands.html">All Brands</a>
                 </div>
-                <div class="footer-section">
-                    <h4>Account</h4>
-                    <div class="footer-links">
-                        <a href="pages/login.html">Login</a>
-                        <a href="pages/signup.html">Sign Up</a>
-                        <a href="pages/profile.html">My Account</a>
-                        <a href="pages/orders.html">My Orders</a>
-                        <a href="pages/wishlist.html">Wishlist</a>
-                        <a href="pages/notifications.html">Notifications</a>
-                        <a href="pages/payment-methods.html">Payment Methods</a>
-                    </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Account</h4>
+                    <a href="pages/login.html">Login</a>
+                    <a href="pages/signup.html">Sign Up</a>
+                    <a href="pages/profile.html">My Account</a>
+                    <a href="pages/orders.html">My Orders</a>
+                    <a href="pages/wishlist.html">Wishlist</a>
+                    <a href="pages/notifications.html">Notifications</a>
                 </div>
-                <div class="footer-section">
-                    <h4>Sell</h4>
-                    <div class="footer-links">
-                        <a href="pages/seller.html">Become a Seller</a>
-                        <a href="admin/products.html">Seller Dashboard</a>
-                        <a href="pages/seller-guide.html">Seller Guide</a>
-                    </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Sell</h4>
+                    <a href="pages/seller.html">Become a Seller</a>
+                    <a href="admin/products.html">Seller Dashboard</a>
+                    <a href="pages/seller-guide.html">Seller Guide</a>
                 </div>
-                <div class="footer-section">
-                    <h4>Support</h4>
-                    <div class="footer-links">
-                        <a href="pages/faq.html">FAQ</a>
-                        <a href="pages/contact.html">Contact Us</a>
-                        <a href="pages/about.html">About Us</a>
-                        <a href="pages/terms.html">Terms & Conditions</a>
-                        <a href="pages/privacy.html">Privacy Policy</a>
-                        <a href="pages/returns.html">Returns & Refunds</a>
-                    </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Support</h4>
+                    <a href="pages/faq.html">FAQ</a>
+                    <a href="pages/contact.html">Contact Us</a>
+                    <a href="pages/about.html">About Us</a>
+                    <a href="pages/terms.html">Terms & Conditions</a>
+                    <a href="pages/privacy.html">Privacy Policy</a>
+                    <a href="pages/returns.html">Returns & Refunds</a>
                 </div>
-                <div class="footer-section">
-                    <h4>Admin</h4>
-                    <div class="footer-links">
-                        <a href="admin/dashboard.html">Dashboard</a>
-                        <a href="admin/products.html">Products</a>
-                        <a href="admin/orders.html">Orders</a>
-                        <a href="admin/customers.html">Customers</a>
-                        <a href="admin/staff.html">Staff</a>
-                    </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Admin</h4>
+                    <a href="admin/dashboard.html">Dashboard</a>
+                    <a href="admin/products.html">Products</a>
+                    <a href="admin/orders.html">Orders</a>
+                    <a href="admin/customers.html">Customers</a>
+                    <a href="admin/staff.html">Staff</a>
                 </div>
-                <div class="footer-section">
-                    <h4>Download App</h4>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Download App</h4>
                     <div class="app-download">
                         <a href="#" class="app-btn">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
@@ -280,7 +397,9 @@
             </div>
         </div>
     </footer>
+    </div>
 
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="app.js"></script>
 </body>
 </html>

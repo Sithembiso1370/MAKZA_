@@ -1,125 +1,44 @@
 ```
+# Compiled and build artifacts
+*.pyc
+__pycache__/
+*.o
+*.obj
+*.class
+*.exe
+*.dll
+*.so
+*.a
+*.out
+
 # Dependencies
 node_modules/
+venv/
+.venv/
+.env
+.env.local
+*.env.*
 
 # Logs and temp files
 *.log
 *.tmp
-
-# Environment
-.env
-.env.local
-*.env.*
+*.swp
+*.swo
 
 # Editors
 .vscode/
 .idea/
 
-# Coverage reports
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage
 coverage/
 htmlcov/
-*.coverage
-
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
-.venv/
-.ENV
-.python-version
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
 .coverage
-.nox/
-.pytest_cache/
-.mypy_cache/
 
-# Build artifacts
-dist/
-build/
-*.egg
-*.egg-info/
-.eggs/
-eggs/
-parts/
-sdist/
-develop-eggs/
-.installed.cfg
-.lib/
-.libs/
-include/
-lib/
-lib64/
-bdist.wininst.log
-.pyx.py
-
-# Java
-*.class
-*.jar
-*.war
-*.ear
-*.tar.gz
-target/
-.gradle/
-build/
-bin/
-gen/
-
-# C/C++
-*.o
-*.obj
-*.exe
-*.dll
-*.so
-*.a
-*.dylib
-*.plist
-*.dmg
-*.iso
-*.img
-*.toast
-*.vcd
-
-# Node.js
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-node_modules/
-jspm_packages/
-typings/
-.npm
-.npmrc
-.nyc_output
-coverage/
-.nyc_output/
-.coverage/
-
-# Go
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-
-# Ruby
-*.gem
-*.rbc
-.bundle/
-.config/yardoc
-.yardoc
-Gemfile.lock
-InstalledFiles
-_pkg.elc
-core
-coverage/
-*.orig
-
-# Compression
+# Compressed files
 *.zip
 *.gz
 *.tar
@@ -142,305 +61,4 @@ coverage/
 *.tar.bz2
 *.tar.xz
 *.tar.zst
-
-# System files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-Icon?
-Network Trash Folder
-Temporary Items
-.davfs2/
-.fuse_hidden*
-.directory
-.iws
-.rbtp
-.sw
-*.swp
-*.swo
-*~
-.project
-.c9/
-.cache/
-.metadata
-.tmproj
-*.tmproj
-*.swm
-*.swn
-*.swo
-*.lock
-*.swpx
-*.sdf
-*.pid
-*.seed
-*.pid.lock
-*.sock
-*.sock.lock
-*.out
-*.pid
-*.seed
-*.pid.lock
-*.sock
-*.sock.lock
-*.out
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# IDE specific
-.vscode/
-.idea/
-*.iml
-*.ipr
-*.iws
-*.sublime-project
-*.sublime-workspace
-nbproject/
-nbbuild/
-nbdist/
-.nb-gradle/
-
-# Testing
-.rspec
-spec/reports/
-spec/examples.txt
-test/tmp/
-test/version_tmp/
-tmp/
-
-# Documentation
-doc/api/
-
-# Logs
-logs/
-*.log
-
-# Runtime data
-pids/
-*.pid
-*.seed
-*.pid.lock
-*.sock
-*.sock.lock
-*.out
-
-# Coverage directory used by tools like istanbul
-coverage/
-
-# nyc test coverage
-.nyc_output
-
-# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
-
-# Bower dependency directory (https://bower.io/)
-bower_components/
-
-# node-waf configuration
-.lock-wscript
-
-# Compiled binary addons (https://nodejs.org/api/addons.html)
-build/Release
-
-# Dependency directories
-node_modules/
-jspm_packages/
-
-# Typescript output
-*.tsbuildinfo
-*.js.map
-*.ts.map
-
-# SystemJS builder output
-systemjs.config.js
-
-# PlatformOS generated files
-POpen.*
-PCompile.*
-PBuild.*
-
-# Yarn Integrity file
-.yarn-integrity
-
-# parcel-bundler from JavaScript
-.cache
-
-# Jest
-junit.xml
-jest.config.js
-
-# Docker
-.docker/
-
-# Elm
-elm-stuff/
-*.elmi
-*.elmo
-
-# Elixir & Phoenix
-erl_crash.dump
-*.eex~
-
-# Erlang
-.erlang.cookie
-
-# Haskell
-dist-newstyle/
-.cabal-sandbox/
-cabal.sandbox.config
-*.o
-*.hi
-*.chi
-*.chs.h
-*.dyn_o
-*.dyn_hi
-.hpc/
-.hsenv
-.cabal-mod/
-cabal.project.freeze
-cabal.project.local
-.cblrepo
-.stack-work/
-.projectile
-
-# Julia
-.julia/
-*.ji
-*.jl.cov
-*.jl.log
-
-# Nim
-*.nim.cache/
-*.nimble/deps/
-nimcache/
-*.nim.cfg
-*.nim
-*.nims
-*.nimble
-*.nimble.lock
-
-# PureScript
-.output/
-psc-ide-server-port.txt
-.psc-ide.sock
-
-# R
-.Rhistory
-.RData
-.Rproj.user/
-*.Rproj
-.Rprofile
-.Ruserdata
-
-# Rust
-target/
-Cargo.lock
-*.cg_data
-*.dSYM/
-*.dSYM.zip
-
-# Scala
-*.class
-*.log
-*.lock
-.libs/
-.libs
-.libs/*
-target/
-lib_managed/
-src_managed/
-project/target/
-*.sbt.launcher
-lib_managed/
-src_managed/
-project/build.properties
-*.bsp/
-.bsp/
-
-# Swift
-*.xcodeproj/
-*.xcworkspace/
-*.swiftpm/
-Packages/
-.build/
-
-# Vue
-dist/
-
-# Webpack
-webpack.config.js
-webpack-stats.json
-*.wasm
-
-# Zig
-zig-cache/
-zig-out/
-
-# macOS
-.DS_Store
-.DS_Store?
-.AppleDouble
-.LSOverride
-Icon?
-._*
-.Spotlight-V100
-.Trashes
-.VolumeIcon.icns
-.FBCIndex
-.TemporaryItems
-.apdisk
-
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-*.lnk
-
-# Linux
-*~
-*.swp
-*.swo
-*#
-.dir-locals.el
-*.un~
-Session.vim
-.netrwhist
-*~
-#*#
-.\#*
-,.*
-,*.orig
-,*.rej
-,*.bak
-*.tmp
-*.temp
-*.log
-*.swp
-*.swo
-*~
-.DS_Store
-.DS_Store?
-.AppleDouble
-.LSOverride
-Icon?
-._*
-.Spotlight-V100
-.Trashes
-.VolumeIcon.icns
-.FBCIndex
-.TemporaryItems
-.apdisk
-ehthumbs.db
-Thumbs.db
 ```

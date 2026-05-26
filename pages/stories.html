@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stories & Feed - Makzaz</title>
     <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         .feed-page {
             min-height: 100vh;
-            background: #f0f2f5;
-            padding-top: 80px;
+            background: linear-gradient(135deg, var(--bg-warm), #fae8d1);
+            padding-top: 100px;
         }
 
         .feed-container {
@@ -18,79 +19,80 @@
             padding: 20px;
         }
 
-        /* Stories Section */
+        /* Stories Bar */
         .stories-bar {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 16px;
             margin-bottom: 20px;
             display: flex;
             gap: 12px;
             overflow-x: auto;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
         }
 
-        .story-item {
+        .story-item-feed {
             flex-shrink: 0;
             width: 110px;
             height: 190px;
-            border-radius: 10px;
+            border-radius: 12px;
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: var(--transition);
         }
 
-        .story-item:hover {
+        .story-item-feed:hover {
             transform: scale(1.05);
         }
 
-        .story-item img {
+        .story-item-feed img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .story-item.add-story {
-            background: white;
+        .story-item-feed.add-story {
+            background: var(--cream);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            border: 2px dashed #ddd;
+            border: 2px dashed var(--terracotta);
         }
 
         .story-add-btn {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--burnt-orange), var(--terracotta));
             color: white;
-            font-size: 24px;
+            font-size: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 8px;
         }
 
-        .story-item span {
+        .story-item-feed span {
             font-size: 12px;
-            color: #333;
+            color: var(--deep-brown);
             text-align: center;
+            font-weight: 500;
         }
 
-        .story-ring {
+        .story-ring-feed {
             position: absolute;
             top: 4px;
             left: 4px;
             right: 4px;
             bottom: 4px;
-            border-radius: 8px;
-            border: 3px solid var(--primary);
+            border-radius: 10px;
+            border: 3px solid var(--burnt-orange);
             pointer-events: none;
         }
 
-        .story-avatar {
+        .story-avatar-feed {
             position: absolute;
             bottom: 10px;
             left: 10px;
@@ -101,7 +103,7 @@
             object-fit: cover;
         }
 
-        .story-name {
+        .story-name-feed {
             position: absolute;
             bottom: 10px;
             right: 10px;
@@ -114,10 +116,10 @@
         /* Create Post */
         .create-post {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 16px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
         }
 
         .create-post-input {
@@ -136,8 +138,8 @@
         .create-post-input input {
             flex: 1;
             padding: 12px 16px;
-            border: none;
-            background: #f0f2f5;
+            border: 2px solid rgba(199, 90, 15, 0.2);
+            background: var(--cream);
             border-radius: 20px;
             font-size: 14px;
         }
@@ -147,7 +149,7 @@
             gap: 12px;
             margin-top: 12px;
             padding-top: 12px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid rgba(199, 90, 15, 0.1);
         }
 
         .post-action-btn {
@@ -155,7 +157,7 @@
             padding: 8px;
             border: none;
             background: transparent;
-            color: #666;
+            color: var(--deep-brown);
             font-size: 14px;
             cursor: pointer;
             border-radius: 8px;
@@ -163,18 +165,19 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
+            transition: var(--transition);
         }
 
         .post-action-btn:hover {
-            background: #f0f2f5;
+            background: var(--cream);
         }
 
         /* Feed Posts */
         .feed-post {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
             overflow: hidden;
         }
 
@@ -198,17 +201,17 @@
 
         .post-author {
             font-weight: 600;
-            color: #333;
+            color: var(--deep-brown);
             font-size: 14px;
         }
 
         .post-time {
             font-size: 12px;
-            color: #999;
+            color: var(--terracotta);
         }
 
         .post-menu {
-            color: #666;
+            color: var(--deep-brown);
             cursor: pointer;
             padding: 8px;
         }
@@ -219,8 +222,8 @@
 
         .post-text {
             font-size: 14px;
-            line-height: 1.5;
-            color: #333;
+            line-height: 1.6;
+            color: var(--deep-brown);
             margin-bottom: 12px;
         }
 
@@ -228,26 +231,28 @@
             width: 100%;
             height: auto;
             display: block;
+            border-radius: 12px;
         }
 
         .product-tag {
             display: inline-block;
-            background: #f0f2f5;
+            background: var(--cream);
             padding: 8px 12px;
             border-radius: 8px;
             margin-top: 12px;
             font-size: 13px;
-            color: #333;
+            color: var(--deep-brown);
+            border: 1px solid rgba(199, 90, 15, 0.2);
         }
 
         .post-stats {
             display: flex;
             justify-content: space-between;
             padding: 12px 16px;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
+            border-top: 1px solid rgba(199, 90, 15, 0.1);
+            border-bottom: 1px solid rgba(199, 90, 15, 0.1);
             font-size: 13px;
-            color: #666;
+            color: var(--deep-brown);
         }
 
         .post-actions {
@@ -260,7 +265,7 @@
             padding: 10px;
             border: none;
             background: transparent;
-            color: #666;
+            color: var(--deep-brown);
             font-size: 14px;
             cursor: pointer;
             border-radius: 8px;
@@ -268,21 +273,21 @@
             align-items: center;
             justify-content: center;
             gap: 6px;
-            transition: background 0.3s;
+            transition: var(--transition);
         }
 
         .post-action:hover {
-            background: #f0f2f5;
+            background: var(--cream);
         }
 
         .post-action.liked {
-            color: #e74c3c;
+            color: var(--terracotta);
         }
 
         /* Comments Section */
         .comments-section {
             padding: 12px 16px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid rgba(199, 90, 15, 0.1);
         }
 
         .comment {
@@ -304,7 +309,7 @@
         }
 
         .comment-bubble {
-            background: #f0f2f5;
+            background: var(--cream);
             padding: 10px 14px;
             border-radius: 16px;
             display: inline-block;
@@ -313,13 +318,13 @@
         .comment-author {
             font-weight: 600;
             font-size: 13px;
-            color: #333;
+            color: var(--deep-brown);
             margin-bottom: 4px;
         }
 
         .comment-text {
             font-size: 13px;
-            color: #333;
+            color: var(--deep-brown);
             line-height: 1.4;
         }
 
@@ -332,22 +337,22 @@
         .comment-input input {
             flex: 1;
             padding: 10px 14px;
-            border: none;
-            background: #f0f2f5;
+            border: 2px solid rgba(199, 90, 15, 0.2);
+            background: var(--cream);
             border-radius: 20px;
             font-size: 13px;
         }
 
         @media (max-width: 768px) {
             .feed-page {
-                padding-top: 60px;
+                padding-top: 70px;
             }
             
             .feed-container {
                 padding: 10px;
             }
 
-            .story-item {
+            .story-item-feed {
                 width: 90px;
                 height: 160px;
             }
@@ -355,8 +360,78 @@
     </style>
 </head>
 <body>
-    <!-- Header will be loaded here -->
-    <div id="header-placeholder"></div>
+    <!-- Header -->
+    <header>
+        <a href="../index.html" class="brand">
+            <div class="brand-icon">M</div>
+            <div class="brand-text">
+                <h1>Makzaz</h1>
+                <p>mi casa su casa</p>
+            </div>
+        </a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search products, brands..." id="searchInput">
+            <button type="submit">Search</button>
+        </div>
+        <div class="nav-actions">
+            <a href="stories.html" class="nav-link active"><i class="fas fa-circle"></i> Stories</a>
+            <a href="categories/fashion.html" class="nav-link">Fashion</a>
+            <a href="categories/electronics.html" class="nav-link">Electronics</a>
+            <a href="categories/home-living.html" class="nav-link">Home</a>
+            <a href="fast-food.html" class="nav-link">Fast Food</a>
+            <div class="nav-action-group">
+                <a href="#" class="icon-btn" id="menuToggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <a href="messages.html" class="icon-btn" aria-label="Messages">
+                    <i class="fas fa-comment"></i>
+                </a>
+                <a href="cart.html" class="icon-btn cart-trigger" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+                <a href="profile.html" class="icon-btn" aria-label="Account">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar Drawer -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="drawer-header">
+            <div class="brand">
+                <div class="brand-icon" style="width: 40px; height: 40px; font-size: 1.2rem;">M</div>
+                <div class="brand-text">
+                    <h1 style="font-size: 1.1rem;">Makzaz</h1>
+                    <p style="font-size: 0.6rem;">mi casa su casa</p>
+                </div>
+            </div>
+            <button class="drawer-close" id="sidebarClose">&times;</button>
+        </div>
+        <nav class="drawer-menu">
+            <a href="../index.html" class="drawer-menu-item"><i class="fas fa-home" style="margin-right: 10px;"></i>Home</a>
+            <a href="stories.html" class="drawer-menu-item active"><i class="fas fa-circle" style="margin-right: 10px;"></i>Stories</a>
+            <a href="categories/fashion.html" class="drawer-menu-item"><i class="fas fa-tshirt" style="margin-right: 10px;"></i>Fashion</a>
+            <a href="categories/electronics.html" class="drawer-menu-item"><i class="fas fa-laptop" style="margin-right: 10px;"></i>Electronics</a>
+            <a href="categories/home-living.html" class="drawer-menu-item"><i class="fas fa-couch" style="margin-right: 10px;"></i>Home & Living</a>
+            <a href="fast-food.html" class="drawer-menu-item"><i class="fas fa-hamburger" style="margin-right: 10px;"></i>Fast Food</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="seller.html" class="drawer-menu-item"><i class="fas fa-store" style="margin-right: 10px;"></i>Become a Seller</a>
+            <a href="profile.html" class="drawer-menu-item"><i class="fas fa-user" style="margin-right: 10px;"></i>My Account</a>
+            <a href="orders.html" class="drawer-menu-item"><i class="fas fa-box" style="margin-right: 10px;"></i>My Orders</a>
+            <a href="wishlist.html" class="drawer-menu-item"><i class="fas fa-heart" style="margin-right: 10px;"></i>Wishlist</a>
+            <a href="messages.html" class="drawer-menu-item"><i class="fas fa-comment" style="margin-right: 10px;"></i>Messages</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="login.html" class="drawer-menu-item"><i class="fas fa-sign-in-alt" style="margin-right: 10px;"></i>Login</a>
+            <a href="signup.html" class="drawer-menu-item"><i class="fas fa-user-plus" style="margin-right: 10px;"></i>Sign Up</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="admin/dashboard.html" class="drawer-menu-item"><i class="fas fa-tachometer-alt" style="margin-right: 10px;"></i>Admin Dashboard</a>
+            <a href="faq.html" class="drawer-menu-item"><i class="fas fa-question-circle" style="margin-right: 10px;"></i>Help & FAQ</a>
+            <a href="terms.html" class="drawer-menu-item"><i class="fas fa-file-contract" style="margin-right: 10px;"></i>Terms & Conditions</a>
+        </nav>
+    </aside>
 
     <main class="feed-page">
         <div class="feed-container">
@@ -394,9 +469,102 @@
         </div>
     </main>
 
-    <!-- Footer will be loaded here -->
-    <div id="footer-placeholder"></div>
+    <!-- Mobile Bottom Nav -->
+    <nav class="mobile-nav">
+        <a href="../index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="stories.html" class="mobile-nav-item active">
+            <i class="fas fa-circle"></i>
+            <span>Stories</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item mobile-nav-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+            <span class="nav-badge">3</span>
+        </a>
+        <a href="wishlist.html" class="mobile-nav-item">
+            <i class="fas fa-heart"></i>
+            <span>Wishlist</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
 
+    <!-- Back to Top -->
+    <button id="backToTop">↑</button>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Shop</h4>
+                    <a href="categories/fashion.html">Fashion</a>
+                    <a href="categories/electronics.html">Electronics</a>
+                    <a href="categories/home-living.html">Home & Living</a>
+                    <a href="fast-food.html">Fast Food</a>
+                    <a href="brands.html">All Brands</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Account</h4>
+                    <a href="login.html">Login</a>
+                    <a href="signup.html">Sign Up</a>
+                    <a href="profile.html">My Account</a>
+                    <a href="orders.html">My Orders</a>
+                    <a href="wishlist.html">Wishlist</a>
+                    <a href="notifications.html">Notifications</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Sell</h4>
+                    <a href="seller.html">Become a Seller</a>
+                    <a href="admin/products.html">Seller Dashboard</a>
+                    <a href="seller-guide.html">Seller Guide</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Support</h4>
+                    <a href="faq.html">FAQ</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="about.html">About Us</a>
+                    <a href="terms.html">Terms & Conditions</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="returns.html">Returns & Refunds</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Admin</h4>
+                    <a href="admin/dashboard.html">Dashboard</a>
+                    <a href="admin/products.html">Products</a>
+                    <a href="admin/orders.html">Orders</a>
+                    <a href="admin/customers.html">Customers</a>
+                    <a href="admin/staff.html">Staff</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Download App</h4>
+                    <div class="app-download">
+                        <a href="#" class="app-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+                            <span><strong>Get it on</strong>Google Play</span>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+                            <span><strong>Download on the</strong>App Store</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Makzaz Global Store. mi casa su casa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="../app.js"></script>
     <script>
         // Sample data
@@ -472,7 +640,7 @@
             
             // Add story button
             html += `
-                <div class="story-item add-story">
+                <div class="story-item-feed add-story">
                     <div class="story-add-btn">+</div>
                     <span>Add Story</span>
                 </div>
@@ -482,11 +650,11 @@
             stories.forEach(story => {
                 if (!story.isUser) {
                     html += `
-                        <div class="story-item">
+                        <div class="story-item-feed">
                             <img src="${story.image}" alt="${story.name}">
-                            <div class="story-ring"></div>
-                            <img src="${story.avatar}" alt="${story.name}" class="story-avatar">
-                            <span class="story-name">${story.name}</span>
+                            <div class="story-ring-feed"></div>
+                            <img src="${story.avatar}" alt="${story.name}" class="story-avatar-feed">
+                            <span class="story-name-feed">${story.name}</span>
                         </div>
                     `;
                 }
@@ -590,27 +758,8 @@
             }
         }
 
-        // Load header and footer
-        async function loadComponents() {
-            try {
-                const [headerRes, footerRes] = await Promise.all([
-                    fetch('../components/header.html'),
-                    fetch('../components/footer.html')
-                ]);
-                
-                document.getElementById('header-placeholder').innerHTML = await headerRes.text();
-                document.getElementById('footer-placeholder').innerHTML = await footerRes.text();
-                
-                // Drawer is already initialized via event delegation in app.js
-                // No additional initialization needed
-            } catch (error) {
-                console.error('Error loading components:', error);
-            }
-        }
-
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            loadComponents();
             renderStories();
             renderPosts();
         });
