@@ -114,18 +114,18 @@ if (nextSlide) {
     });
 }
 
-// Stories Data (Blog/Twitter Style) - Lazy loading enabled
+// Stories Data (Blog/Twitter Style) - Lazy loading enabled - Using Picsum to avoid CORS
 const stories = [
-    { name: 'Nike', img: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200' },
-    { name: 'Adidas', img: 'https://images.unsplash.com/photo-1520256862855-398228c41f84?w=200' },
-    { name: 'Apple', img: 'https://images.unsplash.com/photo-1563200781-b39e84e9c4ac?w=200' },
-    { name: 'Samsung', img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=200' },
-    { name: 'Zara', img: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=200' },
-    { name: 'H&M', img: 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=200' },
-    { name: 'IKEA', img: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=200' },
-    { name: 'McDonalds', img: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=200' },
-    { name: 'KFC', img: 'https://images.unsplash.com/photo-1513639776629-9269d0d905dd?w=200' },
-    { name: 'Sony', img: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=200' }
+    { name: 'Nike', img: 'https://picsum.photos/200/200?random=1' },
+    { name: 'Adidas', img: 'https://picsum.photos/200/200?random=2' },
+    { name: 'Apple', img: 'https://picsum.photos/200/200?random=3' },
+    { name: 'Samsung', img: 'https://picsum.photos/200/200?random=4' },
+    { name: 'Zara', img: 'https://picsum.photos/200/200?random=5' },
+    { name: 'H&M', img: 'https://picsum.photos/200/200?random=6' },
+    { name: 'IKEA', img: 'https://picsum.photos/200/200?random=7' },
+    { name: 'McDonalds', img: 'https://picsum.photos/200/200?random=8' },
+    { name: 'KFC', img: 'https://picsum.photos/200/200?random=9' },
+    { name: 'Sony', img: 'https://picsum.photos/200/200?random=10' }
 ];
 
 function renderStories() {
@@ -148,16 +148,16 @@ function renderStories() {
     container.appendChild(fragment);
 }
 
-// Products Data - Optimized with lazy loading and efficient rendering
+// Products Data - Optimized with lazy loading and efficient rendering - Using Picsum to avoid CORS
 const products = [
-    { id: 1, title: 'Wireless Headphones', brand: 'Sony', price: 99.99, originalPrice: 149.99, rating: 4.5, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400', badge: 'SALE' },
-    { id: 2, title: 'Smart Watch Pro', brand: 'Apple', price: 299.99, originalPrice: 399.99, rating: 4.8, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400', badge: 'NEW' },
-    { id: 3, title: 'Running Shoes', brand: 'Nike', price: 89.99, originalPrice: 129.99, rating: 4.6, image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400', badge: '' },
-    { id: 4, title: 'Laptop Stand', brand: 'Generic', price: 39.99, originalPrice: 59.99, rating: 4.3, image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400', badge: 'HOT' },
-    { id: 5, title: 'Bluetooth Speaker', brand: 'JBL', price: 79.99, originalPrice: 99.99, rating: 4.7, image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400', badge: '' },
-    { id: 6, title: 'Gaming Mouse', brand: 'Logitech', price: 59.99, originalPrice: 79.99, rating: 4.5, image: 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400', badge: 'SALE' },
-    { id: 7, title: 'Phone Case', brand: 'OtterBox', price: 29.99, originalPrice: 39.99, rating: 4.4, image: 'https://images.unsplash.com/photo-1586105251261-72a756497a11?w=400', badge: '' },
-    { id: 8, title: 'USB-C Hub', brand: 'Anker', price: 49.99, originalPrice: 69.99, rating: 4.6, image: 'https://images.unsplash.com/photo-1625842268584-8f3296236761?w=400', badge: 'NEW' }
+    { id: 1, title: 'Wireless Headphones', brand: 'Sony', price: 99.99, originalPrice: 149.99, rating: 4.5, image: 'https://picsum.photos/400/400?random=1', badge: 'SALE' },
+    { id: 2, title: 'Smart Watch Pro', brand: 'Apple', price: 299.99, originalPrice: 399.99, rating: 4.8, image: 'https://picsum.photos/400/400?random=2', badge: 'NEW' },
+    { id: 3, title: 'Running Shoes', brand: 'Nike', price: 89.99, originalPrice: 129.99, rating: 4.6, image: 'https://picsum.photos/400/400?random=3', badge: '' },
+    { id: 4, title: 'Laptop Stand', brand: 'Generic', price: 39.99, originalPrice: 59.99, rating: 4.3, image: 'https://picsum.photos/400/400?random=4', badge: 'HOT' },
+    { id: 5, title: 'Bluetooth Speaker', brand: 'JBL', price: 79.99, originalPrice: 99.99, rating: 4.7, image: 'https://picsum.photos/400/400?random=5', badge: '' },
+    { id: 6, title: 'Gaming Mouse', brand: 'Logitech', price: 59.99, originalPrice: 79.99, rating: 4.5, image: 'https://picsum.photos/400/400?random=6', badge: 'SALE' },
+    { id: 7, title: 'Phone Case', brand: 'OtterBox', price: 29.99, originalPrice: 39.99, rating: 4.4, image: 'https://picsum.photos/400/400?random=7', badge: '' },
+    { id: 8, title: 'USB-C Hub', brand: 'Anker', price: 49.99, originalPrice: 69.99, rating: 4.6, image: 'https://picsum.photos/400/400?random=8', badge: 'NEW' }
 ];
 
 // Pre-computed star ratings for performance
