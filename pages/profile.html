@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
     <style>
+        /* Override body styles for this page */
+        body {
+            background: linear-gradient(rgba(93, 58, 26, 0.7), rgba(93, 58, 26, 0.7)), 
+                        url('https://images.unsplash.com/photo-1542662565-7e5b6c9a8c71?q=80&w=2070&auto=format&fit=crop') center/cover fixed;
+        }
         .profile-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -202,26 +207,78 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="../index.html" class="logo-link">
-                <img src="../assets/logo.svg" alt="Makzaz" class="nav-logo">
-            </a>
-            <div class="search-bar">
-                <input type="text" placeholder="Search for products, brands and more...">
-                <button>🔍</button>
+    <div class="app">
+    <!-- Header (same as landing page) -->
+    <header>
+        <a href="../index.html" class="brand">
+            <div class="brand-icon">M</div>
+            <div class="brand-text">
+                <h1>Makzaz</h1>
+                <p>mi casa su casa</p>
             </div>
-            <div class="nav-icons">
-                <div class="location-selector" onclick="cycleLocation()">
-                    <span class="location-icon">📍</span>
-                    <span class="location-text" id="currentLocation">New York</span>
-                </div>
-                <a href="messages.html" class="nav-icon" title="Messages">💬</a>
-                <a href="profile.html" class="nav-icon active" title="Profile">👤</a>
-                <a href="cart.html" class="nav-icon" title="Cart">🛒</a>
+        </a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search products, brands..." id="searchInput">
+            <button type="submit">Search</button>
+        </div>
+        <div class="nav-actions">
+            <a href="../index.html" class="nav-link">Home</a>
+            <a href="categories/fashion.html" class="nav-link">Fashion</a>
+            <a href="categories/electronics.html" class="nav-link">Electronics</a>
+            <a href="categories/home-living.html" class="nav-link">Home</a>
+            <a href="fast-food.html" class="nav-link">Fast Food</a>
+            <div class="nav-action-group">
+                <a href="#" class="icon-btn" id="menuToggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <a href="messages.html" class="icon-btn" aria-label="Messages">
+                    <i class="fas fa-comment"></i>
+                </a>
+                <a href="cart.html" class="icon-btn cart-trigger" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+                <a href="profile.html" class="icon-btn" aria-label="Account">
+                    <i class="fas fa-user"></i>
+                </a>
             </div>
         </div>
-    </nav>
+    </header>
+
+    <!-- Sidebar Drawer -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="drawer-header">
+            <div class="brand">
+                <div class="brand-icon" style="width: 40px; height: 40px; font-size: 1.2rem;">M</div>
+                <div class="brand-text">
+                    <h1 style="font-size: 1.1rem;">Makzaz</h1>
+                    <p style="font-size: 0.6rem;">mi casa su casa</p>
+                </div>
+            </div>
+            <button class="drawer-close" id="sidebarClose">&times;</button>
+        </div>
+        <nav class="drawer-menu">
+            <a href="../index.html" class="drawer-menu-item"><i class="fas fa-home" style="margin-right: 10px;"></i>Home</a>
+            <a href="categories/fashion.html" class="drawer-menu-item"><i class="fas fa-tshirt" style="margin-right: 10px;"></i>Fashion</a>
+            <a href="categories/electronics.html" class="drawer-menu-item"><i class="fas fa-laptop" style="margin-right: 10px;"></i>Electronics</a>
+            <a href="categories/home-living.html" class="drawer-menu-item"><i class="fas fa-couch" style="margin-right: 10px;"></i>Home & Living</a>
+            <a href="fast-food.html" class="drawer-menu-item"><i class="fas fa-hamburger" style="margin-right: 10px;"></i>Fast Food</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="seller.html" class="drawer-menu-item"><i class="fas fa-store" style="margin-right: 10px;"></i>Become a Seller</a>
+            <a href="profile.html" class="drawer-menu-item active"><i class="fas fa-user" style="margin-right: 10px;"></i>My Account</a>
+            <a href="orders.html" class="drawer-menu-item"><i class="fas fa-box" style="margin-right: 10px;"></i>My Orders</a>
+            <a href="wishlist.html" class="drawer-menu-item"><i class="fas fa-heart" style="margin-right: 10px;"></i>Wishlist</a>
+            <a href="messages.html" class="drawer-menu-item"><i class="fas fa-comment" style="margin-right: 10px;"></i>Messages</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="login.html" class="drawer-menu-item"><i class="fas fa-sign-in-alt" style="margin-right: 10px;"></i>Login</a>
+            <a href="signup.html" class="drawer-menu-item"><i class="fas fa-user-plus" style="margin-right: 10px;"></i>Sign Up</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="admin/dashboard.html" class="drawer-menu-item"><i class="fas fa-tachometer-alt" style="margin-right: 10px;"></i>Admin Dashboard</a>
+            <a href="faq.html" class="drawer-menu-item"><i class="fas fa-question-circle" style="margin-right: 10px;"></i>Help & FAQ</a>
+            <a href="terms.html" class="drawer-menu-item"><i class="fas fa-file-contract" style="margin-right: 10px;"></i>Terms & Conditions</a>
+        </nav>
+    </aside>
 
     <div class="profile-container">
         <aside class="profile-sidebar">
@@ -350,40 +407,84 @@
             </div>
         </main>
     </div>
+    </div>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>Shop</h4>
-                <a href="categories/fashion.html">Fashion</a>
-                <a href="categories/electronics.html">Electronics</a>
-                <a href="categories/home-living.html">Home & Living</a>
-                <a href="fast-food.html">Fast Food</a>
-            </div>
-            <div class="footer-section">
-                <h4>Account</h4>
-                <a href="login.html">Login</a>
-                <a href="signup.html">Sign Up</a>
-                <a href="profile.html">My Profile</a>
-                <a href="seller.html">Become a Seller</a>
-            </div>
-            <div class="footer-section">
-                <h4>Support</h4>
-                <a href="faq.html">FAQ</a>
-                <a href="terms.html">Terms & Conditions</a>
-                <a href="search.html">Search</a>
-            </div>
-            <div class="footer-section">
-                <h4>Download App</h4>
-                <div class="app-badges">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" 
-                         alt="App Store" style="height: 40px; margin-right: 10px;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" 
-                         alt="Google Play" style="height: 40px;">
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Shop</h4>
+                    <div class="footer-links">
+                        <a href="categories/fashion.html">Fashion</a>
+                        <a href="categories/electronics.html">Electronics</a>
+                        <a href="categories/home-living.html">Home & Living</a>
+                        <a href="fast-food.html">Fast Food</a>
+                    </div>
                 </div>
+                <div class="footer-section">
+                    <h4>Account</h4>
+                    <div class="footer-links">
+                        <a href="login.html">Login</a>
+                        <a href="signup.html">Sign Up</a>
+                        <a href="profile.html">My Account</a>
+                        <a href="orders.html">My Orders</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <div class="footer-links">
+                        <a href="faq.html">FAQ</a>
+                        <a href="contact.html">Contact Us</a>
+                        <a href="terms.html">Terms & Conditions</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Makzaz Global Store. mi casa su casa. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="mobile-nav">
+        <a href="../index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="categories.html" class="mobile-nav-item">
+            <i class="fas fa-th-large"></i>
+            <span>Categories</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item mobile-nav-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="nav-badge">3</span>
+            <span>Cart</span>
+        </a>
+        <a href="wishlist.html" class="mobile-nav-item">
+            <i class="fas fa-heart"></i>
+            <span>Wishlist</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item active">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
 
     <script src="../app.js"></script>
     <script>

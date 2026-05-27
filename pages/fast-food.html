@@ -165,6 +165,7 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             cursor: pointer;
+            position: relative;
         }
 
         .food-card:hover {
@@ -183,8 +184,26 @@
             transform: scale(1.1);
         }
 
+        /* Food info hidden by default, shown on hover */
         .food-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
             padding: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            transform: translateY(100%);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .food-card:hover .food-info,
+        .food-card:focus-within .food-info {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
         }
 
         .food-title {
@@ -530,6 +549,46 @@
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="mobile-nav">
+        <a href="../index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="categories.html" class="mobile-nav-item">
+            <i class="fas fa-th-large"></i>
+            <span>Categories</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item mobile-nav-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="nav-badge">3</span>
+            <span>Cart</span>
+        </a>
+        <a href="wishlist.html" class="mobile-nav-item">
+            <i class="fas fa-heart"></i>
+            <span>Wishlist</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
 
     <script src="../app.js"></script>
     <script>

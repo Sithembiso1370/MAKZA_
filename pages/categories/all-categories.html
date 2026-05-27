@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Categories - Makzaz Global Store</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .categories-solar-system {
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .solar-center {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        .solar-center-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--burnt-orange), var(--terracotta));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 0 60px rgba(230, 126, 34, 0.5);
+            animation: pulse-center 2s infinite;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .solar-center-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .solar-center-text {
+            margin-top: 1rem;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        @keyframes pulse-center {
+            0%, 100% { box-shadow: 0 0 60px rgba(230, 126, 34, 0.5); }
+            50% { box-shadow: 0 0 80px rgba(230, 126, 34, 0.8); }
+        }
+
+        .orbit {
+            position: absolute;
+            border: 2px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: rotate-orbit 60s linear infinite;
+        }
+
+        .orbit-1 {
+            width: 300px;
+            height: 300px;
+            animation-duration: 40s;
+        }
+
+        .orbit-2 {
+            width: 500px;
+            height: 500px;
+            animation-duration: 60s;
+        }
+
+        .orbit-3 {
+            width: 700px;
+            height: 700px;
+            animation-duration: 80s;
+        }
+
+        @keyframes rotate-orbit {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .category-planet {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--deep-brown);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .category-planet:hover {
+            transform: scale(1.2);
+            z-index: 20;
+            box-shadow: 0 15px 50px rgba(230, 126, 34, 0.4);
+        }
+
+        .category-planet i {
+            font-size: 1.5rem;
+            color: var(--burnt-orange);
+            margin-bottom: 0.3rem;
+        }
+
+        .category-planet span {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .planet-small {
+            width: 70px;
+            height: 70px;
+        }
+
+        .planet-medium {
+            width: 90px;
+            height: 90px;
+        }
+
+        .planet-large {
+            width: 110px;
+            height: 110px;
+        }
+
+        /* Position planets on orbits */
+        .orbit-1 .planet-1 { top: -35px; left: 50%; transform: translateX(-50%); }
+        .orbit-1 .planet-2 { top: 50%; right: -35px; transform: translateY(-50%); }
+        .orbit-1 .planet-3 { bottom: -35px; left: 50%; transform: translateX(-50%); }
+        .orbit-1 .planet-4 { top: 50%; left: -35px; transform: translateY(-50%); }
+
+        .orbit-2 .planet-5 { top: -45px; left: 50%; transform: translateX(-50%) rotate(0deg); }
+        .orbit-2 .planet-6 { top: 50%; right: -45px; transform: translateY(-50%) rotate(0deg); }
+        .orbit-2 .planet-7 { bottom: -45px; left: 50%; transform: translateX(-50%) rotate(0deg); }
+        .orbit-2 .planet-8 { top: 50%; left: -45px; transform: translateY(-50%) rotate(0deg); }
+
+        .orbit-3 .planet-9 { top: -55px; left: 50%; transform: translateX(-50%) rotate(0deg); }
+        .orbit-3 .planet-10 { top: 50%; right: -55px; transform: translateY(-50%) rotate(0deg); }
+        .orbit-3 .planet-11 { bottom: -55px; left: 50%; transform: translateX(-50%) rotate(0deg); }
+        .orbit-3 .planet-12 { top: 50%; left: -55px; transform: translateY(-50%) rotate(0deg); }
+
+        /* Counter-rotate planets so they stay upright */
+        .category-planet {
+            animation: counter-rotate 60s linear infinite;
+        }
+
+        .orbit-1 .category-planet { animation-duration: 40s; }
+        .orbit-2 .category-planet { animation-duration: 60s; }
+        .orbit-3 .category-planet { animation-duration: 80s; }
+
+        @keyframes counter-rotate {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 767px) {
+            .orbit-1 { width: 220px; height: 220px; }
+            .orbit-2 { width: 360px; height: 360px; }
+            .orbit-3 { width: 500px; height: 500px; }
+            
+            .planet-small { width: 55px; height: 55px; }
+            .planet-medium { width: 70px; height: 70px; }
+            .planet-large { width: 85px; height: 85px; }
+            
+            .category-planet i { font-size: 1.1rem; }
+            .category-planet span { font-size: 0.55rem; }
+            
+            .solar-center-icon { width: 90px; height: 90px; font-size: 2rem; }
+        }
+
+        /* Category grid fallback for accessibility */
+        .categories-grid-fallback {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--deep-brown);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .category-card i {
+            font-size: 2.5rem;
+            color: var(--burnt-orange);
+            margin-bottom: 1rem;
+        }
+
+        .category-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 767px) {
+            .categories-solar-system { display: none; }
+            .categories-grid-fallback { display: grid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+    <!-- Header -->
+    <header>
+        <a href="../../index.html" class="brand">
+            <div class="brand-icon">M</div>
+            <div class="brand-text">
+                <h1>Makzaz</h1>
+                <p>mi casa su casa</p>
+            </div>
+        </a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search products, brands..." id="searchInput">
+            <button type="submit">Search</button>
+        </div>
+        <div class="nav-actions">
+            <a href="../stories.html" class="nav-link"><i class="fas fa-circle"></i> Stories</a>
+            <a href="fashion.html" class="nav-link">Fashion</a>
+            <a href="electronics.html" class="nav-link">Electronics</a>
+            <a href="home-living.html" class="nav-link">Home</a>
+            <a href="../fast-food.html" class="nav-link">Fast Food</a>
+            <div class="nav-action-group">
+                <a href="#" class="icon-btn" id="menuToggle" aria-label="Menu">
+                    <i class="fas fa-bars"></i>
+                </a>
+                <a href="../messages.html" class="icon-btn" aria-label="Messages">
+                    <i class="fas fa-comment"></i>
+                </a>
+                <a href="../cart.html" class="icon-btn cart-trigger" aria-label="Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">3</span>
+                </a>
+                <a href="../profile.html" class="icon-btn" aria-label="Account">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar Drawer -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="drawer-header">
+            <div class="brand">
+                <div class="brand-icon" style="width: 40px; height: 40px; font-size: 1.2rem;">M</div>
+                <div class="brand-text">
+                    <h1 style="font-size: 1.1rem;">Makzaz</h1>
+                    <p style="font-size: 0.6rem;">mi casa su casa</p>
+                </div>
+            </div>
+            <button class="drawer-close" id="sidebarClose">&times;</button>
+        </div>
+        <nav class="drawer-menu">
+            <a href="../../index.html" class="drawer-menu-item"><i class="fas fa-home" style="margin-right: 10px;"></i>Home</a>
+            <a href="all-categories.html" class="drawer-menu-item active"><i class="fas fa-th-large" style="margin-right: 10px;"></i>All Categories</a>
+            <a href="fashion.html" class="drawer-menu-item"><i class="fas fa-tshirt" style="margin-right: 10px;"></i>Fashion</a>
+            <a href="electronics.html" class="drawer-menu-item"><i class="fas fa-laptop" style="margin-right: 10px;"></i>Electronics</a>
+            <a href="home-living.html" class="drawer-menu-item"><i class="fas fa-couch" style="margin-right: 10px;"></i>Home & Living</a>
+            <a href="../fast-food.html" class="drawer-menu-item"><i class="fas fa-hamburger" style="margin-right: 10px;"></i>Fast Food</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="../seller.html" class="drawer-menu-item"><i class="fas fa-store" style="margin-right: 10px;"></i>Become a Seller</a>
+            <a href="../profile.html" class="drawer-menu-item"><i class="fas fa-user" style="margin-right: 10px;"></i>My Account</a>
+            <a href="../orders.html" class="drawer-menu-item"><i class="fas fa-box" style="margin-right: 10px;"></i>My Orders</a>
+            <a href="../wishlist.html" class="drawer-menu-item"><i class="fas fa-heart" style="margin-right: 10px;"></i>Wishlist</a>
+            <a href="../messages.html" class="drawer-menu-item"><i class="fas fa-comment" style="margin-right: 10px;"></i>Messages</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="../login.html" class="drawer-menu-item"><i class="fas fa-sign-in-alt" style="margin-right: 10px;"></i>Login</a>
+            <a href="../signup.html" class="drawer-menu-item"><i class="fas fa-user-plus" style="margin-right: 10px;"></i>Sign Up</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="../admin/dashboard.html" class="drawer-menu-item"><i class="fas fa-tachometer-alt" style="margin-right: 10px;"></i>Admin Dashboard</a>
+            <a href="../faq.html" class="drawer-menu-item"><i class="fas fa-question-circle" style="margin-right: 10px;"></i>Help & FAQ</a>
+            <a href="../terms.html" class="drawer-menu-item"><i class="fas fa-file-contract" style="margin-right: 10px;"></i>Terms & Conditions</a>
+        </nav>
+    </aside>
+
+    <!-- Categories Solar System Mind Map -->
+    <section class="categories-solar-system">
+        <div class="orbit orbit-3"></div>
+        <div class="orbit orbit-2"></div>
+        <div class="orbit orbit-1"></div>
+        
+        <div class="solar-center">
+            <a href="../../index.html" class="solar-center-icon">
+                <i class="fas fa-store"></i>
+            </a>
+            <div class="solar-center-text">All Categories</div>
+        </div>
+
+        <!-- Inner Orbit -->
+        <a href="fashion.html" class="category-planet planet-small planet-1">
+            <i class="fas fa-tshirt"></i>
+            <span>Fashion</span>
+        </a>
+        <a href="electronics.html" class="category-planet planet-small planet-2">
+            <i class="fas fa-laptop"></i>
+            <span>Electronics</span>
+        </a>
+        <a href="home-living.html" class="category-planet planet-small planet-3">
+            <i class="fas fa-couch"></i>
+            <span>Home</span>
+        </a>
+        <a href="../fast-food.html" class="category-planet planet-small planet-4">
+            <i class="fas fa-hamburger"></i>
+            <span>Fast Food</span>
+        </a>
+
+        <!-- Middle Orbit -->
+        <a href="beauty.html" class="category-planet planet-medium planet-5">
+            <i class="fas fa-spa"></i>
+            <span>Beauty</span>
+        </a>
+        <a href="sports-outdoors.html" class="category-planet planet-medium planet-6">
+            <i class="fas fa-football-ball"></i>
+            <span>Sports</span>
+        </a>
+        <a href="toys-games.html" class="category-planet planet-medium planet-7">
+            <i class="fas fa-gamepad"></i>
+            <span>Toys</span>
+        </a>
+        <a href="books-media.html" class="category-planet planet-medium planet-8">
+            <i class="fas fa-book"></i>
+            <span>Books</span>
+        </a>
+
+        <!-- Outer Orbit -->
+        <a href="#" class="category-planet planet-large planet-9">
+            <i class="fas fa-car"></i>
+            <span>Automotive</span>
+        </a>
+        <a href="#" class="category-planet planet-large planet-10">
+            <i class="fas fa-tools"></i>
+            <span>Tools</span>
+        </a>
+        <a href="#" class="category-planet planet-large planet-11">
+            <i class="fas fa-paw"></i>
+            <span>Pets</span>
+        </a>
+        <a href="#" class="category-planet planet-large planet-12">
+            <i class="fas fa-baby"></i>
+            <span>Baby</span>
+        </a>
+    </section>
+
+    <!-- Fallback Grid for Mobile -->
+    <section class="categories-grid-fallback">
+        <a href="fashion.html" class="category-card">
+            <i class="fas fa-tshirt"></i>
+            <h3>Fashion</h3>
+        </a>
+        <a href="electronics.html" class="category-card">
+            <i class="fas fa-laptop"></i>
+            <h3>Electronics</h3>
+        </a>
+        <a href="home-living.html" class="category-card">
+            <i class="fas fa-couch"></i>
+            <h3>Home & Living</h3>
+        </a>
+        <a href="../fast-food.html" class="category-card">
+            <i class="fas fa-hamburger"></i>
+            <h3>Fast Food</h3>
+        </a>
+        <a href="beauty.html" class="category-card">
+            <i class="fas fa-spa"></i>
+            <h3>Beauty</h3>
+        </a>
+        <a href="sports-outdoors.html" class="category-card">
+            <i class="fas fa-football-ball"></i>
+            <h3>Sports & Outdoors</h3>
+        </a>
+        <a href="toys-games.html" class="category-card">
+            <i class="fas fa-gamepad"></i>
+            <h3>Toys & Games</h3>
+        </a>
+        <a href="books-media.html" class="category-card">
+            <i class="fas fa-book"></i>
+            <h3>Books & Media</h3>
+        </a>
+        <a href="#" class="category-card">
+            <i class="fas fa-car"></i>
+            <h3>Automotive</h3>
+        </a>
+        <a href="#" class="category-card">
+            <i class="fas fa-tools"></i>
+            <h3>Tools & Home</h3>
+        </a>
+        <a href="#" class="category-card">
+            <i class="fas fa-paw"></i>
+            <h3>Pet Supplies</h3>
+        </a>
+        <a href="#" class="category-card">
+            <i class="fas fa-baby"></i>
+            <h3>Baby Products</h3>
+        </a>
+    </section>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="../../index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="all-categories.html" class="mobile-nav-item active">
+            <i class="fas fa-th-large"></i>
+            <span>Categories</span>
+        </a>
+        <a href="../cart.html" class="mobile-nav-item mobile-nav-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="nav-badge">3</span>
+            <span>Cart</span>
+        </a>
+        <a href="../wishlist.html" class="mobile-nav-item">
+            <i class="fas fa-heart"></i>
+            <span>Wishlist</span>
+        </a>
+        <a href="../profile.html" class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop">↑</button>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Shop</h4>
+                    <a href="fashion.html">Fashion</a>
+                    <a href="electronics.html">Electronics</a>
+                    <a href="home-living.html">Home & Living</a>
+                    <a href="../fast-food.html">Fast Food</a>
+                    <a href="../brands.html">All Brands</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Account</h4>
+                    <a href="../login.html">Login</a>
+                    <a href="../signup.html">Sign Up</a>
+                    <a href="../profile.html">My Account</a>
+                    <a href="../orders.html">My Orders</a>
+                    <a href="../wishlist.html">Wishlist</a>
+                    <a href="../notifications.html">Notifications</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Sell</h4>
+                    <a href="../seller.html">Become a Seller</a>
+                    <a href="../admin/products.html">Seller Dashboard</a>
+                    <a href="../seller-guide.html">Seller Guide</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Support</h4>
+                    <a href="../faq.html">FAQ</a>
+                    <a href="../contact.html">Contact Us</a>
+                    <a href="../about.html">About Us</a>
+                    <a href="../terms.html">Terms & Conditions</a>
+                    <a href="../privacy.html">Privacy Policy</a>
+                    <a href="../returns.html">Returns & Refunds</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Admin</h4>
+                    <a href="../admin/dashboard.html">Dashboard</a>
+                    <a href="../admin/products.html">Products</a>
+                    <a href="../admin/orders.html">Orders</a>
+                    <a href="../admin/customers.html">Customers</a>
+                    <a href="../admin/staff.html">Staff</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Download App</h4>
+                    <div class="app-download">
+                        <a href="#" class="app-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+                            <span><strong>Get it on</strong>Google Play</span>
+                        </a>
+                        <a href="#" class="app-btn">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store">
+                            <span><strong>Download on the</strong>App Store</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Makzaz Global Store. mi casa su casa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    </div>
+
+    <script src="../../app.js"></script>
+</body>
+</html>
