@@ -16,9 +16,12 @@
         }
 
         body {
-            background-color: var(--food-bg);
+            background: linear-gradient(rgba(93, 58, 26, 0.7), rgba(93, 58, 26, 0.7)), 
+                        url('https://images.unsplash.com/photo-1542662565-7e5b6c9a8c71?q=80&w=2070&auto=format&fit=crop') center/cover fixed;
             font-family: 'Poppins', 'Inter', system-ui, sans-serif;
         }
+        
+        .app { max-width: 1400px; margin: 0 auto; padding: 1rem 1.5rem 2rem; }
 
         .food-hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://picsum.photos/1920/600?random=100');
@@ -500,6 +503,135 @@
         </div>
     </div>
 
+    <!-- Stories Section (Slidable Carousel) -->
+    <section class="stories-section" style="padding: var(--space-xl) 0;">
+        <div class="container">
+            <h2 style="margin-bottom: var(--space-md); font-size: 1.25rem;"><i class="fas fa-circle"></i> Food Stories</h2>
+            <div class="stories-container" id="foodStoriesContainer" style="display: flex; gap: var(--space-md); overflow-x: auto; padding: var(--space-md) 0; scrollbar-width: thin;">
+                <div class="story-item">
+                    <div class="story-ring"><div class="story-avatar"><img src="https://picsum.photos/100/100?random=200" alt="Chef John"></div></div>
+                    <span class="story-name">Chef John</span>
+                </div>
+                <div class="story-item">
+                    <div class="story-ring"><div class="story-avatar"><img src="https://picsum.photos/100/100?random=201" alt="Pizza Palace"></div></div>
+                    <span class="story-name">Pizza Palace</span>
+                </div>
+                <div class="story-item">
+                    <div class="story-ring"><div class="story-avatar"><img src="https://picsum.photos/100/100?random=202" alt="Burger King"></div></div>
+                    <span class="story-name">Burger King</span>
+                </div>
+                <div class="story-item">
+                    <div class="story-ring"><div class="story-avatar"><img src="https://picsum.photos/100/100?random=203" alt="Sushi Master"></div></div>
+                    <span class="story-name">Sushi Master</span>
+                </div>
+                <div class="story-item">
+                    <div class="story-ring"><div class="story-avatar"><img src="https://picsum.photos/100/100?random=204" alt="Taco Bell"></div></div>
+                    <span class="story-name">Taco Bell</span>
+                </div>
+                <div class="story-item">
+                    <div class="story-ring"><div class="story-avatar"><img src="https://picsum.photos/100/100?random=205" alt="Wing Stop"></div></div>
+                    <span class="story-name">Wing Stop</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flash Deals Section (Slidable Carousel) -->
+    <section style="padding: var(--space-xl) 0; overflow: hidden;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg);">
+                <h2 style="font-size: 1.5rem;"><i class="fas fa-bolt"></i> Flash Food Deals</h2>
+                <a href="#" style="color: var(--primary); font-weight: 600;">View All →</a>
+            </div>
+            <div style="position: relative;">
+                <div class="flash-deals-track" id="flashDealsTrack" style="display: flex; gap: var(--space-lg); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; padding: var(--space-md) 0;">
+                    <div class="food-card" style="min-width: 280px; max-width: 280px;">
+                        <img src="https://picsum.photos/400/300?random=300" class="food-img" alt="Flash Deal">
+                        <div class="food-info">
+                            <div class="food-title">Mega Burger Combo</div>
+                            <div class="food-meta"><span>Was $25.99</span><span class="rating-badge"><i class="fas fa-star"></i> 4.7</span></div>
+                            <div class="price-row"><span class="price" style="color: var(--terracotta);">$15.99</span><button class="add-btn"><i class="fas fa-plus"></i></button></div>
+                        </div>
+                    </div>
+                    <div class="food-card" style="min-width: 280px; max-width: 280px;">
+                        <img src="https://picsum.photos/400/300?random=301" class="food-img" alt="Flash Deal">
+                        <div class="food-info">
+                            <div class="food-title">Family Pizza Pack</div>
+                            <div class="food-meta"><span>Was $35.00</span><span class="rating-badge"><i class="fas fa-star"></i> 4.5</span></div>
+                            <div class="price-row"><span class="price" style="color: var(--terracotta);">$22.99</span><button class="add-btn"><i class="fas fa-plus"></i></button></div>
+                        </div>
+                    </div>
+                    <div class="food-card" style="min-width: 280px; max-width: 280px;">
+                        <img src="https://picsum.photos/400/300?random=302" class="food-img" alt="Flash Deal">
+                        <div class="food-info">
+                            <div class="food-title">Sushi Platter</div>
+                            <div class="food-meta"><span>Was $45.00</span><span class="rating-badge"><i class="fas fa-star"></i> 4.9</span></div>
+                            <div class="price-row"><span class="price" style="color: var(--terracotta);">$29.99</span><button class="add-btn"><i class="fas fa-plus"></i></button></div>
+                        </div>
+                    </div>
+                    <div class="food-card" style="min-width: 280px; max-width: 280px;">
+                        <img src="https://picsum.photos/400/300?random=303" class="food-img" alt="Flash Deal">
+                        <div class="food-info">
+                            <div class="food-title">Chicken Wings Bucket</div>
+                            <div class="food-meta"><span>Was $28.00</span><span class="rating-badge"><i class="fas fa-star"></i> 4.6</span></div>
+                            <div class="price-row"><span class="price" style="color: var(--terracotta);">$18.99</span><button class="add-btn"><i class="fas fa-plus"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-arrow prev" id="prevFlashDeal" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 10;">&#8249;</button>
+                <button class="slider-arrow next" id="nextFlashDeal" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 10;">&#8250;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrivals Section (Slidable Carousel) -->
+    <section style="padding: var(--space-xl) 0; overflow: hidden;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-lg);">
+                <h2 style="font-size: 1.5rem;"><i class="fas fa-fire"></i> New on Menu</h2>
+                <a href="#" style="color: var(--primary); font-weight: 600;">View All →</a>
+            </div>
+            <div style="position: relative;">
+                <div class="new-arrivals-track" id="newArrivalsTrack" style="display: flex; gap: var(--space-lg); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; padding: var(--space-md) 0;">
+                    <div class="food-card" style="min-width: 280px; max-width: 280px;">
+                        <img src="https://picsum.photos/400/300?random=400" class="food-img" alt="New Arrival">
+                        <div class="food-info">
+                            <div class="food-title">Truffle Fries</div>
+                            <div class="food-meta"><span>New!</span><span class="rating-badge"><i class="fas fa-star"></i> 4.8</span></div>
+                            <div class="price-row"><span class="price">$8.99</span><button class="add-btn"><i class="fas fa-plus"></i></button></div>
+                        </div>
+                    </div>
+                    <div class="food-card" style="min-width: 280px; max-width: 280px;">
+                        <img src="https://picsum.photos/400/300?random=401" class="food-img" alt="New Arrival">
+                        <div class="food-info">
+                            <div class="food-title">Mango Smoothie Bowl</div>
+                            <div class="food-meta"><span>New!</span><span class="rating-badge"><i class="fas fa-star"></i> 4.7</span></div>
+                            <div class="price-row"><span class="price">$12.50</span><button class="add-btn"><i class="fas fa-plus"></i></button></div>
+                        </div>
+                    </div>
+                    <div class="food-card" style="min-width: 280px; max-width: 280px;">
+                        <img src="https://picsum.photos/400/300?random=402" class="food-img" alt="New Arrival">
+                        <div class="food-info">
+                            <div class="food-title">BBQ Ribs Plate</div>
+                            <div class="food-meta"><span>New!</span><span class="rating-badge"><i class="fas fa-star"></i> 4.9</span></div>
+                            <div class="price-row"><span class="price">$24.99</span><button class="add-btn"><i class="fas fa-plus"></i></button></div>
+                        </div>
+                    </div>
+                    <div class="food-card" style="min-width: 280px; max-width: 280px;">
+                        <img src="https://picsum.photos/400/300?random=403" class="food-img" alt="New Arrival">
+                        <div class="food-info">
+                            <div class="food-title">Vegan Buddha Bowl</div>
+                            <div class="food-meta"><span>New!</span><span class="rating-badge"><i class="fas fa-star"></i> 4.6</span></div>
+                            <div class="price-row"><span class="price">$14.99</span><button class="add-btn"><i class="fas fa-plus"></i></button></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="slider-arrow prev" id="prevNewArrival" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 10;">&#8249;</button>
+                <button class="slider-arrow next" id="nextNewArrival" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); z-index: 10;">&#8250;</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -552,22 +684,21 @@
 
     <!-- Mobile Bottom Nav -->
     <nav class="mobile-nav">
-        <a href="../index.html" class="mobile-nav-item">
+        <a href="../index.html" class="mobile-nav-item active">
             <i class="fas fa-home"></i>
             <span>Home</span>
         </a>
-        <a href="categories.html" class="mobile-nav-item">
+        <a href="categories/all-categories.html" class="mobile-nav-item">
             <i class="fas fa-th-large"></i>
             <span>Categories</span>
         </a>
-        <a href="cart.html" class="mobile-nav-item mobile-nav-cart">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="nav-badge">3</span>
-            <span>Cart</span>
+        <a href="resell.html" class="mobile-nav-item">
+            <i class="fas fa-handshake"></i>
+            <span>Resell</span>
         </a>
-        <a href="wishlist.html" class="mobile-nav-item">
-            <i class="fas fa-heart"></i>
-            <span>Wishlist</span>
+        <a href="earn.html" class="mobile-nav-item">
+            <i class="fas fa-coins"></i>
+            <span>Earn</span>
         </a>
         <a href="profile.html" class="mobile-nav-item">
             <i class="fas fa-user"></i>
@@ -592,12 +723,50 @@
 
     <script src="../app.js"></script>
     <script>
+        // Cuisine chip selection
         const chips = document.querySelectorAll('.cuisine-chip');
         chips.forEach(chip => {
             chip.addEventListener('click', () => {
                 chips.forEach(c => c.classList.remove('active'));
                 chip.classList.add('active');
             });
+        });
+
+        // Flash Deals slider arrows
+        const flashTrack = document.getElementById('flashDealsTrack');
+        if (flashTrack) {
+            document.getElementById('prevFlashDeal').addEventListener('click', () => {
+                flashTrack.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+            document.getElementById('nextFlashDeal').addEventListener('click', () => {
+                flashTrack.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+        }
+
+        // New Arrivals slider arrows
+        const newArrivalsTrack = document.getElementById('newArrivalsTrack');
+        if (newArrivalsTrack) {
+            document.getElementById('prevNewArrival').addEventListener('click', () => {
+                newArrivalsTrack.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+            document.getElementById('nextNewArrival').addEventListener('click', () => {
+                newArrivalsTrack.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Back to top button visibility
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
         });
     </script>
     </div>
