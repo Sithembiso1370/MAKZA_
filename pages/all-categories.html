@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Categories - Makzaz</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .categories-page { padding: 80px 20px 120px; min-height: 100vh; background: #f8f9fa; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .categories-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 40px; text-align: center; border-radius: 20px; margin-bottom: 40px; }
+        .categories-header h1 { font-size: 48px; margin: 0 0 15px; }
+        .categories-header p { font-size: 18px; opacity: 0.9; }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .category-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; text-decoration: none; color: inherit; }
+        .category-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+        .category-image { height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; }
+        .category-image i { font-size: 80px; color: white; opacity: 0.9; }
+        .category-content { padding: 25px; }
+        .category-name { font-size: 22px; font-weight: 700; color: #333; margin: 0 0 10px; }
+        .category-count { font-size: 14px; color: #888; }
+        @media (max-width: 768px) {
+            .categories-page { padding: 60px 15px 100px; }
+            .categories-header { padding: 40px 20px; }
+            .categories-header h1 { font-size: 32px; }
+            .categories-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <section class="categories-page">
+        <div class="container">
+            <div class="categories-header">
+                <h1><i class="fas fa-th-large"></i> All Categories</h1>
+                <p>Browse through our extensive collection of product categories</p>
+            </div>
+
+            <div class="categories-grid">
+                <a href="categories/fashion.html" class="category-card">
+                    <div class="category-image"><i class="fas fa-tshirt"></i></div>
+                    <div class="category-content">
+                        <h3 class="category-name">Fashion</h3>
+                        <p class="category-count">15,000+ Products</p>
+                    </div>
+                </a>
+                <a href="categories/electronics.html" class="category-card">
+                    <div class="category-image"><i class="fas fa-laptop"></i></div>
+                    <div class="category-content">
+                        <h3 class="category-name">Electronics</h3>
+                        <p class="category-count">12,500+ Products</p>
+                    </div>
+                </a>
+                <a href="categories/home-living.html" class="category-card">
+                    <div class="category-image"><i class="fas fa-couch"></i></div>
+                    <div class="category-content">
+                        <h3 class="category-name">Home & Living</h3>
+                        <p class="category-count">18,000+ Products</p>
+                    </div>
+                </a>
+                <a href="categories/beauty.html" class="category-card">
+                    <div class="category-image"><i class="fas fa-spa"></i></div>
+                    <div class="category-content">
+                        <h3 class="category-name">Beauty & Personal Care</h3>
+                        <p class="category-count">8,500+ Products</p>
+                    </div>
+                </a>
+                <a href="categories/sports-outdoors.html" class="category-card">
+                    <div class="category-image"><i class="fas fa-football-ball"></i></div>
+                    <div class="category-content">
+                        <h3 class="category-name">Sports & Outdoors</h3>
+                        <p class="category-count">6,200+ Products</p>
+                    </div>
+                </a>
+                <a href="categories/toys-games.html" class="category-card">
+                    <div class="category-image"><i class="fas fa-gamepad"></i></div>
+                    <div class="category-content">
+                        <h3 class="category-name">Toys & Games</h3>
+                        <p class="category-count">5,800+ Products</p>
+                    </div>
+                </a>
+                <a href="categories/books-media.html" class="category-card">
+                    <div class="category-image"><i class="fas fa-book"></i></div>
+                    <div class="category-content">
+                        <h3 class="category-name">Books & Media</h3>
+                        <p class="category-count">9,300+ Products</p>
+                    </div>
+                </a>
+                <a href="fast-food.html" class="category-card">
+                    <div class="category-image"><i class="fas fa-hamburger"></i></div>
+                    <div class="category-content">
+                        <h3 class="category-name">Fast Food</h3>
+                        <p class="category-count">2,100+ Products</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+    <div id="mobile-nav-container"></div>
+
+    <script src="../app.js"></script>
+    <script>
+        fetch('../components/header.html').then(r => r.text()).then(d => document.getElementById('header-container').innerHTML = d);
+        fetch('../components/footer.html').then(r => r.text()).then(d => document.getElementById('footer-container').innerHTML = d);
+        fetch('../components/mobile-nav.html').then(r => r.text()).then(d => document.getElementById('mobile-nav-container').innerHTML = d);
+    </script>
+</body>
+</html>

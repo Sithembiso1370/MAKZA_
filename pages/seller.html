@@ -3,278 +3,457 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seller Dashboard - Makzaz</title>
+    <title>Become a Seller - Makzaz</title>
     <link rel="stylesheet" href="../styles.css">
     <link rel="icon" type="image/svg+xml" href="../assets/logo.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        .seller-dashboard {
-            display: grid;
-            grid-template-columns: 250px 1fr;
+        .seller-page {
+            padding: 80px 20px 40px;
             min-height: 100vh;
-            background: #f5f7fa;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
-        .seller-sidebar {
-            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+        .seller-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .seller-hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .seller-hero h1 {
+            font-size: 48px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .seller-hero p {
+            font-size: 20px;
+            color: #7f8c8d;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .benefit-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        .benefit-card i {
+            font-size: 48px;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .benefit-card h3 {
+            margin: 0 0 15px;
+            color: #2c3e50;
+        }
+        .benefit-card p {
+            margin: 0;
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        .steps-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .steps-section h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+        .step-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
             color: white;
-            padding: 2rem 0;
-        }
-        .seller-sidebar h3 {
-            padding: 0 1.5rem;
-            margin-bottom: 2rem;
-            font-size: 1.3rem;
-        }
-        .seller-nav-item {
-            padding: 1rem 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
+            border-radius: 50%;
             display: flex;
             align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .step-content h4 {
+            margin: 0 0 10px;
+            color: #2c3e50;
+        }
+        .step-content p {
+            margin: 0;
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        .registration-form {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .registration-form h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .registration-form > p {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #27ae60;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
             gap: 10px;
         }
-        .seller-nav-item:hover, .seller-nav-item.active {
-            background: rgba(255,255,255,0.1);
-            border-left: 4px solid #27ae60;
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 4px;
         }
-        .seller-content {
-            padding: 2rem;
-        }
-        .seller-header {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-        .stat-card.green { border-top: 4px solid #27ae60; }
-        .stat-card.blue { border-top: 4px solid #3498db; }
-        .stat-card.orange { border-top: 4px solid #e67e22; }
-        .stat-card.purple { border-top: 4px solid #9b59b6; }
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #2c3e50;
-            margin: 0.5rem 0;
-        }
-        .stat-label {
+        .checkbox-group label {
+            margin: 0;
+            font-weight: 400;
             color: #7f8c8d;
-            font-size: 0.9rem;
         }
-        .products-table {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        .table-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-        .btn-add-product {
-            background: #27ae60;
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
             color: white;
             border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 5px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .btn-add-product:hover {
-            background: #219a52;
+        .submit-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(39, 174, 96, 0.4);
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #ecf0f1;
-        }
-        th {
-            background: #f8f9fa;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-        .status-active { background: #d5f5e3; color: #27ae60; }
-        .status-low { background: #fdebd0; color: #e67e22; }
-        .status-out { background: #fadbd8; color: #e74c3c; }
-        .action-btn {
-            padding: 0.4rem 0.8rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 5px;
-            font-size: 0.85rem;
-        }
-        .btn-edit { background: #3498db; color: white; }
-        .btn-delete { background: #e74c3c; color: white; }
-        
         @media (max-width: 768px) {
-            .seller-dashboard {
-                grid-template-columns: 1fr;
-            }
-            .seller-sidebar {
-                display: none;
-            }
+            .seller-hero h1 { font-size: 32px; }
+            .seller-hero p { font-size: 16px; }
+            .form-row { grid-template-columns: 1fr; }
+            .steps-section, .registration-form { padding: 25px; }
+            .step-item { flex-direction: column; align-items: center; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <div class="seller-dashboard">
-        <aside class="seller-sidebar">
-            <h3>🏪 Seller Center</h3>
-            <nav>
-                <div class="seller-nav-item active">📊 Dashboard</div>
-                <div class="seller-nav-item">📦 Products</div>
-                <div class="seller-nav-item">🛒 Orders</div>
-                <div class="seller-nav-item">💰 Earnings</div>
-                <div class="seller-nav-item">📈 Analytics</div>
-                <div class="seller-nav-item">⚙️ Settings</div>
-                <div class="seller-nav-item" onclick="window.location.href='../index.html'">🏠 Back to Store</div>
-            </nav>
-        </aside>
+    <div id="header-placeholder"></div>
 
-        <main class="seller-content">
-            <header class="seller-header">
-                <div>
-                    <h2>Welcome back, TechGadgets Pro!</h2>
-                    <p style="color: #7f8c8d;">Last login: Today at 9:30 AM</p>
-                </div>
-                <div style="display: flex; gap: 1rem; align-items: center;">
-                    <button class="btn-add-product">+ Add New Product</button>
-                    <img src="https://ui-avatars.com/api/?name=Tech+Gadgets&background=27ae60&color=fff" 
-                         alt="Seller" style="width: 40px; height: 40px; border-radius: 50%;">
-                </div>
-            </header>
+    <section class="seller-page">
+        <div class="seller-container">
+            <div class="seller-hero">
+                <h1><i class="fas fa-store"></i> Become a Seller on Makzaz</h1>
+                <p>Join thousands of successful sellers and grow your business with our global marketplace platform</p>
+            </div>
 
-            <div class="stats-grid">
-                <div class="stat-card green">
-                    <div class="stat-label">Total Sales</div>
-                    <div class="stat-number">$24,563</div>
-                    <div style="color: #27ae60; font-size: 0.85rem;">↑ 12% from last month</div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <i class="fas fa-globe"></i>
+                    <h3>Global Reach</h3>
+                    <p>Access millions of customers worldwide and expand your business beyond borders</p>
                 </div>
-                <div class="stat-card blue">
-                    <div class="stat-label">Active Products</div>
-                    <div class="stat-number">156</div>
-                    <div style="color: #3498db; font-size: 0.85rem;">3 pending approval</div>
+                <div class="benefit-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Grow Your Sales</h3>
+                    <p>Leverage our powerful marketing tools and analytics to boost your revenue</p>
                 </div>
-                <div class="stat-card orange">
-                    <div class="stat-label">Pending Orders</div>
-                    <div class="stat-number">23</div>
-                    <div style="color: #e67e22; font-size: 0.85rem;">5 need shipping</div>
+                <div class="benefit-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Payments</h3>
+                    <p>Get paid safely with our encrypted payment system and seller protection</p>
                 </div>
-                <div class="stat-card purple">
-                    <div class="stat-label">Store Rating</div>
-                    <div class="stat-number">4.8★</div>
-                    <div style="color: #9b59b6; font-size: 0.85rem;">Based on 892 reviews</div>
+                <div class="benefit-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Our dedicated seller support team is always here to help you succeed</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Easy Shipping</h3>
+                    <p>Integrated shipping solutions with discounted rates from top carriers</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Seller App</h3>
+                    <p>Manage your store on-the-go with our intuitive mobile seller application</p>
                 </div>
             </div>
 
-            <div class="products-table">
-                <div class="table-header">
-                    <h3>Recent Products</h3>
-                    <div style="display: flex; gap: 1rem;">
-                        <input type="text" placeholder="Search products..." 
-                               style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px;">
-                        <select style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px;">
-                            <option>All Categories</option>
-                            <option>Electronics</option>
-                            <option>Fashion</option>
-                            <option>Home</option>
-                        </select>
+            <div class="steps-section">
+                <h2><i class="fas fa-list-ol"></i> How to Get Started</h2>
+                
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Create Your Account</h4>
+                        <p>Fill out the registration form below with your personal and business information. Make sure to provide accurate details for verification.</p>
                     </div>
                 </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>SKU</th>
-                            <th>Price</th>
-                            <th>Stock</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <img src="https://via.placeholder.com/40" alt="Product" style="border-radius: 4px;">
-                                    <span>Wireless Earbuds Pro</span>
-                                </div>
-                            </td>
-                            <td>WE-PRO-001</td>
-                            <td>$79.99</td>
-                            <td>245</td>
-                            <td><span class="status-badge status-active">Active</span></td>
-                            <td>
-                                <button class="action-btn btn-edit">Edit</button>
-                                <button class="action-btn btn-delete">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <img src="https://via.placeholder.com/40" alt="Product" style="border-radius: 4px;">
-                                    <span>Smart Watch Series 5</span>
-                                </div>
-                            </td>
-                            <td>SW-S5-002</td>
-                            <td>$199.99</td>
-                            <td>12</td>
-                            <td><span class="status-badge status-low">Low Stock</span></td>
-                            <td>
-                                <button class="action-btn btn-edit">Edit</button>
-                                <button class="action-btn btn-delete">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div style="display: flex; align-items: center; gap: 10px;">
-                                    <img src="https://via.placeholder.com/40" alt="Product" style="border-radius: 4px;">
-                                    <span>USB-C Fast Charger</span>
-                                </div>
-                            </td>
-                            <td>UC-FC-003</td>
-                            <td>$24.99</td>
-                            <td>0</td>
-                            <td><span class="status-badge status-out">Out of Stock</span></td>
-                            <td>
-                                <button class="action-btn btn-edit">Edit</button>
-                                <button class="action-btn btn-delete">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Verify Your Identity</h4>
+                        <p>Submit required documents for identity verification. This typically includes government-issued ID and business registration documents if applicable.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Set Up Your Store</h4>
+                        <p>Customize your seller profile, add your logo, write your store description, and configure your shipping and return policies.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>List Your Products</h4>
+                        <p>Add your products with high-quality images, detailed descriptions, and competitive pricing. Our team will review and approve your listings.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Start Selling</h4>
+                        <p>Once approved, your store goes live! Start receiving orders, manage inventory, and watch your business grow on Makzaz.</p>
+                    </div>
+                </div>
             </div>
-        </main>
-    </div>
+
+            <div class="registration-form">
+                <h2><i class="fas fa-user-plus"></i> Seller Registration Form</h2>
+                <p>Complete the form below to begin your seller journey with Makzaz</p>
+
+                <form onsubmit="submitSellerRegistration(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <input type="text" id="firstName" placeholder="John" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" placeholder="Doe" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" placeholder="+1 (555) 123-4567" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="storeName">Store/Business Name *</label>
+                        <input type="text" id="storeName" placeholder="Your Store Name" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="businessType">Business Type *</label>
+                            <select id="businessType" required>
+                                <option value="">Select Business Type</option>
+                                <option value="individual">Individual Seller</option>
+                                <option value="sole-proprietorship">Sole Proprietorship</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="llc">LLC</option>
+                                <option value="corporation">Corporation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Primary Category *</label>
+                            <select id="category" required>
+                                <option value="">Select Primary Category</option>
+                                <option value="fashion">Fashion & Apparel</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="home-living">Home & Living</option>
+                                <option value="beauty">Beauty & Personal Care</option>
+                                <option value="sports">Sports & Outdoors</option>
+                                <option value="toys">Toys & Games</option>
+                                <option value="books">Books & Media</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="products">What products do you plan to sell? *</label>
+                        <textarea id="products" placeholder="Describe the types of products you'll be selling..." required></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="experience">Selling Experience</label>
+                            <select id="experience">
+                                <option value="">Select Experience Level</option>
+                                <option value="new">New to Selling</option>
+                                <option value="1-2">1-2 Years</option>
+                                <option value="3-5">3-5 Years</option>
+                                <option value="5+">5+ Years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="platforms">Currently Selling On</label>
+                            <input type="text" id="platforms" placeholder="e.g., Amazon, eBay, Own Website">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Business Address *</label>
+                        <textarea id="address" placeholder="Full business address including street, city, state, and zip code" required></textarea>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">I agree to the <a href="terms.html" target="_blank">Seller Terms and Conditions</a> and <a href="privacy.html" target="_blank">Privacy Policy</a>. I understand that my information will be used for verification purposes. *</label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="newsletter">
+                        <label for="newsletter">Send me seller tips, updates, and promotional offers via email</label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Submit Registration
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
 
     <script src="../app.js"></script>
+    <script>
+        // Load shared header and footer components
+        fetch('../components/header.html')
+            .then(r => r.text())
+            .then(html => document.getElementById('header-placeholder').innerHTML = html);
+
+        fetch('../components/footer.html')
+            .then(r => r.text())
+            .then(html => document.getElementById('footer-placeholder').innerHTML = html);
+
+        function submitSellerRegistration(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                storeName: document.getElementById('storeName').value,
+                businessType: document.getElementById('businessType').value,
+                category: document.getElementById('category').value,
+                products: document.getElementById('products').value,
+                experience: document.getElementById('experience').value,
+                platforms: document.getElementById('platforms').value,
+                address: document.getElementById('address').value,
+                termsAccepted: document.getElementById('terms').checked,
+                newsletter: document.getElementById('newsletter').checked
+            };
+
+            // In a real application, you would send this to your backend
+            console.log('Seller Registration Data:', formData);
+
+            // Show success message
+            alert('Thank you for your registration! Our seller onboarding team will review your application and contact you within 2-3 business days. Welcome to the Makzaz family!');
+            
+            // Reset form
+            e.target.reset();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Any additional initialization can go here
+        });
+    </script>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="../index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="categories/all-categories.html" class="mobile-nav-item">
+            <i class="fas fa-th-large"></i>
+            <span>Categories</span>
+        </a>
+        <a href="stories.html" class="mobile-nav-item">
+            <i class="fas fa-circle"></i>
+            <span>Stories</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
 </body>
 </html>

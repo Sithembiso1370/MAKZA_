@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Brands - Makzaz</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .brands-page { padding: 80px 20px 120px; min-height: 100vh; background: #f8f9fa; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .brands-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 40px; text-align: center; border-radius: 20px; margin-bottom: 40px; }
+        .brands-header h1 { font-size: 48px; margin: 0 0 15px; }
+        .brands-header p { font-size: 18px; opacity: 0.9; }
+        .brands-search { max-width: 600px; margin: 30px auto 0; position: relative; }
+        .brands-search input { width: 100%; padding: 15px 50px 15px 25px; border: none; border-radius: 30px; font-size: 16px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .brands-search button { position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: #667eea; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+        .brands-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; margin-top: 40px; }
+        .brand-card { background: white; border-radius: 15px; padding: 30px 20px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; text-decoration: none; color: inherit; }
+        .brand-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); }
+        .brand-logo { width: 120px; height: 120px; object-fit: contain; margin: 0 auto 20px; border-radius: 10px; background: #f8f9fa; padding: 15px; }
+        .brand-name { font-size: 18px; font-weight: 600; color: #333; margin: 0 0 8px; }
+        .brand-products { font-size: 14px; color: #888; }
+        .brand-featured { position: relative; }
+        .brand-featured::before { content: 'Featured'; position: absolute; top: 15px; right: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .brands-filter { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
+        .filter-btn { padding: 10px 25px; border: 2px solid #e0e0e0; background: white; border-radius: 25px; cursor: pointer; font-size: 14px; font-weight: 600; color: #666; transition: all 0.3s; }
+        .filter-btn:hover, .filter-btn.active { border-color: #667eea; background: #667eea; color: white; }
+        .no-results { text-align: center; padding: 60px 20px; color: #888; }
+        .no-results i { font-size: 64px; margin-bottom: 20px; opacity: 0.5; }
+        @media (max-width: 768px) {
+            .brands-page { padding: 60px 15px 100px; }
+            .brands-header { padding: 40px 20px; }
+            .brands-header h1 { font-size: 32px; }
+            .brands-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
+            .brand-logo { width: 100px; height: 100px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <!-- Brands Page -->
+    <section class="brands-page">
+        <div class="container">
+            <div class="brands-header">
+                <h1><i class="fas fa-tags"></i> All Brands</h1>
+                <p>Discover trusted brands from around the world</p>
+                
+                <div class="brands-search">
+                    <input type="text" placeholder="Search brands..." id="brandSearch">
+                    <button onclick="searchBrands()"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="brands-filter">
+                <button class="filter-btn active" data-category="all">All Brands</button>
+                <button class="filter-btn" data-category="fashion">Fashion</button>
+                <button class="filter-btn" data-category="electronics">Electronics</button>
+                <button class="filter-btn" data-category="home">Home & Living</button>
+                <button class="filter-btn" data-category="beauty">Beauty</button>
+                <button class="filter-btn" data-category="sports">Sports</button>
+            </div>
+
+            <div class="brands-grid" id="brandsGrid">
+                <!-- Fashion Brands -->
+                <a href="brand.html?name=nike" class="brand-card brand-featured" data-category="fashion">
+                    <img src="https://via.placeholder.com/120x120/667eea/ffffff?text=Nike" alt="Nike" class="brand-logo">
+                    <h3 class="brand-name">Nike</h3>
+                    <p class="brand-products">2,450 Products</p>
+                </a>
+                <a href="brand.html?name=adidas" class="brand-card" data-category="fashion">
+                    <img src="https://via.placeholder.com/120x120/764ba2/ffffff?text=Adidas" alt="Adidas" class="brand-logo">
+                    <h3 class="brand-name">Adidas</h3>
+                    <p class="brand-products">1,890 Products</p>
+                </a>
+                <a href="brand.html?name=zara" class="brand-card" data-category="fashion">
+                    <img src="https://via.placeholder.com/120x120/333333/ffffff?text=Zara" alt="Zara" class="brand-logo">
+                    <h3 class="brand-name">Zara</h3>
+                    <p class="brand-products">3,200 Products</p>
+                </a>
+                <a href="brand.html?name=h&m" class="brand-card" data-category="fashion">
+                    <img src="https://via.placeholder.com/120x120/e91e63/ffffff?text=H%26M" alt="H&M" class="brand-logo">
+                    <h3 class="brand-name">H&M</h3>
+                    <p class="brand-products">2,780 Products</p>
+                </a>
+                <a href="brand.html?name=gucci" class="brand-card brand-featured" data-category="fashion">
+                    <img src="https://via.placeholder.com/120x120/1a1a1a/ffffff?text=Gucci" alt="Gucci" class="brand-logo">
+                    <h3 class="brand-name">Gucci</h3>
+                    <p class="brand-products">890 Products</p>
+                </a>
+                <a href="brand.html?name=levi's" class="brand-card" data-category="fashion">
+                    <img src="https://via.placeholder.com/120x120/c62828/ffffff?text=Levi's" alt="Levi's" class="brand-logo">
+                    <h3 class="brand-name">Levi's</h3>
+                    <p class="brand-products">1,450 Products</p>
+                </a>
+
+                <!-- Electronics Brands -->
+                <a href="brand.html?name=apple" class="brand-card brand-featured" data-category="electronics">
+                    <img src="https://via.placeholder.com/120x120/333333/ffffff?text=Apple" alt="Apple" class="brand-logo">
+                    <h3 class="brand-name">Apple</h3>
+                    <p class="brand-products">1,250 Products</p>
+                </a>
+                <a href="brand.html?name=samsung" class="brand-card" data-category="electronics">
+                    <img src="https://via.placeholder.com/120x120/1428a0/ffffff?text=Samsung" alt="Samsung" class="brand-logo">
+                    <h3 class="brand-name">Samsung</h3>
+                    <p class="brand-products">2,100 Products</p>
+                </a>
+                <a href="brand.html?name=sony" class="brand-card" data-category="electronics">
+                    <img src="https://via.placeholder.com/120x120/000000/ffffff?text=Sony" alt="Sony" class="brand-logo">
+                    <h3 class="brand-name">Sony</h3>
+                    <p class="brand-products">1,680 Products</p>
+                </a>
+                <a href="brand.html?name=lg" class="brand-card" data-category="electronics">
+                    <img src="https://via.placeholder.com/120x120/a50034/ffffff?text=LG" alt="LG" class="brand-logo">
+                    <h3 class="brand-name">LG</h3>
+                    <p class="brand-products">1,340 Products</p>
+                </a>
+                <a href="brand.html?name=dell" class="brand-card" data-category="electronics">
+                    <img src="https://via.placeholder.com/120x120/007db8/ffffff?text=Dell" alt="Dell" class="brand-logo">
+                    <h3 class="brand-name">Dell</h3>
+                    <p class="brand-products">980 Products</p>
+                </a>
+                <a href="brand.html?name=hp" class="brand-card" data-category="electronics">
+                    <img src="https://via.placeholder.com/120x120/0096d6/ffffff?text=HP" alt="HP" class="brand-logo">
+                    <h3 class="brand-name">HP</h3>
+                    <p class="brand-products">1,120 Products</p>
+                </a>
+
+                <!-- Home & Living Brands -->
+                <a href="brand.html?name=ikea" class="brand-card brand-featured" data-category="home">
+                    <img src="https://via.placeholder.com/120x120/0058a3/ffffff?text=IKEA" alt="IKEA" class="brand-logo">
+                    <h3 class="brand-name">IKEA</h3>
+                    <p class="brand-products">4,500 Products</p>
+                </a>
+                <a href="brand.html?name=west elm" class="brand-card" data-category="home">
+                    <img src="https://via.placeholder.com/120x120/6b8e7a/ffffff?text=West+Elm" alt="West Elm" class="brand-logo">
+                    <h3 class="brand-name">West Elm</h3>
+                    <p class="brand-products">2,200 Products</p>
+                </a>
+                <a href="brand.html?name=crate & barrel" class="brand-card" data-category="home">
+                    <img src="https://via.placeholder.com/120x120/8b4513/ffffff?text=Crate+%26+Barrel" alt="Crate & Barrel" class="brand-logo">
+                    <h3 class="brand-name">Crate & Barrel</h3>
+                    <p class="brand-products">1,890 Products</p>
+                </a>
+                <a href="brand.html?name=pottery barn" class="brand-card" data-category="home">
+                    <img src="https://via.placeholder.com/120x120/5c4033/ffffff?text=Pottery+Barn" alt="Pottery Barn" class="brand-logo">
+                    <h3 class="brand-name">Pottery Barn</h3>
+                    <p class="brand-products">2,450 Products</p>
+                </a>
+
+                <!-- Beauty Brands -->
+                <a href="brand.html?name=loreal" class="brand-card" data-category="beauty">
+                    <img src="https://via.placeholder.com/120x120/e91e63/ffffff?text=L'Oréal" alt="L'Oréal" class="brand-logo">
+                    <h3 class="brand-name">L'Oréal</h3>
+                    <p class="brand-products">1,680 Products</p>
+                </a>
+                <a href="brand.html?name=maybelline" class="brand-card" data-category="beauty">
+                    <img src="https://via.placeholder.com/120x120/ff6b9d/ffffff?text=Maybelline" alt="Maybelline" class="brand-logo">
+                    <h3 class="brand-name">Maybelline</h3>
+                    <p class="brand-products">890 Products</p>
+                </a>
+                <a href="brand.html?name=mac" class="brand-card brand-featured" data-category="beauty">
+                    <img src="https://via.placeholder.com/120x120/000000/ffffff?text=MAC" alt="MAC" class="brand-logo">
+                    <h3 class="brand-name">MAC</h3>
+                    <p class="brand-products">1,250 Products</p>
+                </a>
+                <a href="brand.html?name=clinique" class="brand-card" data-category="beauty">
+                    <img src="https://via.placeholder.com/120x120/00a693/ffffff?text=Clinique" alt="Clinique" class="brand-logo">
+                    <h3 class="brand-name">Clinique</h3>
+                    <p class="brand-products">780 Products</p>
+                </a>
+
+                <!-- Sports Brands -->
+                <a href="brand.html?name=under armour" class="brand-card" data-category="sports">
+                    <img src="https://via.placeholder.com/120x120/1c1c1c/ffffff?text=Under+Armour" alt="Under Armour" class="brand-logo">
+                    <h3 class="brand-name">Under Armour</h3>
+                    <p class="brand-products">1,340 Products</p>
+                </a>
+                <a href="brand.html?name=puma" class="brand-card" data-category="sports">
+                    <img src="https://via.placeholder.com/120x120/1c1c1c/ffffff?text=PUMA" alt="PUMA" class="brand-logo">
+                    <h3 class="brand-name">PUMA</h3>
+                    <p class="brand-products">1,560 Products</p>
+                </a>
+                <a href="brand.html?name=reebok" class="brand-card" data-category="sports">
+                    <img src="https://via.placeholder.com/120x120/d4002a/ffffff?text=Reebok" alt="Reebok" class="brand-logo">
+                    <h3 class="brand-name">Reebok</h3>
+                    <p class="brand-products">980 Products</p>
+                </a>
+                <a href="brand.html?name=wilson" class="brand-card" data-category="sports">
+                    <img src="https://via.placeholder.com/120x120/c41230/ffffff?text=Wilson" alt="Wilson" class="brand-logo">
+                    <h3 class="brand-name">Wilson</h3>
+                    <p class="brand-products">670 Products</p>
+                </a>
+            </div>
+
+            <div class="no-results" id="noResults" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No brands found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+    <div id="mobile-nav-container"></div>
+
+    <script src="../app.js"></script>
+    <script>
+        // Load shared components
+        fetch('../components/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+                const headerContainer = document.getElementById('header-container');
+                headerContainer.querySelectorAll('a[href]').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (!href.startsWith('http') && !href.startsWith('#') && !href.startsWith('../')) {
+                        link.setAttribute('href', '../' + href);
+                    }
+                });
+            });
+
+        fetch('../components/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+
+        fetch('../components/mobile-nav.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('mobile-nav-container').innerHTML = data;
+            });
+
+        // Search functionality
+        function searchBrands() {
+            const searchTerm = document.getElementById('brandSearch').value.toLowerCase();
+            const brandCards = document.querySelectorAll('.brand-card');
+            let hasResults = false;
+
+            brandCards.forEach(card => {
+                const brandName = card.querySelector('.brand-name').textContent.toLowerCase();
+                if (brandName.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.getElementById('noResults').style.display = hasResults ? 'none' : 'block';
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const category = this.dataset.category;
+                const brandCards = document.querySelectorAll('.brand-card');
+                let hasResults = false;
+
+                brandCards.forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                        hasResults = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                document.getElementById('noResults').style.display = hasResults ? 'none' : 'block';
+            });
+        });
+
+        // Enter key search
+        document.getElementById('brandSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBrands();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!-- MOBILE BOTTOM NAVIGATION COMPONENT -->
+<!-- Include this in all pages for consistent mobile bottom navigation -->
+<!-- Navigation items: Home, Categories, Stories, Account -->
+
+<nav class="mobile-nav">
+    <a href="../index.html" class="mobile-nav-item" data-page="home">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+    </a>
+    <a href="categories/all-categories.html" class="mobile-nav-item" data-page="categories">
+        <i class="fas fa-th-large"></i>
+        <span>Categories</span>
+    </a>
+    <a href="stories.html" class="mobile-nav-item" data-page="stories">
+        <i class="fas fa-circle"></i>
+        <span>Stories</span>
+    </a>
+    <a href="profile.html" class="mobile-nav-item" data-page="account">
+        <i class="fas fa-user"></i>
+        <span>Account</span>
+    </a>
+</nav>
+
+<script>
+    // Auto-highlight active nav item based on current page
+    (function() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const navItems = document.querySelectorAll('.mobile-nav-item');
+        
+        navItems.forEach(item => {
+            const href = item.getAttribute('href');
+            const page = item.getAttribute('data-page');
+            
+            // Check if current page matches nav item
+            if (currentPage.includes(page) || 
+                (page === 'home' && (currentPage === '' || currentPage === 'index.html')) ||
+                (page === 'categories' && currentPage.includes('categories')) ||
+                (page === 'stories' && currentPage.includes('stories')) ||
+                (page === 'account' && currentPage.includes('profile'))) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    })();
+</script>

@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles.css" />
   <style>
-    .faq-container { max-width: 800px; margin: 0 auto; }
+    .faq-container { max-width: 800px; margin: 0 auto; padding-top: 20px; }
     .faq-item { background: var(--bg-card); border-radius: var(--radius); margin-bottom: 15px; overflow: hidden; box-shadow: var(--shadow); }
     .faq-question { padding: 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; }
     .faq-question:hover { background: var(--bg-glass); }
@@ -18,18 +18,7 @@
   </style>
 </head>
 <body>
-  <header class="header glass">
-    <div class="container" style="display: flex; align-items: center; justify-content: space-between;">
-      <a href="../index.html" class="logo">
-        <div class="logo-icon"><i class="fas fa-african-tree"></i></div>
-        <h1>MAKZAZ</h1>
-      </a>
-      <nav class="nav-links">
-        <a href="#" class="nav-icon" title="Location"><i class="fas fa-map-marker-alt"></i></a>
-        <a href="cart.html" class="nav-icon" title="Cart"><i class="fas fa-shopping-cart"></i></a>
-      </nav>
-    </div>
-  </header>
+  <div id="header-placeholder"></div>
 
   <main class="container">
     <div class="faq-container">
@@ -98,12 +87,39 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-bottom">© 2026 MAKZAZ</div>
-    </div>
-  </footer>
+  <div id="footer-placeholder"></div>
 
   <script src="../app.js"></script>
-</body>
+  <script>
+    // Load shared header and footer components
+    fetch('../components/header.html')
+      .then(r => r.text())
+      .then(html => document.getElementById('header-placeholder').innerHTML = html);
+
+    fetch('../components/footer.html')
+      .then(r => r.text())
+      .then(html => document.getElementById('footer-placeholder').innerHTML = html);
+  </script>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-nav">
+    <a href="../index.html" class="mobile-nav-item">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </a>
+    <a href="categories/all-categories.html" class="mobile-nav-item">
+      <i class="fas fa-th-large"></i>
+      <span>Categories</span>
+    </a>
+    <a href="stories.html" class="mobile-nav-item">
+      <i class="fas fa-circle"></i>
+      <span>Stories</span>
+    </a>
+    <a href="profile.html" class="mobile-nav-item">
+      <i class="fas fa-user"></i>
+      <span>Account</span>
+    </a>
+  </nav>
+
+  </body>
 </html>
