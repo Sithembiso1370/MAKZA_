@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn - Makzaz Academy</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .learn-hero { background: linear-gradient(135deg, var(--rich-blue), var(--deep-brown)); padding: 4rem 2rem; text-align: center; border-radius: 0 0 30px 30px; margin-bottom: 2rem; }
+        .learn-hero h1 { color: white; font-size: 2.5rem; margin-bottom: 1rem; }
+        .learn-hero p { color: rgba(255,255,255,0.95); font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
+        .courses-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .course-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); }
+        .course-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+        .course-img { height: 180px; background: linear-gradient(135deg, var(--savanna-gold), var(--burnt-orange)); display: flex; align-items: center; justify-content: center; }
+        .course-img i { font-size: 4rem; color: white; }
+        .course-content { padding: 1.5rem; }
+        .course-content h3 { color: var(--deep-brown); margin-bottom: 0.5rem; }
+        .course-content p { color: #666; font-size: 0.9rem; margin-bottom: 1rem; }
+        .course-meta { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #888; }
+        @media (max-width: 767px) { .learn-hero h1 { font-size: 1.75rem; } }
+    </style>
+</head>
+<body>
+    <div class="app">
+    <header>
+        <a href="../index.html" class="brand"><div class="brand-icon">M</div><div class="brand-text"><h1>Makzaz</h1><p>mi casa su casa</p></div></a>
+        <div class="search-bar"><input type="text" placeholder="Search..." id="searchInput"><button type="submit">Search</button></div>
+        <div class="nav-actions">
+            <a href="#" class="icon-btn" id="menuToggle"><i class="fas fa-bars"></i></a>
+            <a href="profile.html" class="icon-btn"><i class="fas fa-user"></i></a>
+        </div>
+    </header>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="drawer-header"><div class="brand"><div class="brand-icon" style="width: 40px; height: 40px; font-size: 1.2rem;">M</div><div class="brand-text"><h1 style="font-size: 1.1rem;">Makzaz</h1><p style="font-size: 0.6rem;">mi casa su casa</p></div></div><button class="drawer-close" id="sidebarClose">&times;</button></div>
+        <nav class="drawer-menu">
+            <a href="../index.html" class="drawer-menu-item"><i class="fas fa-home" style="margin-right: 10px;"></i>Home</a>
+            <a href="resell.html" class="drawer-menu-item"><i class="fas fa-handshake" style="margin-right: 10px;"></i>Become a Reseller</a>
+            <a href="earn.html" class="drawer-menu-item"><i class="fas fa-coins" style="margin-right: 10px;"></i>Earn</a>
+            <a href="learn.html" class="drawer-menu-item active"><i class="fas fa-graduation-cap" style="margin-right: 10px;"></i>Learn</a>
+            <a href="invest.html" class="drawer-menu-item"><i class="fas fa-chart-line" style="margin-right: 10px;"></i>Invest</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="profile.html" class="drawer-menu-item"><i class="fas fa-user" style="margin-right: 10px;"></i>My Account</a>
+        </nav>
+    </aside>
+
+    <div class="learn-hero">
+        <h1><i class="fas fa-graduation-cap"></i> Makzaz Academy</h1>
+        <p>Free courses to help you succeed in e-commerce and business</p>
+    </div>
+
+    <section class="courses-grid">
+        <div class="course-card">
+            <div class="course-img"><i class="fas fa-store"></i></div>
+            <div class="course-content">
+                <h3>E-commerce Basics</h3>
+                <p>Learn the fundamentals of running an online store successfully</p>
+                <div class="course-meta"><span><i class="far fa-clock"></i> 2 hours</span><span><i class="fas fa-signal"></i> Beginner</span></div>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="course-img"><i class="fas fa-bullhorn"></i></div>
+            <div class="course-content">
+                <h3>Digital Marketing</h3>
+                <p>Master social media marketing and customer acquisition strategies</p>
+                <div class="course-meta"><span><i class="far fa-clock"></i> 4 hours</span><span><i class="fas fa-signal"></i> Intermediate</span></div>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="course-img"><i class="fas fa-handshake"></i></div>
+            <div class="course-content">
+                <h3>Sales Techniques</h3>
+                <p>Proven methods to close more sales and build customer relationships</p>
+                <div class="course-meta"><span><i class="far fa-clock"></i> 3 hours</span><span><i class="fas fa-signal"></i> All Levels</span></div>
+            </div>
+        </div>
+        <div class="course-card">
+            <div class="course-img"><i class="fas fa-chart-pie"></i></div>
+            <div class="course-content">
+                <h3>Business Analytics</h3>
+                <p>Use data to make informed business decisions and grow faster</p>
+                <div class="course-meta"><span><i class="far fa-clock"></i> 5 hours</span><span><i class="fas fa-signal"></i> Advanced</span></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container"><div class="footer-grid">
+            <div class="footer-col"><h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Resources</h4><a href="learn.html">Learn</a><a href="invest.html">Invest</a><a href="earn.html">Earn</a></div>
+            <div class="footer-col"><h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Opportunities</h4><a href="resell.html">Become a Reseller</a><a href="seller.html">Become a Seller</a></div>
+            <div class="footer-col"><h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Support</h4><a href="faq.html">FAQ</a><a href="contact.html">Contact Us</a></div>
+        </div><div class="footer-bottom"><p>&copy; 2024 Makzaz Global Store. mi casa su casa.</p></div></div>
+    </footer>
+
+    <nav class="mobile-nav">
+        <a href="../index.html" class="mobile-nav-item"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="categories/all-categories.html" class="mobile-nav-item"><i class="fas fa-th-large"></i><span>Categories</span></a>
+        <a href="resell.html" class="mobile-nav-item"><i class="fas fa-handshake"></i><span>Resell</span></a>
+        <a href="learn.html" class="mobile-nav-item active"><i class="fas fa-graduation-cap"></i><span>Learn</span></a>
+        <a href="profile.html" class="mobile-nav-item"><i class="fas fa-user"></i><span>Account</span></a>
+    </nav>
+
+    <button id="backToTop">↑</button>
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <button class="mobile-menu-btn" id="mobileMenuBtn"><i class="fas fa-bars"></i></button>
+    </div>
+    <script src="../app.js"></script>
+</body>
+</html>

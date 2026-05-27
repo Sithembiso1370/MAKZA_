@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Reseller - Makzaz Global Store</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .resell-hero {
+            background: linear-gradient(135deg, var(--deep-brown), var(--terracotta));
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 2rem;
+        }
+        .resell-hero h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .resell-hero p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .benefits-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .benefit-card {
+            background: linear-gradient(135deg, rgba(230,126,34,0.05), rgba(199,90,15,0.05));
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(199,90,15,0.1);
+        }
+        .benefit-card i {
+            font-size: 2.5rem;
+            color: var(--burnt-orange);
+            margin-bottom: 1rem;
+        }
+        .benefit-card h3 {
+            color: var(--deep-brown);
+            margin-bottom: 0.5rem;
+        }
+        .benefit-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .resell-form {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            color: var(--deep-brown);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid rgba(199,90,15,0.2);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--burnt-orange);
+            box-shadow: 0 0 0 3px rgba(230,126,34,0.1);
+        }
+        .submit-btn {
+            background: linear-gradient(135deg, var(--burnt-orange), var(--terracotta));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(230,126,34,0.3);
+        }
+        @media (max-width: 767px) {
+            .resell-hero h1 { font-size: 1.75rem; }
+            .resell-hero p { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+    <!-- Header -->
+    <header>
+        <a href="../index.html" class="brand">
+            <div class="brand-icon">M</div>
+            <div class="brand-text">
+                <h1>Makzaz</h1>
+                <p>mi casa su casa</p>
+            </div>
+        </a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search..." id="searchInput">
+            <button type="submit">Search</button>
+        </div>
+        <div class="nav-actions">
+            <a href="#" class="icon-btn" id="menuToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </a>
+            <a href="profile.html" class="icon-btn" aria-label="Account">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="drawer-header">
+            <div class="brand">
+                <div class="brand-icon" style="width: 40px; height: 40px; font-size: 1.2rem;">M</div>
+                <div class="brand-text">
+                    <h1 style="font-size: 1.1rem;">Makzaz</h1>
+                    <p style="font-size: 0.6rem;">mi casa su casa</p>
+                </div>
+            </div>
+            <button class="drawer-close" id="sidebarClose">&times;</button>
+        </div>
+        <nav class="drawer-menu">
+            <a href="../index.html" class="drawer-menu-item"><i class="fas fa-home" style="margin-right: 10px;"></i>Home</a>
+            <a href="categories/fashion.html" class="drawer-menu-item"><i class="fas fa-tshirt" style="margin-right: 10px;"></i>Fashion</a>
+            <a href="categories/electronics.html" class="drawer-menu-item"><i class="fas fa-laptop" style="margin-right: 10px;"></i>Electronics</a>
+            <a href="resell.html" class="drawer-menu-item active"><i class="fas fa-handshake" style="margin-right: 10px;"></i>Become a Reseller</a>
+            <a href="earn.html" class="drawer-menu-item"><i class="fas fa-coins" style="margin-right: 10px;"></i>Earn</a>
+            <a href="learn.html" class="drawer-menu-item"><i class="fas fa-graduation-cap" style="margin-right: 10px;"></i>Learn</a>
+            <a href="invest.html" class="drawer-menu-item"><i class="fas fa-chart-line" style="margin-right: 10px;"></i>Invest</a>
+            <hr style="margin: 1rem 0; border: none; border-top: 1px solid rgba(199, 90, 15, 0.2);">
+            <a href="profile.html" class="drawer-menu-item"><i class="fas fa-user" style="margin-right: 10px;"></i>My Account</a>
+            <a href="login.html" class="drawer-menu-item"><i class="fas fa-sign-in-alt" style="margin-right: 10px;"></i>Login</a>
+        </nav>
+    </aside>
+
+    <div class="resell-hero">
+        <h1><i class="fas fa-handshake"></i> Become a Reseller</h1>
+        <p>Join our reseller program and start earning commissions by selling Makzaz products to your network</p>
+    </div>
+
+    <section class="benefits-section">
+        <h2 style="color: var(--deep-brown); text-align: center; margin-bottom: 1rem;">Why Become a Reseller?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <i class="fas fa-percent"></i>
+                <h3>High Commissions</h3>
+                <p>Earn up to 20% commission on every sale you make</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-box"></i>
+                <h3>No Inventory</h3>
+                <p>We handle storage and shipping - you just sell</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-headset"></i>
+                <h3>Full Support</h3>
+                <p>Get dedicated support and marketing materials</p>
+            </div>
+            <div class="benefit-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Easy Tracking</h3>
+                <p>Track your sales and earnings in real-time</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="resell-form">
+        <h2 style="color: var(--deep-brown); text-align: center; margin-bottom: 1.5rem;">Register as a Reseller</h2>
+        <form id="resellerForm">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+1 234 567 8900">
+            </div>
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" name="country" required>
+                    <option value="">Select your country</option>
+                    <option value="US">United States</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="NG">Nigeria</option>
+                    <option value="GH">Ghana</option>
+                    <option value="KE">Kenya</option>
+                    <option value="ZA">South Africa</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="experience">Sales Experience</label>
+                <select id="experience" name="experience" required>
+                    <option value="">Select experience level</option>
+                    <option value="beginner">No experience - I'm new</option>
+                    <option value="some">Some experience (1-2 years)</option>
+                    <option value="experienced">Experienced (3-5 years)</option>
+                    <option value="expert">Expert (5+ years)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Why do you want to become a reseller?</label>
+                <textarea id="message" name="message" rows="4" placeholder="Tell us about your goals..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Application</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Shop</h4>
+                    <a href="../index.html">Home</a>
+                    <a href="categories/fashion.html">Fashion</a>
+                    <a href="categories/electronics.html">Electronics</a>
+                    <a href="resell.html">Become a Reseller</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Opportunities</h4>
+                    <a href="earn.html">Earn</a>
+                    <a href="learn.html">Learn</a>
+                    <a href="invest.html">Invest</a>
+                </div>
+                <div class="footer-col">
+                    <h4 style="color: var(--savanna-gold); margin-bottom: 1rem;">Support</h4>
+                    <a href="faq.html">FAQ</a>
+                    <a href="contact.html">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Makzaz Global Store. mi casa su casa. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Nav -->
+    <nav class="mobile-nav">
+        <a href="../index.html" class="mobile-nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="categories/all-categories.html" class="mobile-nav-item">
+            <i class="fas fa-th-large"></i>
+            <span>Categories</span>
+        </a>
+        <a href="resell.html" class="mobile-nav-item active">
+            <i class="fas fa-handshake"></i>
+            <span>Resell</span>
+        </a>
+        <a href="earn.html" class="mobile-nav-item">
+            <i class="fas fa-coins"></i>
+            <span>Earn</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <!-- Back to Top -->
+    <button id="backToTop">↑</button>
+    
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+    </button>
+    </div>
+
+    <script src="../app.js"></script>
+    <script>
+        document.getElementById('resellerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your application! We will review it and get back to you within 48 hours.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
